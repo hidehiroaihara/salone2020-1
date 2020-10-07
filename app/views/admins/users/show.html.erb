@@ -1,0 +1,192 @@
+<%= render "shared/header_user" %>
+<div class="contents">
+  <div class="section">
+    <div class="customer_title">
+      <h1 class="title1">お客様情報詳細</h1>
+    </div>
+    <div class="name_area">
+      <p class="block_area"></p>
+      <h2 class="basic">基本情報</h2>
+    </div>
+    <div class="detail">
+        <table class="detail_table" align="left">
+          <colgroup width="15%"></colgroup>
+          <colgroup width="35%"></colgroup>
+          <tr>
+            <th class="show_name">氏名(漢字)</th>
+            <td class="show_bd">
+              <span class="show_field"><%=  @user.first_name.to_s +   @user.last_name.to_s  %></span>
+            </td>
+          </tr>
+          <tr>
+            <th class="show_name">氏名(カナ)</th>
+            <td class="show_bd">
+              <span class="show_field"><%=  @user.first_name_cana.to_s +   @user.last_name_cana.to_s %></span>
+            </td>
+          </tr>
+          <tr>
+            <th class="show_name">電話番号</th>
+            <td class="show_bd"> 
+              <span class="show_field"><%= @user.phone_number %></span>
+            </td>
+          </tr>
+          <tr>
+            <th class="show_name">EMAIL</th>
+            <td class="show_bd">
+              <span class="show_field"><%= @user.email %></span>
+            </td>
+          </tr>
+          <tr>
+            <th class="show_name">お客様番号</th>
+            <td class="show_bd">
+              <span class="show_field"><%= @user.customer_number %></span>
+            </td>
+          </tr>
+          <tr class="address_table">
+            <th class="show_name">住所</th>
+            <td class="show_bd">
+              <span class="show_field"><%= @user.address.prefecture.name.to_s + @user.address.address_all.to_s %></span>
+            </td>
+          </tr> 
+          <tr>
+            <th class="show_name">会員ランク</th>
+            <td class="show_bd">
+              <span class="show_field"><%= @user.member.name %></span>
+            </td>
+          </tr>
+        </table>
+        <table class="detail_table1" >
+          <colgroup width="15%"></colgroup>
+          <colgroup width="35%"></colgroup>
+          <tr>
+            <th class="show_name">誕生日</th>
+              <td class="show_bd">
+                <span class="show_field"><%= @user.birthday %>
+              </td>
+          </tr>
+          <tr>
+            <th class="show_name">性別</th>
+            <td class="show_bd">
+              <span class="show_field"><%= @user.gender.name %></span>
+            </td>
+          </tr>
+          <tr>
+            <th class="show_name">血液型</th>
+            <td class="show_bd">
+              <span class="show_field"><%= @user.blood_type.name %>
+            </td>
+          </tr>
+          <tr>
+            <th class="show_name">職業</th>
+            <td class="show_bd">
+              <span class="show_field"><%= @user.job.name %></span>
+            </td>
+          </tr>
+          <tr>
+            <th class="show_name">担当スタイリスト</th>
+            <td class="show_bd">
+              <span class="show_field"><%= @user.stylist.set_name %></span>
+            </td>
+          </tr>
+          <tr>
+            <th class="show_name">お客様メモ</th>
+            <td class="show_bd">
+              <span class="show_field"><%= @user.customer_text %></span>
+            </td>
+          </tr>
+        </table>
+        <div class="name_area space">
+          <p class="block_area"></p>
+          <h2 class="basic">来店情報</h2>
+        </div>
+        <table class="show_information_table" align="left">
+          <colgroup width="35%"></colgroup>
+          <colgroup width="65%"></colgroup>
+          <tr class="show_information_colum">
+            <th class="show_name">初日来店日</th>
+            <td class="show_information_td">
+              <span class="show_field"><%= @user.information.information_date %></span>
+            </td>
+          </tr>
+        </table>
+        <table class="show_information_table">
+          <colgroup width="35%"></colgroup>
+          <colgroup width="65%"></colgroup>
+          <tr class="show_information_colum">
+            <th class="show_name">来店きっかけ</th>
+            <td class="show_information_td">
+              <span class="show_field"><%= @user.information.information_text %></span>
+            </td>
+          </tr>
+        </table>
+        <div class="name_area space">
+          <p class="block_area"></p>
+          <h2 class="basic">メッセージ配信情報</h2>
+        </div>
+        <table class="show_message_table">
+          <colgroup width="5%"></colgroup>
+          <colgroup width="30%"></colgroup>
+          <colgroup width="65%"></colgroup>
+          <tr class="message_colum">
+            <th colspan="2" class="show_name">メッセージ配信先</th>
+            <td class="show_message_bd">
+              <span class="show_field"><%= @user.message.consent %></span>
+            </td>
+          </tr>
+          <tr class="message_colum">
+            <th class="show_space show_name"></th>
+            <th class="show_name"><span class="show_message_name">マイページ</span></th>
+            <td class="show_message_bd">
+              <span class="show_field"><% %></span>
+            </td>
+          </tr>
+          <tr class="message_colum">
+            <th class="show_name show_space1"></th>
+            <th class="show_name"><span class="show_message_name">EMAI</span></th>
+            <td class="show_message_bd">
+              <span class="show_field"><% %></span>
+            </td>
+          </tr>
+        </table>
+        <div class="name_area space">
+          <p class="block_area"></p>
+          <h2 class="basic">メッセージ配信履歴</h2>
+        </div>
+         <table class="message_table" style="margin-bottom:30px;">
+          <colgroup width="10%"></colgroup>
+          <colgroup width="25%"></colgroup>
+          <colgroup width="10%"></colgroup>
+          <colgroup width="25%"></colgroup>
+          <colgroup width="15%"></colgroup>
+          <colgroup width="15%"></colgroup>
+          <tr class="message_colum" style="height: 50px;">
+            <th class="show_delivery">配信日</th>
+            <th class="show_delivery">タイトル</th>
+            <th class="show_delivery show_delivery_stylist">スタイリスト</th>
+            <th class="show_delivery">クーポン</th>
+            <th class="show_delivery">マイページ配信結果</th>
+            <th class="show_delivery">EMAIL配信結果</th>
+          </tr>
+          <tr class="message_colum">
+            <td class="show_message_bd">1<% %></td>
+            <td class="show_message_bd">2<% %></td>
+            <td class="show_message_bd">3<% %></td>
+            <td class="show_message_bd">4<% %></td>
+            <td class="show_message_bd">5<% %></td>
+            <td class="show_message_bd">6<% %></td>
+          </tr>
+        </table>
+        <div class="change_btn">
+          <p class="change_area_delete">
+            <%= link_to "削除する", user_path(@user.id), method: :delete, class:"show_delete" %>
+          <p class="change_area_edit">
+            <%= link_to  "変更する", edit_user_path(@user.id), class:"show_change" %>
+          </p>
+        </div> 
+        <ul class="user_top_link">
+          <li><%= link_to "お客様一覧に戻る", users_path, class:"user-top" %></li>
+        </ul>
+    </div>
+  </div>
+</div>
+<%= render "shared/footer"%>

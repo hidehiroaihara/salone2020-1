@@ -1,0 +1,172 @@
+<%= render "shared/header_user" %>
+<div class="contents">
+  <div class="section">
+    <div class="customer_title">
+      <h1 class="title1">お客様情報登録</h1>
+    </div>
+    <div class="name_area">
+      <p class="block_area"></p>
+      <h2 class="basic">基本情報</h2>
+    </div>
+    <div class="entry">
+      <%= form_with model: @user_address, url: user_path(@user.id), local: true do |f| %>
+        <table class="entry_table" align="left">
+          <tr>
+            <th class="input_name">氏名(漢字)</th>
+            <td class="bd">
+              <%= f.text_field :first_name , class:"new_field", maxlength:"25" %>
+            </td>
+            <td class="bd">
+              <%= f.text_field :last_name , class:"new_field", maxlength:"25" %>
+            </td>
+          </tr>
+          <tr>
+            <th class="input_name">氏名(カナ)</th>
+            <td class="bd">
+              <%= f.text_field :first_name_cana, class:"new_field", maxlength:"25" %>
+            </td>
+            <td class="bd">
+              <%= f.text_field :last_name_cana, class:"new_field", maxlength:"25" %>
+            </td>
+          </tr>
+          <tr>
+            <th class="input_name">電話番号</th>
+            <td colspan="2" class="bd"> 
+              <%= f.text_field :phone_number, class:"phone_field", maxlength:"15" %>
+            </td>
+          </tr>
+          <tr>
+            <th class="input_name">EMAIL</th>
+            <td colspan="2" class="bd">
+              <%= f.text_field :email, class:"email_field" %>
+            </td>
+          </tr>
+          <tr>
+            <th class="input_name">お客様番号</th>
+            <td colspan="2" class="bd">
+              <%= f.text_field :customer_number, class:"customer_field"%>
+            </td>
+          </tr>
+          <tr class="address_table" width="100%">
+            <th class="input_name">住所</th>
+            <td colspan="2" class="address_input bd" width="100%">
+              <p class="post">〒
+                <%= f.text_field :post_code, class:"post_feild", placeholder:"例）123-4567", onKeyUp:"AjaxZip3.zip2addr('user_address[post_code]','','user_address[prefecture_id]','user_address[address_all]');" %>
+              </p>
+              <p>
+                <%= f.collection_select(:prefecture_id, Prefecture.all, :id, :name, {include_blank: "--"}, {class:"select-box", id:"prefecture"}) %>
+              </p>
+              <p>
+                <%= f.text_field :address_all, class:"address_field" %>
+              </p>
+            </td>
+          </tr> 
+          <tr>
+            <th class="input_name">会員ランク</th>
+            <td colspan="2" class="bd">
+              <%= f.collection_select(:member_id, Member.all, :id, :name, {include_blank: "--"}, {class:"select-box", id:"member"}) %>
+            </td>
+          </tr>
+        </table>
+        <table class="entry_table1" >
+          <tr class="birth_colum">
+            <th class="input_name">誕生日</th>
+              <td class="birth_table">
+                <%= raw sprintf(
+                  f.date_select(
+                    :birthday,
+                    class:'select-birth',
+                    id:"birth-date",
+                    use_month_numbers: true,
+                    prompt:'--',
+                    start_year: (Time.now.year),
+                    end_year: 1930,
+                    date_separator: '%s'),
+                  "<p> 年 </p>", "<p> 月 </p>") + "<p> 日 </p>" %>
+              </td>
+          </tr>
+          <tr>
+            <th class="input_name">性別</th>
+            <td class="bd">
+              <%= f.collection_select(:gender_id, Gender.all, :id, :name, {include_blank: "--"}, {class:"select-box1", id:"gender"}) %>
+            </td>
+          </tr>
+          <tr>
+            <th class="input_name">血液型</th>
+            <td class="bd">
+              <%= f.collection_select(:blood_type_id, BloodType.all, :id, :name, {include_blank: "--"}, {class:"select-box1", id:"blood_type"}) %>
+            </td>
+          </tr>
+          <tr>
+            <th class="input_name">職業</th>
+            <td class="bd">
+              <%= f.collection_select(:job_id, Job.all, :id, :name, {include_blank: "--"}, {class:"select-box", id:"job"}) %>
+            </td>
+          </tr>
+          <tr>
+            <th class="input_name">担当スタイリスト</th>
+            <td class="bd">
+              <%= f.collection_select(:stylist_id, Stylist.all, :id, :set_name, {}, {class:"select-box", id:"stylists"}) %>
+            </td>
+          </tr>
+          <tr>
+            <th class="input_name">お客様メモ</th>
+            <td class="bd">
+              <%= f.text_area :customer_text, class:"text_field" %>
+            </td>
+          </tr>
+        </table>
+        <div class="name_area space">
+          <p class="block_area"></p>
+          <h2 class="basic">来店情報</h2>
+        </div>
+        <table class="information_table" align="left">
+          <tr class="information_colum">
+            <th class="input_name">初日来店日</th>
+            <td class="information_td">
+              <%= raw sprintf(
+                  f.date_select(
+                    :information_date,
+                    class:'select-birth',
+                    id:"information-date",
+                    use_month_numbers: true,
+                    prompt:'--',
+                    start_year: (Time.now.year),
+                    end_year: 1900,
+                    date_separator: '%s'),
+                  "<p> 年 </p>", "<p> 月 </p>") + "<p> 日 </p>" %>
+            </td>
+          </tr>
+        </table>
+        <table class="information_table">
+          <tr class="information_colum">
+            <th class="input_name">来店きっかけ</th>
+            <td class="information_text">
+              <%= f.text_area :information_text, class:"information_field" %>
+            </td>
+          </tr>
+        </table>
+        <div class="name_area space">
+          <p class="block_area"></p>
+          <h2 class="basic">メッセージ配信設定</h2>
+        </div>
+        <table class="message_table">
+          <tr class="message_colum">
+            <th class="input_name message_name">メッセージ配信設定する</th>
+            <td class="message_choice">
+              <%= f.label :consent, "メール配信設定する", {value: :male, style: "display: inline-block;"} %>
+              <%= f.radio_button :consent, :male %>
+              <%= f.label :consent, "メール配信設定しない", {value: :female, style: "display: inline-block;"} %>
+              <%= f.radio_button :consent, :female %>
+            </td>
+        </table>
+        <div class="submit_save">
+           <p class="registration_area">
+             <%= f.submit "登録する", class:"registration" %>
+           </p>
+        </div> 
+      <% end %>
+    </div>
+  </div>
+</div>
+<%= render "shared/footer"%>

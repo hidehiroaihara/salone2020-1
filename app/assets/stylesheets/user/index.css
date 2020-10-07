@@ -1,0 +1,157 @@
+.customer_title{
+
+}
+.title1{
+  font-size: 20px;
+}
+.customer_link{
+  display: flex;
+  justify-content: flex-end;
+}
+.btn_new{
+  border: 1px double skyblue;
+  background-color:skyblue;
+}
+.btn_01{
+  font-size: 18px;
+  color:white;
+  font-family: 'hiragino sans';
+  border-radius: 3px;
+}
+.btn_01:hover {
+  box-shadow: inset 1px 1px 10px 2px rgba(235, 235, 235, 0.5);
+}
+.search_customer{
+  height: 500px;
+  width: 100%;
+  background-color: rgb(199, 200, 202);
+}
+.search_table{
+  table-layout: fixed;
+  height: 400px;
+}
+.search_all{
+  width: 100%;
+  height: 10px;
+  border-collapse: separate;
+  border-spacing: 10px;
+}
+.search_column{
+  width: 100%;
+  height: 10px;
+}
+.search_left{
+  width: 70px;
+  text-align: center;
+  border-collapse: separate;
+  border-spacing: 10px;
+}
+.cf{
+  width: 60px;
+}
+.cf1{
+  width: 20px;
+}
+.field{
+  float: left;
+  width: 120px;
+  margin-left: 10px;
+}
+.birthday_field{
+  width: 120px;
+  font-size: 10px;
+  float: left;
+  margin-left: 8px;
+}
+.search_name_cana{
+  width: 70px;
+  text-align: center;
+}
+select{
+  width: 200px;
+  font-size: 14px;
+  margin-left: 9px;
+}
+.cf2{
+  width: 300px;
+  box-sizing: border-box;
+}
+.field_phone{
+  width: 200px;
+  float: left;
+  margin-left: 10px;
+}
+.field_email{
+  width: 300px;
+  float: left;
+  margin-left: 10px;
+}
+.field_customer{
+  width: 150px;
+  float: left;
+  margin-left: 10px;
+}
+.submit_btn{
+  display: flex;
+  justify-content: flex-end;
+}
+.clear_btn{
+  background: linear-gradient(rgb(160, 159, 159),rgb(82, 124, 128));
+  border: 1px solid;
+  font-size: 14px;
+  padding: 3px;
+  margin-bottom: 5px;
+}
+.clear_btn:hover {
+  box-shadow: inset 1px 1px 10px 2px rgba(235, 235, 235, 0.5);
+}
+.action_btn:hover{
+  box-shadow: inset 1px 1px 10px 2px rgba(235, 235, 235, 0.5);
+}
+.action_btn{
+  padding: 0 10px;
+}
+.search_display{
+  height: 100%;
+  width: 100%;
+}
+.display_top{
+  background-color: rgba(228, 218, 131, 0.89);
+  border: 2px solid black;
+}
+.display_th{
+  border: black 2px solid;
+  text-align: center;
+}
+.user_full_name{
+  color: rgb(30, 87, 209);
+}
+
+/* .sorttbl{
+  border-collapse: collapse;
+  border-spacing: 0;
+  width: 100%;
+  display: table;
+}
+.sorttbl tr {
+  display: table-row;
+  vertical-align: inherit;
+  border-color: inherit;
+  border-bottom: 1px solid #ddd;
+  cursor: pointer;
+}
+.sorttbl th:first-child,
+.sorttbl td:first-child{
+    padding-left: 16px;
+}
+.sorttbl td,
+.sorttbl th{
+    padding: 8px 8px;
+    display: table-cell;
+    text-align: left;
+    vertical-align: top;
+}
+.sorttbl th{
+    color: #fff!important;
+    background-color: #616161!important;
+} */

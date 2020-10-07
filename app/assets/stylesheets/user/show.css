@@ -1,0 +1,129 @@
+.detail{
+  width: 100%;
+}
+.detail_table{
+  height: 250px;
+  width: 50%;
+  border: 1px solid black;
+}
+.detail_table1{
+  height: 250px;
+  width: 50%;
+  border: 1px solid black;
+}
+.show_name{
+  background-color: rgb(236, 211, 177);
+  padding-left: 10px;
+  border: 1px solid black;
+}
+.show_bd, .show_information_td, .show_message_bd{
+  border: 1px solid black;
+}
+.show_field{
+  float: left;
+  margin-left: 20px;
+}
+.show_information_table{
+  width: 50%;
+  height: 10px;
+}
+.show_information_colum{
+  border: 1px solid black;
+}
+.show_information_body{
+  width: 50%;
+}
+.show_message_table{
+  height: 50px;
+  width: 100%;
+  border: 1px solid black;
+}
+.show_space{
+  border-bottom-style: none;
+}
+.show_space1{
+  border-top-style: none;
+}
+.show_message_name{
+  float: left;
+  margin-left: 10px;
+}
+.show_delivery{
+  text-align: center;
+  background-color: rgb(236, 211, 177);
+  border: 1px solid black;
+}
+.show_delivery_stylist{
+  font-size: 12px;
+}
+.change_btn{
+  height: 50px;
+  width: 100%;
+  background-color: rgb(132, 149, 180);
+  margin: 15px 0;
+  padding-top: 25px;
+  display: flex;
+}
+.show_change{
+  margin-left: 0;
+  width: 200px;
+  padding: 10px 15px;
+  border: 1px solid skyblue;
+  background-color:skyblue;
+  color: white;
+  box-shadow:
+    0 1.9px 2.5px rgba(211, 211, 211, 0.057),
+    0 5px 6.1px rgba(211, 211, 211, 0.076),
+    0 10.1px 11.4px rgba(211, 211, 211, 0.086),
+    0 19.2px 19.8px rgba(211, 211, 211, 0.092),
+    0 38.4px 34.8px rgba(211, 211, 211, 0.1),
+    0 101px 74px rgba(211, 211, 211, 0.13);
+  border-radius: 1px;
+}
+.show_change:hover, .show_delete:hover{
+  box-shadow: inset 1px 1px 10px 2px rgba(235, 235, 235, 0.5);
+}
+.change_area_edit{
+  width: 200px;
+  margin-left: 25%;
+}
+.change_area_delete{
+  width: 200px;
+}
+.show_delete{
+  padding: 10px 15px;
+  margin-left: 20%;
+  width: 200px;
+  border: 1px solid rgb(96, 98, 99);
+  background-color:rgb(96, 98, 99);
+  color: white;
+  box-shadow:
+    0 1.9px 2.5px rgba(211, 211, 211, 0.057),
+    0 5px 6.1px rgba(211, 211, 211, 0.076),
+    0 10.1px 11.4px rgba(211, 211, 211, 0.086),
+    0 19.2px 19.8px rgba(211, 211, 211, 0.092),
+    0 38.4px 34.8px rgba(211, 211, 211, 0.1),
+    0 101px 74px rgba(211, 211, 211, 0.13);
+  border-radius: 1px;
+}
+.user-top{
+  font-size: 10px;
+  color: black;
+  position: relative;
+  padding-left: 10px;
+  margin-left: 15px;
+}
+.user-top:before{
+    content: "";
+    position: absolute;
+    top: .10em;
+    left: 0;
+    width: 0;
+    height: 0;
+    border-width: 5px;
+    border-style: solid;
+    border-color: transparent transparent transparent #8b6b4e;
+}
+.user_top_link{
+  margin-bottom: 20px;
+}

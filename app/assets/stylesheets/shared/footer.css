@@ -1,0 +1,52 @@
+.page-footer{
+  background-color: lightskyblue;
+  min-width: 980px;
+  margin-bottom: 60px;
+}
+.path{
+  width: 100%;
+  background-color: darkgray;
+}
+.path-section{
+  margin-left: 20px;
+  font-size:8px;
+}
+.link_area{
+  height: 29px;
+  border-bottom: 1px solid white;
+}
+.link_cf{
+  display: flex;
+  margin-top: 15px;
+  margin-left: 20px;
+  font-size: 10px;
+}
+.link-icon{
+  position: relative;
+  padding-left: 10px;
+  margin-left: 15px;
+}
+.link-icon:before{
+  content: "";
+  position: absolute;
+  top: .10em;
+  left: 0;
+  width: 0;
+  height: 0;
+  border-width: 5px;
+  border-style: solid;
+  border-color: transparent transparent transparent #8b6b4e;
+}
+.address{
+  height: 50px;
+}
+.salone-icon1{
+  height: 20px;
+  width: 200px;
+  margin-left:25px
+}
+.company_name{
+  font-size: 10px;
+  margin-left: 25px;
+  border-bottom: 2px solid white;
+}

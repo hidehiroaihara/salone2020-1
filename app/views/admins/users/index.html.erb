@@ -1,0 +1,130 @@
+<%= render "shared/header_user" %>
+<div class="contents">
+  <div class="section">
+    <div class="customer_title">
+      <h1 class="title1">お客様情報一覧</h1>
+    </div>
+    <div class="customer_link">
+      <p class="btn_new">
+        <%= link_to "お客様情報を新規登録", new_user_path, class:"btn_01" %>
+      </p>
+    </div>
+    <div class="search_customer">
+      <%= form_with(scope: :search, url: users_path, method: :get, local: true, class: "search-form") do |f| %>
+        <table class="search_table">
+         <tbody>
+           <tr class="search_all">
+             <div class="search_column">
+               <th class="search_left">氏名 (漢字):</th>
+               <td class="cf">
+                 <%=f.text_field :first_name, value: @search_params[:first_name], class:"field" %>
+               </td>
+               <td class="cf">
+                  <%=f.text_field :last_name, value: @search_params[:last_name], class:"field" %>
+               </td>
+               <th class="search_left">誕生日:</th>
+               <td class="cf">
+                 <%= f.date_field :birthday_from, value: @search_params[:birthday_from], class:"birthday_field" %> 
+               </td>
+               <td class="cf1">
+                 ~
+               </td>
+               <td class="cf">
+                 <%= f.date_field :birthday_to, value: @search_params[:birthday_to], class:"birthday_field" %>
+               </td>
+             </div>
+           </tr>
+          <tr class="search_all">
+           <div class="search_column">
+             <th class="search_left">氏名 (カナ):</th>
+             <td class="cf">
+               <%=f.text_field :first_name_cana, value: @search_params[:first_name_cana], class:"field" %>
+             </td>
+             <td class="cf">
+               <%=f.text_field :last_name_cana, value: @search_params[:last_name_cana], class:"field" %>
+             </td>
+             <th class="search_left">年代;</th>
+             <td class="cf2">
+               <%= f.collection_select(:age_id, Age.all, :id, :name, {include_blank: "--"}, selected: @search_params[:age_id], class:"field") %> 
+             </td>
+           </div>
+          </tr>
+          <tr class="search_all">
+            <th class="search_left">電話番号:</th>
+            <td colspan="2" class="cf">
+              <%= f.text_field :phone_number, value: @search_params[:phone_number], class:"field_phone" %>
+            </td>
+            <th class="search_left">性別:</th>
+            <td class="cf">
+              <%= f.collection_select(:gender_id, Gender.all, :id, :name, {include_blank: "--"}, selected: @search_params[:gender_id] ) %>
+            </td>
+          </tr>
+          <tr class="search_all">
+            <th class="search_left">EMAIL:</th>
+            <td colspan="2" class="cf">
+              <%= f.text_field :email, value: @search_params[:email], class:"field_email" %>
+            </td>
+            <th class="search_left">職業:</th>
+            <td class="cf">
+              <%= f.collection_select(:job_id, Job.all, :id, :name, {include_blank: "--"}, selected: @search_params[:job_id] ) %>
+            </td>
+          </tr>
+          <tr class="search_all">
+            <th class="search_left">お客様番号:</th>
+            <td colspan="2" class="cf">
+              <%= f.text_field :customer_number, value: @search_params[:customer_number], class:"field_customer" %>
+            </td>
+            <th class="search_left">スタイリスト:</th>
+            <td class="cf">
+              <%= f.collection_select(:stylist_id, Stylist.all, :id, :set_name, {include_blank: "--"}, selected: @search_params[:stylist_id]) %>
+            </td>
+          </tr>
+          <tr class="search_all">
+            <th class="search_left">会員ランク:</th>
+            <td colsapn="2" class="cf">
+              <%= f.collection_select(:member_id, Member.all, :id, :name, {include_blank: "--"}, selected: @search_params[:member_id]) %>
+            </td>
+          </tr>
+        </table>
+        <div class="submit_btn">
+          <p class="clear">
+            <%= link_to "検索をクリア", "#", class:"clear_btn"%>
+          </p>
+        </div>
+        <div class="submit_btn">
+          <p class="action">
+            <%= f.submit "検索する", calss:"action_btn" %>
+          </p>
+        </div>
+         </tbody>
+        </table>
+      <% end %>
+    </div>
+    <div class="search_display">
+      <table bonder="1" style="margin-top:45px;height:20px;margin-bottom:30px;">
+        <colgroup width="15%"></colgroup>
+        <colgroup width="15%"></colgroup>
+        <colgroup width="15%"></colgroup>
+        <colgroup width="10%"></colgroup>
+        <colgroup width="15%"></colgroup>
+        <colgroup width="15%"></colgroup>
+        <colgroup width="15%"></colgroup>
+        <thead>
+         <tr class="display_top">
+          <th class="display_th" onclick="w3.sortHTML('#myTable','.item', 'td:nth-child(1)')">氏名(カナ)<i class="fa fa-sort"></i></th>
+          <th class="display_th">氏名(漢字)</th>
+          <th class="display_th">お客様番号</th>
+          <th class="display_th">性別</th>
+          <th class="display_th">職業</th>
+          <th class="display_th">来店回数</th>
+          <th class="display_th">最終来店日</th>
+         </tr>
+        </thead>
+        <tbody>
+           <%= render partial: 'users', collection: @users %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+<%= render "shared/footer"%>

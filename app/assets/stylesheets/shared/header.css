@@ -1,0 +1,138 @@
+.top-page-header{
+  min-width: 980px;
+  min-height: 65px;
+  background: #99ccff;
+  background-size: cover;
+}
+.header .header-section{
+  margin: 0 auto;
+  min-width: 100%;
+  display: flex;
+}
+.header-section{
+  margin: 0 15px;
+  padding: 15px 0 0;
+  width: 100%;
+}
+.salone-icon{
+  width: 200px;
+  height: 80px;
+  margin: 0 10px 0 15px;
+} 
+.logo{
+  width: 300px;
+  height: 80px;
+}
+.btn_area{
+  width: 100%;
+}
+.shop_name_wrap{
+  display: flex;
+  width: 100%;
+}
+.shop_area{
+  height: 30px;
+  border: 1px solid white;
+  background-color: white;
+  color: plum;
+  margin: 0 5px 15px 0;
+}
+.shop_name{
+  color: white;
+}
+.btn-all{
+  display: flex;
+  height: calc(100% - 10vh);
+  width: 100%;
+}
+/* .management{
+ font-size: 18px;
+ border: 1px solid skyblue;
+ padding: 7px;
+ background-color: skyblue;
+ color: white;
+ box-shadow:
+    0 1.9px 2.5px rgba(211, 211, 211, 0.057),
+    0 5px 6.1px rgba(211, 211, 211, 0.076),
+    0 10.1px 11.4px rgba(211, 211, 211, 0.086),
+    0 19.2px 19.8px rgba(211, 211, 211, 0.092),
+    0 38.4px 34.8px rgba(211, 211, 211, 0.1),
+    0 101px 74px rgba(211, 211, 211, 0.13);
+  border-radius: 3px;
+} */
+/* .management:hover {
+    box-shadow: inset 1px 1px 10px 2px rgba(235, 235, 235, 0.5);
+} */
+
+.user-management, .salon_management, .stylist_management, .management{
+  margin-left: 7px;
+  font-size: 14px;
+  padding: 7px;
+  border: 1px solid skyblue;
+  background-color: skyblue;
+  color: white;
+  box-shadow:
+    0 1.9px 2.5px rgba(211, 211, 211, 0.057),
+    0 5px 6.1px rgba(211, 211, 211, 0.076),
+    0 10.1px 11.4px rgba(211, 211, 211, 0.086),
+    0 19.2px 19.8px rgba(211, 211, 211, 0.092),
+    0 38.4px 34.8px rgba(211, 211, 211, 0.1),
+    0 101px 74px rgba(211, 211, 211, 0.13);
+  border-radius: 3px;
+}
+.user-management:hover, .salon_management:hover, .stylist_management:hover, .management:hover {
+  box-shadow: inset 1px 1px 10px 2px rgba(235, 235, 235, 0.5);
+}
+.btn-bottom{
+  min-width: 980px;
+  min-height: 39px;
+  background-color: lightgray;
+}
+.section-bottom{
+  width: 965px;
+  margin-left: 15px;
+  padding: 5px 0;
+}
+.btn-column{
+  width: 100%;
+  height: 29px;
+}
+.column-all{
+  display: flex;
+  width: 100%;
+}
+.schedule ,.customer-list,.reservation-list,.stylist_list1,.stylist_list{
+  display: block;
+  width: 120px;
+  height: 20px;
+  border: 1px solid skyblue;
+  padding: 5px 10px;
+  background-color:skyblue;
+  color: white;
+  margin-right: 5px;
+  box-shadow:
+    0 1.9px 2.5px rgba(211, 211, 211, 0.057),
+    0 5px 6.1px rgba(211, 211, 211, 0.076),
+    0 10.1px 11.4px rgba(211, 211, 211, 0.086),
+    0 19.2px 19.8px rgba(211, 211, 211, 0.092),
+    0 38.4px 34.8px rgba(211, 211, 211, 0.1),
+    0 101px 74px rgba(211, 211, 211, 0.13);
+  border-radius: 3px;
+  text-align: center;
+}
+.schedule:hover,.customer-list:hover,.stylist_list1:hover,.stylist_list:hover{
+  box-shadow: inset 1px 1px 10px 2px rgba(235, 235, 235, 0.5);
+}
+.stylist_list1{
+  font-size: 12px;
+}
+.reservation-list:hover{
+  box-shadow: inset 1px 1px 10px 2px rgba(235, 235, 235, 0.5);
+}
+a{
+  text-decoration: none;
+  list-style: none;
+  color: white;
+}
+
+

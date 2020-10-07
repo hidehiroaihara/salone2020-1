@@ -1,0 +1,44 @@
+<header class='top-page-header'>
+  
+    <div class="header" id="header-name"> 
+      <div class="header-section">
+        <p class="logo" id="logo">
+        <%= link_to image_tag("salone-logo.png", class:"salone-icon"), "/" %>
+        </p>     
+        <div class="btn_area" id="bot-all">
+          <ul class="shop_name_wrap">
+            <li class="shop_area">ヘアサロン</li>
+            <li class="shop_name">sample</li>
+          </ul>
+          <ul class="btn-all">
+            <li><%= link_to "予約管理", root_path, class:"management"%></li>
+            <li><%= link_to "お客様管理", users_path, class:"user-management"%></li>
+            <li><%= link_to "スタイリスト管理", stylists_path ,class:"stylist_management"%></li>
+            <li><%= link_to "店舗管理", stylists_path ,class:"salon_management"%></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="btn-bottom" id="btn-bottom">
+      <div class="section-bottom">
+        <div class="btn-column">
+          <ul class="column-all">
+            <% if current_page?(root_path) %>
+              <li><%= link_to "スケジュール", "#", class:"schedule"%></li>
+              <li><%= link_to "予約一覧", "#", class:"reservation-list"%></li>
+            <% elsif current_page?(controller: "users", action: "index") || current_page?(controller: "users", action: "new") || current_page?(controller: "users", action: "edit") || current_page?(controller: "users", action: "show") %> 
+              <li><%= link_to "お客様一覧", users_path, class:"customer-list" %></li>
+              <li><%= link_to "登録", new_user_path, class:"customer-list" %></li>
+              <li><%= link_to "変更", "#", class:"customer-list" %></li>
+              <li><%= link_to "削除", "#", class:"customer-list" %></li>
+            <% elsif current_page?(controller: "stylists", action: "index") || current_page?(controller: "stylists", action: "new") || current_page?(controller: "stylists", action: "edit") || current_page?(controller: "stylists", action: "show") %>
+              <li><%= link_to "スタイリスト一覧", stylists_path, class:"stylist_list1" %></li>
+              <li><%= link_to "スタイリスト登録", new_stylist_path, class:"stylist_list1"%></li>
+            <% end %>
+          </ul>
+        </div>
+      </div>
+    </div>
+   
+
+</header>

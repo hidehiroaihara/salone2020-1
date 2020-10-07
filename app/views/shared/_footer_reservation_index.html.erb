@@ -1,0 +1,81 @@
+<footer class="page-footer">
+  <div class="path">
+   <div class="path-section">
+    <p>sample様 / number / 即時予約 / サロン代表者名 / 管理ID / </p>
+   </div>
+  </div>
+  <div class="footer" id="footer" style="min-height: 90px;">
+   <div class="area-section">
+    <div class="link_area">
+     <ul class="link_cf">
+       <li>
+        <%= link_to "お問い合わせ", "#", class:"link-icon", id:"inquiry" %>
+       </li>
+       <li>
+        <%= link_to "利用規約", "#", class:"link-icon", id:"terms" %>
+       </li>
+       <li>
+        <%= link_to "プライバシーポリシー", "#", class:"link-icon", id:"privacy_policy" %>
+       </li>
+       <li>
+        <%= link_to "ヘルプ", "#", class:"link-icon", id:"online_manual" %>
+       </li>
+     </ul>
+    </div>
+   </div>
+    <div class="address">
+     <p class="logo1" id="logo1">
+      <%= link_to image_tag("salone-logo.png", class:"salone-icon1"), "/" %>
+     </p>     
+     <p class="company">
+      <%= link_to "会社名", "#", class:"company_name" %>
+     </p>
+    </div>
+  </div>
+  <div class="calendar">
+    <div class="inner" id="calendar_area">
+      <div class="section_wf">
+        <div class="calendar_block01">
+          <p class="block one" id="openCalendar">
+            <%= link_to image_tag("calendar.png", class:"btn_calendar_01"), "#" %>
+          </p>
+          <p class="block two">
+            <%= link_to image_tag("today.png", class:"btn_calendar_02"), "#" %>
+          </p>
+          <p class="block three">
+            <%= link_to image_tag("previousday.png", class:"btn_calendar_03"), "#" %>
+          </p>
+          <dl class="date">
+            <dd class="four">
+              <ul class="day">
+                <li class="sat">
+                  <%= link_to "2", "#" %>
+                </li>
+                <li class="sun">
+                  <%= link_to "2", "#" %>
+                </li>
+                <li class="today">
+                  <%= link_to "2", "#" %>
+                </li>
+                <li class>
+                  <%= link_to "2", "#" %>
+                </li>
+                <li class>
+                  <%= link_to "2", "#" %>
+                </li>
+                <li class>
+                  <%= link_to "2", "#" %>
+                </li>
+                <li class>
+                  <%= link_to "2", "#" %>
+                </li>
+              </ul>
+            </dd>
+          </dl>
+            <p class="block five">
+            <%= link_to image_tag("nextday.png", class:"btn_calendar_04"), "#" %>
+            </p>
+        </div>
+     </div>
+  </div> 
+</footer>
