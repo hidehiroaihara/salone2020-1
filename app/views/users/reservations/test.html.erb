@@ -1,0 +1,87 @@
+<%= render "shared/header" %>
+<div class="contents">もりもり
+  <div class="section">
+    <div class="schedule_head">
+      <p class="left-click" id="left-click"> 
+       <%= link_to image_tag("left-direction.png", class:"click-icon"), root_path(params:{ago:(@ago + 1)})%>
+      </p>
+      <p class="schedule-date" id="schedule-date">
+       <%= link_to @time.strftime("%m/%d(#{@wd[@time.wday]})"), "#", class:"schedule-today" %>
+      </p>
+      <p class="right-click" id="right-click">
+       <%= link_to image_tag("right-direction.png", class:"click-icon"),root_path(params:{ago:(@ago - 1)})%>
+      </p>
+      <div class="stylist-name" id="stylist-name">
+        <%= form_with url:"#" do |f| %>
+          <%# <%= f.collection_select(:stylist_id, Stylist.all, :id, :name) %>
+        <% end %>
+        <p class="display">表示</p> 
+      </div>
+    </div>
+  </div>
+
+  <div class="table-all" id="table-all">
+    <table class="table" style="margin-bottom:30px;">
+      <div class="table01" id="table01">  
+        <thead class="table1">
+          <tr>
+          <th class="table_head">予約時間</th>
+          <th colspan="2" class="table_head_time">10:00</th>
+          <th colspan="2" class="table_head_time">11:00</th>
+          <th colspan="2" class="table_head_time">12:00</th>
+          <th colspan="2" class="table_head_time">13:00</th>
+          <th colspan="2" class="table_head_time">14:00</th>
+          <th colspan="2" class="table_head_time">15:00</th>
+          <th colspan="2" class="table_head_time">16:00</th>
+          <th colspan="2" class="table_head_time">17:00</th>
+          <th colspan="2" class="table_head_time">18:00</th>
+          <th colspan="2" class="table_head_time">19:00</th>
+          <th colspan="2" class="table_head_time">20:00</th>
+          </tr>
+        </thead>
+      </div>
+      <div class="table02" id="table02">
+        <thead class="table2">
+          <tr>
+            <th class="table_bodytop"> 予約数 </th>
+            <td class="am">3</td><td class="pm">3</td>
+            <td class="am">3</td><td class="pm">3</td>
+            <td class="am">3</td><td class="pm">3</td>
+            <td class="am">3</td><td class="pm">3</td>
+            <td class="am">3</td><td class="pm">3</td>
+            <td class="am">3</td><td class="pm">3</td>
+            <td class="am">3</td><td class="pm">3</td>
+            <td class="am">3</td><td class="pm">3</td>
+            <td class="am">3</td><td class="pm">3</td>
+            <td class="am">3</td><td class="pm">3</td>
+            <td class="am">3</td><td class="pm">3</td>
+          </tr>
+          <tr>
+            <%# 残り残席数 %>
+            <th class="table_bodytop">残り受付数 <% %></th>
+            <td class="am">4</td><td class="pm">4</td>
+            <td class="am">4</td><td class="pm">4</td>
+            <td class="am">4</td><td class="pm">4</td>
+            <td class="am">4</td><td class="pm">4</td>
+            <td class="am">4</td><td class="pm">4</td>
+            <td class="am">4</td><td class="pm">4</td>
+            <td class="am">4</td><td class="pm">4</td>
+            <td class="am">4</td><td class="pm">4</td>
+            <td class="am">4</td><td class="pm">4</td>
+            <td class="am">4</td><td class="pm">4</td>
+            <td class="am">4</td><td class="pm">4</td>
+          </tr>
+        </thead>
+      </div>
+      <div class="table03" id="table03">
+        <thead class="table3">
+          <%= render partial: 'reservations', collection: @stylists %>
+        </thead>
+      </div>
+    </table>
+  </div>
+</div>
+<%= render "shared/footer_reservation_index"%>
+
+ 
+ 

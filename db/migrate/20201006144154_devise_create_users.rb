@@ -14,7 +14,7 @@ class DeviseCreateUsers < ActiveRecord::Migration[6.0]
       t.string :phone_number,       null: false
       t.integer :gender_id        
       t.integer :stylist_id,       foreign_key: true
-      t.integer :blood_type_id
+      t.integer :blood_id
       t.integer :job_id
       t.text :customer_text
       t.integer :member_id

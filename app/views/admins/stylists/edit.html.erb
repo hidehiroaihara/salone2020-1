@@ -1,0 +1,203 @@
+<%= render "shared/header_stylist" %>
+<div class="contents">
+  <div class="section">
+    <div class="customer_title">
+      <p class="block_area"></p>
+      <h1 class="title1 stylist_space">スタイリスト掲載情報登録</h1>
+    </div>
+    <p class="item">
+      🔴必要項目
+    </p>
+    <%= form_with model: @stylist_detail, url: stylist_path(@stylist.id), method: :patch, local: true do |f| %>
+      <table class="stylist_new_table" align="left">
+        <tr>
+          <th class="stylist_title">スタイリスト情報
+            <p class="block_area"></p>
+          </th>
+        </tr>
+        <tr>
+          <td class="stylist_image">
+            <div class="image_area">
+              <%# <%= image_tag @stylist.image, class: "item-img" %> 
+            </div>
+            <label class="form-image">
+              <span class="image-file">アップロード</span>
+              <%= f.file_field :image, class:"image_style"  %>
+            </label>
+            <div id="image-list" class="image-size"></div>
+          </td>
+        </tr>
+      </table>
+      <table class="stylist_new_table1" style="float:left;margin-left:45px;">
+        <colgroup width="15%"></colgroup>
+        <colgroup width="10%"></colgroup>
+        <colgroup width="10%"></colgroup>
+        <colgroup width="15%"></colgroup>
+        <colgroup width="10%"></colgroup>
+        <colgroup width="10%"></colgroup>
+        <tr>
+          <th colspan="6" class="stylist_title">基本情報
+            <p class="block_area"></p>
+          </th>
+        </tr>
+        <tr class="stylist_tr">
+          <th class="stylist_input_name">名前(漢字)<span class="circle">🔴</span></th>
+          <td class="stylist_td">
+            <%= f.text_field :stylist_first_name, class:"stylist_field" %>
+          </td>
+          <td class="stylist_td">
+            <%= f.text_field :stylist_last_name, class:"stylist_field" %>
+          </td>
+          <th class="stylist_input_name">名前(カナ)<span class="circle">🔴</span></th>
+          <td class="stylist_td">
+            <%= f.text_field :stylist_first_name_cana, class:"stylist_field" %>
+          </td>
+          <td class="stylist_td">
+            <%= f.text_field :stylist_last_name_cana, class:"stylist_field" %>
+          </td>
+        </tr>
+        <tr class="stylist_tr">
+          <th class="stylist_input_name">スタイリスト/<span class="circle">🔴</span><br>アシスタント</th>
+          <td class="stylist_td" colspan="2">
+            <%= f.collection_select(:rank_id, Rank.all, :id, :name, {include_blank: "--"},{class:"stylist_select", id:"stylist_rank"}) %>
+          </td>
+          <th class="stylist_input_name">性  別<span class="circle">🔴</span></th>
+          <td colspan="2" class="stylist_td">
+            <%= f.collection_select(:gender_id, Gender.all, :id, :name, {include_blank: "--"},{class:"stylist_select", id:"stylist_gender"}) %>
+          </td>
+        </tr>
+        <tr class="stylist_tr">
+          <th class="stylist_input_name">スタイリスト<span class="circle">🔴</span><br>ナンバー</th>
+          <td colspan="1" class="stylist_td1">No.
+            <%= f.text_field :stylist_number, class:"stylist_field1", placeholder:"例)1" %>
+          </td>
+        </tr>
+      </table>
+      <table class="stylist_new_table" align="left">
+      </table>
+      <table class="stylist_new_table2" style="float:left;margin-left:45px;margin-top:30px;">
+        <colgroup width="15%"></colgroup>
+        <colgroup width="50%"></colgroup>
+        <colgroup width="5%"></colgroup>
+        <tr>
+          <th colspan="3" class="stylist_title">自己紹介
+            <p class="block_area"></p>
+          </th>
+        </tr>
+        <tr class="stylist_tr">
+          <th class="stylist_input_name">キャッチ<span class="circle">🔴</span></th>
+          <td class="stylist_td1">
+            <%= f.text_field :catchphrase, class:"stylist_field_area", maxlength:"25", id:"stylist_catchphrase" %>
+          </td>
+          <td class="stylist_td1 size"><span id="count">0</span>/25
+          </td>
+        </tr>
+        <tr>
+          <th class="stylist_input_name">自己紹介<span class="circle">🔴</span></th>
+          <td row="5" class="stylist_td1">
+            <%= f.text_area :self_introduction, class:"stylist_field_area1", maxlength:"150", id:"stylist_self_introduction" %>
+          </td>
+          <td class="stylist_td1 size"><span id="count1">0</span>/150
+          </td>
+        </tr>
+      </table>
+      <table class="stylist_new_table" align="left">
+      </table>
+      <table class="stylist_new_table2" style="float:left;margin-left:45px;margin-top:30px;">
+        <colgroup width="20%"></colgroup>
+        <colgroup width="20%"></colgroup>
+        <colgroup width="15%"></colgroup>
+        <colgroup width="10%"></colgroup>
+        <colgroup width="5%"></colgroup>
+        <tr>
+          <th colspan="5" class="stylist_title">詳細情報
+            <p class="block_area"></p>
+          </th>
+        </tr>
+        <tr class="stylist_tr">
+          <th class="stylist_input_name">ステータス<br>(スタイリストのみ)</th>
+          <td colspan="3" class="stylist_td1">
+            <%= f.text_field :rank_text ,class:"stylist_field_area", maxlength:"20", id:"stylist_rank1" %>
+          </td>
+          <td class="stylist_td1 size"><span id="count2">0</span>/20
+          </td>
+        </tr>
+        <tr class="stylist_tr">
+          <th class="stylist_input_name">スタイリスト歴<span class="circle">🔴</span></th>
+          <td class="stylist_td1">
+            <%= f.collection_select(:stylist_history_id, StylistHistory.all, :id, :name, {include_blank: "--"}, {class:"stylist_select", id:"stylist_history"}) %>
+          </td>
+          <th class="stylist_tr">指名<span class="circle">🔴</span></th>
+          <td colspan="2" class="stylist_td1">
+            <%= f.collection_select(:nomination_id, Nomination.all, :id, :name, {include_blank: "--"}, {class:"stylist_select1", id:"stylist_nomination"}) %>
+          </td>
+        </tr>
+        <tr class="stylist_tr">
+          <th class="stylist_input_name">指名料</th>
+          <td colspan="4" class="stylist_td1"><span class="en">￥</span>
+            <%= f.text_field :nomination_price, class:"stylist_field_price" %><span class="en">(税込)</span>
+          </td>
+        </tr>
+        <tr class="stylist_tr" style="height:80px;">
+          <th class="stylist_input_name">得意なイメージ<span class="circle">🔴</span></th>
+            <td colspan="4" class="stylist_td1">
+               <%= f.collection_radio_buttons(:style_type_id, StyleType.all, :id, :name, {include_hidden: false},{class:"style_type_check"}) %> 
+            </td>
+        </tr>
+        <tr class="stylist_tr" style="height:80px;">
+          <th class="stylist_input_name">得意な技術</th>
+          <td class="stylist_td1" colspan="3">
+            <%= f.text_area :style_technique, class:"stylist_field_area1", maxlength:"100", id:"stylist_technique" %>
+          </td>
+          <td class="stylist_td1 size"><span id="count3">0</span>/100
+          </td>
+        </tr>
+        <tr class="stylist_tr" style="height:80px;">
+          <th class="stylist_input_name">趣味・マイブーム</th>
+          <td colspan="3" class="stylist_td1">
+            <%= f.text_area :hobby, class:"stylist_field_area1", maxlength:"100", id:"stylist_hobby" %>
+          </td>
+          <td class="stylist_td1 size"><span id="count4">0</span>/100
+          </td>
+        </tr>
+      </table>
+      <table class="stylist_new_table3">
+        <colgroup width="25%"></colgroup>
+        <colgroup width="15%"></colgroup>
+        <colgroup width="15%"></colgroup>
+        <colgroup width="15%"></colgroup>
+        <colgroup width="15%"></colgroup>
+        <colgroup width="15%"></colgroup>
+        <tr>
+          <th colspan="6" class="stylist_title">style picture
+            <p class="block_area"></p>
+          </th>
+        </tr>
+        <tr class="style_field">
+          <th class="style_field_img" colsapnn="6">
+            <label class="form-image">
+              <span class="image-file">アップロード</span>
+              <%= f.file_field :portraits, name: 'stylist_stylist_detail[portraits][]', id: 'stylist_portraits', class:"hidden" %>
+            </label>
+            <div id="image-url"></div>
+          </th>
+        </tr>
+      </table>
+      <table style="width:100%;height:20px;margin-top:30px;">
+        <tr>
+          <td class="register_td">
+            <ul class="stylist_register_btn">
+              <li>
+                <%= f.submit "変更", class:"register_btn"%>
+              </li>
+              <li class="stylist_cancel_btn">
+                <%= link_to "キャンセル", url: stylists_path, class:"cancel_btn" %>
+              </li>
+            </ul>
+          </td>
+        </tr>
+      </table>
+    <% end %>
+  </div>
+</div>
+<%= render "shared/footer"%>

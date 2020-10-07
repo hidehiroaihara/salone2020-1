@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_07_020244) do
+ActiveRecord::Schema.define(version: 2020_10_07_105138) do
 
   create_table "admins", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -37,6 +37,33 @@ ActiveRecord::Schema.define(version: 2020_10_07_020244) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "stylist_details", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "rank_text"
+    t.integer "stylist_history_id", null: false
+    t.integer "nomination_id", null: false
+    t.integer "nomination_price"
+    t.integer "style_type_id", null: false
+    t.text "style_technique"
+    t.text "hobby"
+    t.integer "stylist_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "stylists", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "stylist_first_name", null: false
+    t.string "stylist_last_name", null: false
+    t.string "stylist_first_name_cana", null: false
+    t.string "stylist_last_name_cana", null: false
+    t.integer "rank_id", null: false
+    t.integer "gender_id", null: false
+    t.string "catchphrase", null: false
+    t.string "self_introduction", null: false
+    t.integer "stylist_number", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -48,7 +75,7 @@ ActiveRecord::Schema.define(version: 2020_10_07_020244) do
     t.string "phone_number", null: false
     t.integer "gender_id"
     t.integer "stylist_id"
-    t.integer "blood_type_id"
+    t.integer "blood_id"
     t.integer "job_id"
     t.text "customer_text"
     t.integer "member_id"

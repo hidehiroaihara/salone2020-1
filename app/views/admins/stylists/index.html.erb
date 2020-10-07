@@ -1,0 +1,81 @@
+<%= render "shared/header_stylist" %>
+<div class="contents">
+  <div class="section">
+    <div class="customer_title">
+      <p class="block_area"></p>
+      <h1 class="title1 stylist_space">スタイリスト情報一覧</h1>
+    </div>
+    <div class="stylist_display">
+      <p class="stylist_area">
+        <%= link_to "スタッフ追加登録", new_stylist_path, class:"stylist_add" %>
+      </p>
+    </div>
+    <div class="name_area">
+      <p class="block_area"></p>
+      <h2 class="basic">スタイリスト一覧</h2>
+    </div>
+    <table border="1" class="stylist_table">
+      <colgroup width="11%"></colgroup>
+      <colgroup width="10%"></colgroup>
+      <colgroup width="10%"></colgroup>
+      <colgroup width="16%"></colgroup>
+      <colgroup width="14%"></colgroup>
+      <colgroup width="8%"></colgroup>
+      <colgroup width="10%"></colgroup>
+      <colgroup width="13%"></colgroup>
+      <tbody>
+        <tr>
+          <th class="stylist_table_top">ナンバー</th>
+          <th class="stylist_table_top">PickUp</th>
+          <th class="stylist_table_top">スタイリスト<br>写真</th>
+          <th colspan="3" class="stylist_table_top">氏名/ランク/スタイリスト歴<br>キャッチ</th>
+          <th class="stylist_table_top">詳細</th>
+          <th class="stylist_table_top">非掲載<br>削除</th>
+        </tr>
+        <% @stylists.each do |stylist| %>
+          <tr style="height:30px;">
+            <td rowspan="2" class="stylist_info">
+              <%= link_to edit_stylist_path(stylist.id) do %>
+                <span style="color:black;">No.<%= stylist.stylist_number %></span>
+              <% end %>
+            </td>
+            <td rowspan="2" class="stylist_info">
+              <% %>
+            </td>
+            <td rowspan="2" class="stylist_info image-pad" style="height:70px">
+                <%= image_tag stylist.image.variant(resize_to_limit: [100, 100]) ,id:"image", class: 'stylist-image' if stylist.image.attached? %>
+            </td>
+            <td rowspan="1" class="stylist_info">
+              <%= link_to edit_stylist_path(stylist.id) do %>
+                <span style="color:black;"><%= stylist.stylist_first_name.to_s + stylist.stylist_last_name %></span>
+              <% end %>
+            </td>
+            <td rowspan="1" class="stylist_info stylist_rank">
+              <%= stylist.rank.name %>・<br><%= stylist.stylist_detail.rank_text %>
+            </td>
+            <td rowspan="1" class="stylist_info">
+              <%= stylist.stylist_detail.stylist_history.name %>
+            </td>
+            <td rowspan="2" class="stylist_info">
+              <%= link_to "詳細", stylist_path(stylist.id), class:"stylist_show" %>
+            </td>
+            <td rowspan="2" >
+              <%= link_to "削除", stylist_path(stylist.id), method: :delete, id:"style_delete", class: "stylist_delete", data: { confirm: "本当に削除しますか？"} %>
+            </td>
+          </tr>
+          <tr>
+          <td rowspan="1" colspan="3" class="stylist_info">
+              <%= stylist.catchphrase %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+     <div class="stylist_display">
+      <p class="stylist_area mag">
+        <%= link_to "スタッフ追加登録", new_stylist_path, class:"stylist_add" %>
+      </p>
+    </div>
+  </div>
+</div>
+<%= render "shared/footer"%>

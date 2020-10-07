@@ -1,4 +1,5 @@
-class Admin::UsersController < ApplicationController
+class Admins::UsersController < ApplicationController
+  before_action :authenticate_admin!
   before_action :set_user, only: [:edit, :update, :show, :destroy] 
   def index
     age_update

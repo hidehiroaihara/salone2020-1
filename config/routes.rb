@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
-  resources :user, only: [:index, :edit, :show, :update]
+  # get 'reservations/index'
+  # get 'reservations/show'
+  # get 'reservations/edit'
+  # resources :reservations
+  # resources :user, only: [:index, :edit, :show, :update]
   # devise_for :users
   # devise_for :admins
   # devise_for :admins, controllers: {
@@ -11,8 +15,8 @@ Rails.application.routes.draw do
   devise_for :admins , skip: :all
   devise_scope :admin do
     get 'admins/sign_in' => 'admins/sessions#new', as: 'new_admin_session'
-    post 'admins/sign_in' => 'admins/sessions#cereate', as: 'admin_session'
-    delete 'admins/sign_out' => 'admins/sessions#delete', as: 'destroy_admin_session'
+    post 'admins/sign_in' => 'admins/sessions#create', as: 'admin_session'
+    delete 'admins/sign_out' => 'admins/sessions#destroy', as: 'destroy_admin_session'
     # get 'admins/sign_up' => 'admins/registrations#new', as: 'new_admin_registration'
     # post 'admins' => 'admins/registrations#create', as: 'admin_registration'
     # get 'admins/cancel' => 'admins/registrations#cancel', as: 'cancel_admin_registration'
@@ -40,9 +44,11 @@ Rails.application.routes.draw do
     delete 'users' => 'users/registrations#delete'
   end
   namespace :users do
-
+    resources :reservations
   end
   namespace :admins do
-    resources :users  
+    resources :users
+    resources :reservations
   end
+  root to: "users/reservations#index"
 end

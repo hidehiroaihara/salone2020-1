@@ -1,0 +1,66 @@
+<header class="header_view">
+  <div class="salon_view_top">
+    <div class="salon_view_area">
+      <div class="salon_icon_view">
+        <%= link_to image_tag("salone-logo.png", class:"salon-icon-view"), "/" %>
+      </div>
+    </div>
+    <div class="salon_view_right">
+      <h1 class="salon_name_view">サンプル
+        <p class="salon_name_cana">フリカナ</p>
+        <p class="salon_view_address">住所</p>
+      </h1>
+    </div>
+    <div class="salon_log_all">
+      <div class="book_area">
+        <%= link_to "予約する", "#", class:"book_btn"%>
+      </div>
+        <ul class="salon_log_btn_area">
+          <% if user_signed_in? %>
+            <li class="salon_new_btn_li">
+              <%= link_to "マイページ", "#", class:"salon_new_btn"%>
+            </li>
+            <li class="salon_log_btn_li">
+              <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class:"salon_log_btn" %>
+            </li>
+          <% elsif admin_signed_in? %>
+            <li class="salon_new_btn_li">
+              <%= link_to "予約表", admins_reservations_path, class:"salon_new_btn"%>
+            </li>
+            <li class="salon_log_btn_li">
+              <%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class:"salon_log_btn" %>
+            </li>
+          <% else %>
+          　<li class="salon_new_btn_li">
+              <%= link_to "新規登録", new_user_registration_path, class:"salon_new_btn"%>
+            </li>
+            <li class="salon_log_btn_li">
+              <%= link_to "ログイン", new_user_session_path, class:"salon_log_btn" %>
+            </li>
+          <% end %>
+        </ul>
+    </div>
+  </div>
+  <div class="salon_view_bottom">
+      <ul class="salon_view_bottom_ul">
+        <li class="salon_information_area">
+          <%= link_to "サロン情報", "#", class:"salon_information_btn" %>
+        </li>
+        <li class="salon_information_area">
+          <%= link_to "メニュー", "#", class:"salon_information_btn" %>
+        </li>
+        <li class="salon_information_area">
+          <%= link_to "スタイリスト", "#", class:"salon_information_btn" %>
+        </li>
+        <li class="salon_information_area">
+          <%= link_to "スタイル", "#", class:"salon_information_btn" %>
+        </li>
+        <li class="salon_information_area">
+          <%= link_to "地図", "#", class:"salon_information_btn" %>
+        </li>
+        <li class="salon_information_area">
+          <%= link_to "ブログ", "#", class:"salon_information_btn" %>
+        </li>
+      </ul>
+  </div>
+</header>
