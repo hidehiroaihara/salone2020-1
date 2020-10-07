@@ -9,13 +9,13 @@ class Admins::UsersController < ApplicationController
   end
 
   def new
-    @user = UserAddress.new
+    @user = User.new
   end
 
   def create
-    @user = UserAddress.new(user_params)
+    @user = User.new(user_params)
     if @user.save
-       return redirect_to users_path
+       return redirect_to admins_reservations
     else 
        render :new
     end
@@ -25,22 +25,19 @@ class Admins::UsersController < ApplicationController
   end
 
   def edit
-    @user_address = UserAddress.new(first_name: @user.first_name, last_name: @user.last_name, first_name_cana: @user.first_name_cana, last_name_cana: @user.last_name_cana, phone_number: @user.phone_number, email: @user.email, customer_number: @user.customer_number, post_code: @user.address.post_code, prefecture_id: @user.address.prefecture_id, address_all: @user.address.address_all, gender_id: @user.gender_id, blood_type_id: @user.blood_type_id, job_id: @user.job_id, customer_text: @user.customer_text, member_id: @user.member_id, information_text: @user.information.information_text, consent: @user.message.consent, stylist_id: @user.stylist.id, birthday: @user.birthday, information_date: @user.information.information_date)
   end
 
   def update
-    @user_address = UserAddress.new(user_params)
-    if @user_address.save_update(params[:id])
-       redirect_to users_path
+    if @user.update
+       redirect_to admins_reservations
     else
       render :edit 
     end
   end
   
   def destroy
-    @user_address = UserAddress.new
-    if @user_address.user_destroy(params[:id])
-      redirect_to root_path
+    if @user.destroy
+      redirect_to admins_reservations
     else
       render :show
     end
@@ -48,7 +45,7 @@ class Admins::UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user_address).permit(:first_name, :last_name, :first_name_cana, :last_name_cana, :phone_number, :email, :customer_number, :post_code, :prefecture_id, :address_all, :gender_id, :blood_type_id, :job_id, :customer_text, :member_id, :information_text, :visit_time, :consent, :stylist_id).merge(birthday: set_birthday, information_date: set_information_date )
+    params.require(:user).permit(:first_name, :last_name, :first_name_cana, :last_name_cana, :phone_number, :email, :customer_number, :post_code, :prefecture_id, :address_all, :gender_id, :blood_type_id, :job_id, :customer_text, :member_id, :information_text, :visit_time, :consent, :stylist_id).merge(birthday: set_birthday, information_date: set_information_date )
   end
 
   def user_search_params
@@ -97,5 +94,4 @@ class Admins::UsersController < ApplicationController
   def set_user
     @user = User.find(params[:id])
   end
-end
 end

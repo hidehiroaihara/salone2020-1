@@ -23,8 +23,8 @@
       <div class="btn-column">
         <ul class="column-all">
           <% if current_page?(controller: "admins/stylists", action: "index") || current_page?(controller: "admins/stylists", action: "new") || current_page?(controller: "admins/stylists", action: "edit") || current_page?(controller: "admins/stylists", action: "show") %>
-            <li><%= link_to "スタイリスト一覧", stylists_path, class:"stylist_list1" %></li>
-            <li><%= link_to "スタイリスト登録", new_stylist_path, class:"stylist_list1"%></li>
+            <li><%= link_to "スタイリスト一覧", admins_stylists_path, class:"stylist_list1" %></li>
+            <li><%= link_to "スタイリスト登録", new_admins_stylist_path, class:"stylist_list1"%></li>
           <% end %>
         </ul>
       </div>

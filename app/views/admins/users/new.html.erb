@@ -94,7 +94,7 @@
           <tr>
             <th class="input_name">血液型</th>
             <td class="bd">
-              <%= f.collection_select(:blood_type_id, BloodType.all, :id, :name, {include_blank: "--"}, {class:"select-box1", id:"blood_type"}) %>
+              <%= f.collection_select(:blood_id, Blood.all, :id, :name, {include_blank: "--"}, {class:"select-box1", id:"blood_type"}) %>
             </td>
           </tr>
           <tr>

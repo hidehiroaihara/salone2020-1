@@ -8,7 +8,7 @@
     <p class="item">
       🔴必要項目
     </p>
-    <%= form_with model: @stylist, url: stylists_path, id: 'new_stylist', local: true do |f| %>
+    <%= form_with model: @stylist, url: admins_stylists_path, id: 'new_stylist', local: true do |f| %>
       <table class="stylist_new_table" align="left">
         <tr>
           <th class="stylist_title">スタイリスト情報
@@ -191,7 +191,7 @@
                 <%= f.submit "登録", class:"register_btn"%>
               </li>
               <li class="stylist_cancel_btn">
-                <%= link_to "キャンセル", url: stylists_path, class:"cancel_btn" %>
+                <%= link_to "キャンセル", url: admins_stylists_path, class:"cancel_btn" %>
               </li>
             </ul>
           </td>
