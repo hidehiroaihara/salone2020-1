@@ -1,3 +1,36 @@
 // Place all the styles related to the stylists controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+.style_field_img{
+  display: flex;
+
+ .image-element{
+   display: flex;
+   
+   img{
+     height: 60px;
+     width: 60px;
+   }
+ }
+}
+.image-size{
+ div{
+   img{
+     height: 140px;
+     width: 140px;
+   }
+ }
+}
+.image_area{
+ img{
+     width:150px;
+     height: 150px;
+ }
+}
+.img_all_area{
+ img{
+   margin-left: 20px;
+   width: 120px;
+   height: 120px;
+ }
+}

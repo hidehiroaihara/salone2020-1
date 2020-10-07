@@ -10,10 +10,10 @@
           <li class="shop_name">sample</li>
         </ul>
         <ul class="btn-all">
-          <li><%= link_to "予約管理", root_path, class:"management"%></li>
-          <li><%= link_to "お客様管理", users_path, class:"user-management"%></li>
-          <li><%= link_to "スタイリスト管理", stylists_path ,class:"salon_management"%></li>
-          <li><%= link_to "店舗管理", stylists_path ,class:"salon_management"%></li>
+          <li><%= link_to "予約管理", admins_reservations_path, class:"management"%></li>
+          <li><%= link_to "お客様管理", admins_users_path, class:"user-management"%></li>
+          <li><%= link_to "スタイリスト管理", admins_stylists_path ,class:"salon_management"%></li>
+          <li><%= link_to "店舗管理", admins_stylists_path ,class:"salon_management"%></li>
         </ul>
       </div>
     </div>
@@ -22,7 +22,7 @@
     <div class="section-bottom">
       <div class="btn-column">
         <ul class="column-all">
-          <% if current_page?(controller: "stylists", action: "index") || current_page?(controller: "stylists", action: "new") || current_page?(controller: "stylists", action: "edit") || current_page?(controller: "stylists", action: "show") %>
+          <% if current_page?(controller: "admins/stylists", action: "index") || current_page?(controller: "admins/stylists", action: "new") || current_page?(controller: "admins/stylists", action: "edit") || current_page?(controller: "admins/stylists", action: "show") %>
             <li><%= link_to "スタイリスト一覧", stylists_path, class:"stylist_list1" %></li>
             <li><%= link_to "スタイリスト登録", new_stylist_path, class:"stylist_list1"%></li>
           <% end %>

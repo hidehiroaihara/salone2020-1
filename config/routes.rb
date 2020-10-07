@@ -49,6 +49,7 @@ Rails.application.routes.draw do
   namespace :admins do
     resources :users
     resources :reservations
+    resources :stylists
   end
   root to: "users/reservations#index"
 end
