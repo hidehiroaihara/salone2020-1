@@ -59,4 +59,61 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # def after_inactive_sign_up_path_for(resource)
   #   super(resource)
   # end
+
+  def new
+    @user = User.new
+  end
+
+  def create
+    @user = User.new(sign_up_params)
+    unless @user.valid?
+      flash.now[:alert] = @user.errors.full_messages
+      render :new and return
+    end
+    session["devise.regist_data"] = {user: @user.attributes}
+    session["devise.regist_data"][:user]["password"] = params[:user][:password]
+    @address = @user.build_address
+    render :new_address
+  end
+
+  def create_address
+    @user = User.new(session["devise.regist_data"]["user"])
+    @address = Address.new(address_params)
+    unless @address.valid?
+      flash.now[:alert] = @address.errors.full_messages
+      render :new_address and return
+    end
+    @user.build_address(@address.attributes)
+    session["address"] = @address.attributes
+    @detail = @user.build_user_detail
+    render :new_detail
+  end
+
+  def create_detail
+    @user = User.new(session["devise.regist_data"]["user"])
+    @address = Address.new(session["address"])
+    @detail = UserDetail.new(detail_params)
+    unless @detail.valid?
+      flash.now[:alert] = @detail.errors.full_messages
+      render :new_address and return
+    end
+    @user.build_address(@address.attributes)
+    @user.build_user_detail(@detail.attributes)
+    @user.build_user_information
+    @user.save
+    session["devise.regist_data"]["user"].clear
+    session["address"].clear
+    sign_in(:user, @user)
+    redirect_to users_reservations_path
+  end
+
+  protected
+  
+  def address_params
+    params.require(:address).permit(:post_code, :prefecture_id, :address_all)
+  end
+  
+  def detail_params
+    params.require(:user_detail).permit(:blood_id, :job_id, :consent_id, :gender_id )
+  end
 end

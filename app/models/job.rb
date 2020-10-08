@@ -1,5 +1,6 @@
 class Job < ActiveHash::Base
   self.data = [
+    { id: 0, name: '--' },
     { id: 1, name: 'フリーター' },
     { id: 2, name: '学生' },
     { id: 3, name: '会社員' },

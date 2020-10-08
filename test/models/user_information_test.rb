@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class CosentTest < ActiveSupport::TestCase
+class UserInformationTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end

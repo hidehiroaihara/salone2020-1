@@ -42,6 +42,10 @@ Rails.application.routes.draw do
     patch 'users' => 'users/registrations#update'
     put 'users' => 'users/registrations#update'
     delete 'users' => 'users/registrations#delete'
+    get 'addresses', to: 'users/registrations#new_address'
+    post 'addresses', to: 'users/registrations#create_address'
+    get 'user_details', to: 'users/registrations#new_detail'
+    post 'user_details', to: 'users/registrations#create_detail'
   end
   namespace :users do
     resources :reservations

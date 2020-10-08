@@ -10,4 +10,5 @@ Admin.create!(
   name: 'salone',
   email: 'salone@salone.com',
   password: 'salone2020',
+  admin: true
 )

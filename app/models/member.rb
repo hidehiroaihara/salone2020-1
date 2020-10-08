@@ -1,5 +1,6 @@
 class Member < ActiveHash::Base
   self.data = [
+    { id: 0, name: '--' },
     { id: 1, name: 'silver会員' },
     { id: 2, name: 'gold会員' },
     { id: 3, name: 'black会員' },

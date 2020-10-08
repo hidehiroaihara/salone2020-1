@@ -1,0 +1,50 @@
+<div class="contents">
+  <div class="section">
+    <div class="customer_title">
+      <h1 class="user_entry_title1">住所情報登録</h1>
+    </div>
+    <div class="user_name_area">
+      <p class="user_block_area"></p>
+      <h2 class="user_basic">住所</h2>
+    </div>
+    <%= form_for @detail do |f| %>
+      <%= render "users/shared/error_messages", resource: @detail %>
+      <table class="user_entry_table" border="1" style="margin-left:10%;">
+          <colgroup width="35%"></colgroup>
+          <colgroup width="65%"></colgroup>
+          <tr>
+            <th class="input_name">性別</th>
+            <td class="bd">
+              <%= f.collection_select(:gender_id, Gender.all, :id, :name, {include_blank: "--"}, {class:"select-box1", id:"gender"}) %>
+            </td>
+          </tr>
+          <tr>
+            <th class="input_name">血液型</th>
+            <td class="bd">
+              <%= f.collection_select(:blood_id, Blood.all, :id, :name, {include_blank: "--"}, {class:"select-box1", id:"blood_type"}) %>
+            </td>
+          </tr>
+          <tr>
+            <th class="input_name">職業</th>
+            <td class="bd">
+              <%= f.collection_select(:job_id, Job.all, :id, :name, {include_blank: "--"}, {class:"select-box", id:"job"}) %>
+            </td>
+          </tr>
+          <tr>
+          <tr>
+            <th class="input_name">職業</th>
+            <td class="bd">
+              <%= f.collection_select(:consent_id, Consent.all, :id, :name, {include_blank: "--"}, {class:"select-box", id:"consent"}) %>
+            </td>
+          </tr>
+          <tr>
+      </table>
+      <div class="user_submit_save">
+        <p class="user_registration_area">
+          <%= f.submit "登録する", class:"user_registration" %>
+        </p>
+      </div> 
+    <% end %>
+  </div>
+</div>
+<%= render "devise/shared/links" %>

@@ -1,0 +1,43 @@
+<div class="contents">
+  <div class="section">
+    <div class="customer_title">
+      <h1 class="user_entry_title1">住所情報登録</h1>
+    </div>
+    <div class="user_name_area">
+      <p class="user_block_area"></p>
+      <h2 class="user_basic">住所</h2>
+    </div>
+    <%= form_for @address do |f| %>
+      <%= render "users/shared/error_messages", resource: @address %>
+      <table class="user_entry_table" border="1" style="margin-left:10%;">
+          <colgroup width="35%"></colgroup>
+          <colgroup width="65%"></colgroup>
+          <tr class="address_table">
+            <th class="input_name">住所</th>
+            <td class="address_input bd">
+              <span>〒</span>
+                <%= f.text_field :post_code, class:"post_feild", placeholder:"例）123-4567", onKeyUp:"AjaxZip3.zip2addr('address[post_code]','','address[prefecture_id]','address[address_all]');" %>
+            </td>
+          </tr> 
+        <tr>
+          <th class="input_name">氏名(カナ)</th>
+          <td class="bd">
+            <%= f.collection_select(:prefecture_id, Prefecture.all, :id, :name, {include_blank: "--"}, {class:"select-box", id:"prefecture"}) %>
+          </td>
+        </tr>
+        <tr>
+          <th class="input_name">EMAIL</th>
+          <td class="bd">
+            <%= f.text_field :address_all, class:"address_field" %>
+          </td>
+        </tr>
+      </table>
+      <div class="user_submit_save">
+        <p class="user_registration_area">
+          <%= f.submit "登録する", class:"user_registration" %>
+        </p>
+      </div> 
+    <% end %>
+  </div>
+</div>
+<%= render "devise/shared/links" %>

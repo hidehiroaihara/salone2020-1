@@ -12,21 +12,10 @@ class DeviseCreateUsers < ActiveRecord::Migration[6.0]
       t.string :last_name_cana,     null: false
       t.date   :birthday,           null: false
       t.string :phone_number,       null: false
-      t.integer :gender_id        
       t.integer :stylist_id,       foreign_key: true
-      t.integer :blood_id
-      t.integer :job_id
-      t.text :customer_text
-      t.integer :member_id
       t.integer :customer_number
       t.integer :age_id
-      t.string :post_code        
-      t.integer :prefecture_id
-      t.string :address_all
-      t.date :information_date
-      t.text :information_text
-      t.integer :visit_time 
-      t.integer :consent_id,       null: false
+      t.boolean :admin,             default: false
       ## Recoverable
       t.string   :reset_password_token
       t.datetime :reset_password_sent_at

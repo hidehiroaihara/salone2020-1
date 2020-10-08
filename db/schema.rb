@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_07_125611) do
+ActiveRecord::Schema.define(version: 2020_10_08_003527) do
 
   create_table "active_storage_attachments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
@@ -33,6 +33,15 @@ ActiveRecord::Schema.define(version: 2020_10_07_125611) do
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
   end
 
+  create_table "addresses", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "post_code"
+    t.integer "prefecture_id", default: 0
+    t.string "address_all"
+    t.integer "user_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "admins", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -40,6 +49,7 @@ ActiveRecord::Schema.define(version: 2020_10_07_125611) do
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
     t.string "name"
+    t.boolean "admin"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["email"], name: "index_admins_on_email", unique: true
@@ -76,11 +86,32 @@ ActiveRecord::Schema.define(version: 2020_10_07_125611) do
     t.string "stylist_last_name", null: false
     t.string "stylist_first_name_cana", null: false
     t.string "stylist_last_name_cana", null: false
-    t.integer "rank_id", null: false
-    t.integer "gender_id", null: false
+    t.integer "rank_id", default: 0, null: false
+    t.integer "gender_id", default: 0, null: false
     t.string "catchphrase", null: false
     t.string "self_introduction", null: false
     t.integer "stylist_number", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "user_details", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.integer "gender_id", default: 0
+    t.integer "blood_id", default: 0
+    t.integer "job_id", default: 0
+    t.integer "consent_id", null: false
+    t.integer "user_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "user_informations", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.date "information_date"
+    t.text "information_text"
+    t.integer "visit_time"
+    t.text "customer_text"
+    t.integer "member_id", default: 0
+    t.integer "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -94,21 +125,10 @@ ActiveRecord::Schema.define(version: 2020_10_07_125611) do
     t.string "last_name_cana", null: false
     t.date "birthday", null: false
     t.string "phone_number", null: false
-    t.integer "gender_id"
     t.integer "stylist_id"
-    t.integer "blood_id"
-    t.integer "job_id"
-    t.text "customer_text"
-    t.integer "member_id"
     t.integer "customer_number"
     t.integer "age_id"
-    t.string "post_code"
-    t.integer "prefecture_id"
-    t.string "address_all"
-    t.date "information_date"
-    t.text "information_text"
-    t.integer "visit_time"
-    t.integer "consent_id", null: false
+    t.boolean "admin", default: false
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"

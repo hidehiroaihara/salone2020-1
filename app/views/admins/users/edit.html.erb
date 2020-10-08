@@ -9,7 +9,7 @@
       <h2 class="basic">基本情報</h2>
     </div>
     <div class="entry">
-      <%= form_with model: @user, url: user_path(@user.id), local: true do |f| %>
+      <%= form_with model: @user_address, url: admins_user_path(@user.id), method: :patch, local: true do |f| %>
         <table class="entry_table" align="left">
           <tr>
             <th class="input_name">氏名(漢字)</th>
@@ -94,7 +94,7 @@
           <tr>
             <th class="input_name">血液型</th>
             <td class="bd">
-              <%= f.collection_select(:blood_type_id, BloodType.all, :id, :name, {include_blank: "--"}, {class:"select-box1", id:"blood_type"}) %>
+              <%= f.collection_select(:blood_id, Blood.all, :id, :name, {include_blank: "--"}, {class:"select-box1", id:"blood_type"}) %>
             </td>
           </tr>
           <tr>
@@ -154,10 +154,7 @@
           <tr class="message_colum">
             <th class="input_name message_name">メッセージ配信設定する</th>
             <td class="message_choice">
-              <%= f.label :consent, "メール配信設定する", {value: :male, style: "display: inline-block;"} %>
-              <%= f.radio_button :consent, :male %>
-              <%= f.label :consent, "メール配信設定しない", {value: :female, style: "display: inline-block;"} %>
-              <%= f.radio_button :consent, :female %>
+               <%= f.collection_radio_buttons(:consent_id, Consent.all, :id, :name,{include_hidden: false}, {class:"cosent_box", id:"consent"}) %>
             </td>
         </table>
         <div class="submit_save">

@@ -51,7 +51,7 @@
           <tr>
             <th class="show_name">会員ランク</th>
             <td class="show_bd">
-              <span class="show_field"><%= @user.member.name %></span>
+               <span class="show_field"><%= @user.user_information.member.name %></span>
             </td>
           </tr>
         </table>
@@ -67,19 +67,19 @@
           <tr>
             <th class="show_name">性別</th>
             <td class="show_bd">
-              <span class="show_field"><%= @user.gender.name %></span>
+              <span class="show_field"><%= @user.user_detail.gender.name %></span>
             </td>
           </tr>
           <tr>
             <th class="show_name">血液型</th>
             <td class="show_bd">
-              <span class="show_field"><%= @user.blood_type.name %>
+              <span class="show_field"><%= @user.user_detail.blood.name %>
             </td>
           </tr>
           <tr>
             <th class="show_name">職業</th>
             <td class="show_bd">
-              <span class="show_field"><%= @user.job.name %></span>
+              <span class="show_field"><%= @user.user_detail.job.name %></span>
             </td>
           </tr>
           <tr>
@@ -91,7 +91,7 @@
           <tr>
             <th class="show_name">お客様メモ</th>
             <td class="show_bd">
-              <span class="show_field"><%= @user.customer_text %></span>
+              <span class="show_field"><%= @user.user_information.customer_text %></span>
             </td>
           </tr>
         </table>
@@ -105,7 +105,7 @@
           <tr class="show_information_colum">
             <th class="show_name">初日来店日</th>
             <td class="show_information_td">
-              <span class="show_field"><%= @user.information.information_date %></span>
+              <span class="show_field"><%= @user.user_information.information_date %></span>
             </td>
           </tr>
         </table>
@@ -115,7 +115,7 @@
           <tr class="show_information_colum">
             <th class="show_name">来店きっかけ</th>
             <td class="show_information_td">
-              <span class="show_field"><%= @user.information.information_text %></span>
+              <span class="show_field"><%= @user.user_information.information_text %></span>
             </td>
           </tr>
         </table>
@@ -130,7 +130,7 @@
           <tr class="message_colum">
             <th colspan="2" class="show_name">メッセージ配信先</th>
             <td class="show_message_bd">
-              <span class="show_field"><%= @user.message.consent %></span>
+              <span class="show_field"><%= @user.user_detail.consent.name %></span>
             </td>
           </tr>
           <tr class="message_colum">
@@ -178,9 +178,9 @@
         </table>
         <div class="change_btn">
           <p class="change_area_delete">
-            <%= link_to "削除する", user_path(@user.id), method: :delete, class:"show_delete" %>
+            <%= link_to "削除する", admins_user_path(@user.id), method: :delete, class:"show_delete" %>
           <p class="change_area_edit">
-            <%= link_to  "変更する", edit_user_path(@user.id), class:"show_change" %>
+            <%= link_to  "変更する", edit_admins_user_path(@user.id), class:"show_change" %>
           </p>
         </div> 
         <ul class="user_top_link">

@@ -1,0 +1,94 @@
+.user_entry_table{
+  width: 80%;
+  height: 380px;
+  margin: 5px;
+  text-align: center;
+}
+.user_name_area{ 
+  display: flex;
+  margin-bottom: 15px;
+  margin-left:10%;
+}
+.user_block_area{
+  height: 28px;
+  width: 10px;
+  background-color: darkturquoise;
+  float: left;
+  margin: 0;
+}
+.user_basic{
+  width: 85%;
+  height: 28px;
+  background-color: rgb(102, 99, 99);
+  color: white;
+  padding-left: 15px;
+  font-size: 18px;
+}
+.user_entry_title1{
+  text-align: center;
+  font-size: 30px;
+}
+.user_registration{
+  width: 120px;
+  height: 30px;
+  border: 1px solid skyblue;
+  background-color:skyblue;
+  color: white;
+  box-shadow:
+    0 1.9px 2.5px rgba(211, 211, 211, 0.057),
+    0 5px 6.1px rgba(211, 211, 211, 0.076),
+    0 10.1px 11.4px rgba(211, 211, 211, 0.086),
+    0 19.2px 19.8px rgba(211, 211, 211, 0.092),
+    0 38.4px 34.8px rgba(211, 211, 211, 0.1),
+    0 101px 74px rgba(211, 211, 211, 0.13);
+  border-radius: 3px;
+  margin-left:45%;
+}
+.user_registration:hover{
+  box-shadow: inset 1px 1px 10px 2px rgba(235, 235, 235, 0.5);
+}
+.user_registration:active{
+bottom: 5px;
+box-shadow: none;
+}
+.user_submit_save{
+  height: 60px;
+  width: 100%;
+  
+  margin: 30px 0;
+  padding-top: 25;
+}
+.user_registration_area{
+  width: 100%;
+  
+}
+.user_birth_table{
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  font-size: 20px;
+  padding-top: 10px;
+  
+}
+.user_new_field{
+  width: 200px;
+  float: left;
+  margin-left: 20px;
+}
+.user_email_field{
+  width: 500px;
+  float: left;
+  margin-left: 20px;
+  font-size: 14px;
+}
+.user_password_field{
+  width: 150px;
+  float: left;
+  margin-left: 20px;
+  font-size: 14px;
+}
+.user_select-birth{
+  float: left;
+  margin-left: 20px;
+  font-size: 10px;
+}

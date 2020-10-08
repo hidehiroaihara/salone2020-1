@@ -1,29 +1,90 @@
-<h2>Sign up</h2>
-
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= render "users/shared/error_messages", resource: resource %>
-
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+<div class="contents">
+  <div class="section">
+    <div class="customer_title">
+      <h1 class="user_entry_title1">新規登録</h1>
+    </div>
+    <div class="user_name_area">
+      <p class="user_block_area"></p>
+      <h2 class="user_basic">基本情報</h2>
+    </div>
+    <%= form_for(@user, url: user_registration_path) do |f| %>
+      <%= render "users/shared/error_messages", resource: @user %>
+      <table class="user_entry_table" border="1" style="margin-left:10%;">
+        <tr>
+          <th class="input_name">氏名(漢字)</th>
+          <td class="bd">
+            <%= f.text_field :first_name , class:"user_new_field", maxlength:"25" %>
+          </td>
+          <td class="bd">
+            <%= f.text_field :last_name , class:"user_new_field", maxlength:"25" %>
+          </td>
+        </tr>
+        <tr>
+          <th class="input_name">氏名(カナ)</th>
+          <td class="bd">
+            <%= f.text_field :first_name_cana, class:"user_new_field", maxlength:"25" %>
+          </td>
+          <td class="bd">
+            <%= f.text_field :last_name_cana, class:"user_new_field", maxlength:"25" %>
+          </td>
+        </tr>
+        <tr>
+          <th class="input_name">EMAIL</th>
+          <td colspan="2" class="bd">
+            <%= f.email_field :email, autofocus: true, autocomplete: "email", class:"user_email_field" %>
+          </td>
+        </tr>
+        <tr>
+          <th class="input_name toparea">Password</th>
+          <td colspan="2" class="bd">
+            <% if @minimum_password_length %>
+              <br /><em>(<%= @minimum_password_length %> 文字以上)</em>
+            <% end %>
+            <%= f.password_field :password, autocomplete: "new-password", class:"user_password_field" %>
+          </td>
+        </tr>
+        <tr>
+          <th class="input_name">Password<br />(確認用)</th>
+          <td colspan="2" class="bd">
+           <%= f.password_field :password_confirmation, autocomplete: "new-password", class:"user_password_field" %>
+          </td>
+        </tr>
+        <tr>
+          <th class="input_name">電話番号</th>
+          <td colspan="2" class="bd"> 
+            <%= f.text_field :phone_number, class:"phone_field", maxlength:"15" %>
+          </td>
+        </tr>
+        <tr class="birth_colum">
+          <th class="input_name">誕生日</th>
+            <td class="user_birth_table" clospan="2">
+              <%= raw sprintf(
+                f.date_select(
+                  :birthday,
+                  class:'user_select-birth',
+                  id:"birth-date",
+                  use_month_numbers: true,
+                  prompt:'--',
+                  start_year: (Time.now.year),
+                  end_year: 1930,
+                  date_separator: '%s'),
+                "<p> 年 </p>", "<p> 月 </p>") + "<p> 日 </p>" %>
+            </td>
+        </tr>
+        <tr>
+          <th class="input_name">担当スタイリスト</th>
+          <td class="bd" colspan="2">
+            <%= f.collection_select(:stylist_id, Stylist.all, :id, :set_name, {}, {class:"select-box", id:"stylists"}) %>
+          </td>
+        </tr>
+      </table>
+      <div class="user_submit_save">
+        <p class="user_registration_area">
+          <%= f.submit "登録する", class:"user_registration" %>
+        </p>
+      </div> 
+    <% end %>
   </div>
-
-  <div class="field">
-    <%= f.label :password %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Sign up" %>
-  </div>
-<% end %>
+</div>
 
 <%= render "users/shared/links" %>

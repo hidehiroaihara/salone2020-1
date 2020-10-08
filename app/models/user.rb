@@ -5,13 +5,13 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   extend ActiveHash::Associations::ActiveRecordExtensions
-  belongs_to_active_hash :gender
-  belongs_to_active_hash :blood
-  belongs_to_active_hash :job
+  
   belongs_to_active_hash :member
   belongs_to_active_hash :age
-  belongs_to_active_hash :cosent
   has_many :reservations
+  has_one :address
+  has_one :user_information
+  has_one :user_detail
   belongs_to :stylist, optional: true
   
   scope :search, -> (search_params) do

@@ -10,7 +10,7 @@
       </p>
     </div>
     <div class="search_customer">
-      <%= form_with(scope: :search, url: users_path, method: :get, local: true, class: "search-form") do |f| %>
+      <%= form_with(scope: :search, url: admins_users_path, method: :get, local: true, class: "search-form") do |f| %>
         <table class="search_table">
          <tbody>
            <tr class="search_all">
