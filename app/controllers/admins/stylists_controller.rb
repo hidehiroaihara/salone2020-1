@@ -52,7 +52,7 @@ class Admins::StylistsController < ApplicationController
     @stylist_detail = StylistStylistDetail.new(stylist_params)
     # binding.pry
     if @stylist_detail.save_update(params[:id])
-      redirect_to stylists_path, notice: '更新完了しました'
+      redirect_to admins_stylists_path, notice: '更新完了しました'
     else
       render :edit
     end
@@ -61,7 +61,7 @@ class Admins::StylistsController < ApplicationController
   def destroy
     @stylist_detail = StylistStylistDetail.new
      if @stylist_detail.stylist_destroy(params[:id])
-      redirect_to root_path
+      redirect_to admins_reservations_path
      else
       render :show
      end
