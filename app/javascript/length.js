@@ -88,3 +88,39 @@ window.addEventListener("DOMContentLoaded", function(){
       // attention.style.display = ( length > max ) ? "block" : "none";
   }
 }, false);
+window.addEventListener("DOMContentLoaded", function(){
+  let count = null,
+  // lest = null,
+  // max = 25,
+  input_area = document.getElementById("new_menu_field"),
+  output_count = document.getElementById("count5");
+  // output_lest = document.getElementById("textLest"),
+  // attention = document.getElementById("textAttention");
+
+  input_area.onkeyup = function(){
+      let length = input_area.value.length;
+      count = length;
+      // lest =  max - length;
+      // output_lest.innerText = lest;
+      output_count.innerText = count;
+      // attention.style.display = ( length > max ) ? "block" : "none";
+  }
+}, false);
+window.addEventListener("DOMContentLoaded", function(){
+  let count = null,
+  // lest = null,
+  // max = 25,
+  input_area = document.getElementById("new_menu_text"),
+  output_count = document.getElementById("count6");
+  // output_lest = document.getElementById("textLest"),
+  // attention = document.getElementById("textAttention");
+
+  input_area.onkeyup = function(){
+      let length = input_area.value.length;
+      count = length;
+      // lest =  max - length;
+      // output_lest.innerText = lest;
+      output_count.innerText = count;
+      // attention.style.display = ( length > max ) ? "block" : "none";
+  }
+}, false);

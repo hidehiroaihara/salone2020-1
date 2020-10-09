@@ -1,0 +1,40 @@
+<div class="contents_new" style="background-color: rgb(237, 228, 217);">
+    <%= link_to users_reservations_path do%>
+      <p class="new_reservation_top">トップページに戻る</p>
+    <% end%>
+    <div class="search_category_area">
+
+    </div>
+    <div class="display_menu">
+      <% @menus.each do |menu| %>
+        <div class="new_menu_area">
+          <p class="block_area_menu">
+            <span class="menu_customer"><%= menu.customer_type.name %></span>
+          </p>
+          <div class="menu_text_area">
+            <ul class="menu_category_area">
+              <% menu.style_category_lists.each do |category| %>
+                <li class="menu_category_list">
+                  <%= category.name%>
+                </li>
+              <% end %>
+            </ul>
+            <div class="menu_name_area">
+              <p class="menu_name_display">
+                <%= menu.menu_name %>
+              </p>
+              <p class="menu_price">
+                ¥<span style="color:rgb(225, 111, 111);"><%= menu.price %></span>
+              </p>
+            </div>
+            <div class="menu_text_area1">
+              <span class="menu_text_line"><%= menu.menu_text %></span>
+            </div>
+          </div>
+          <div class="menu_resevation_btn_area">
+           <%= link_to "#"%>
+          </div>
+        </div>
+      <% end %>
+    </div>
+</div>

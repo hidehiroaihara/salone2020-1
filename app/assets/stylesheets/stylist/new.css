@@ -81,11 +81,11 @@
 /* .register_td{
  
 } */
-.stylist_register_btn{
+.salon_register_btn{
   width: 100%;
   display: flex;
-  justify-content: flex-end;
-  margin-top: 30px;
+  justify-content: center;
+  margin-top: 50px;
   margin-bottom: 30px;
 }
 .register_btn{

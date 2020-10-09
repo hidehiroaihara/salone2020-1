@@ -1,0 +1,61 @@
+.search_category_area{
+  height: 120px;
+}
+.display_menu{
+  height: 100%;
+  width: 100%;
+
+}
+.block_area_menu{
+  width: 20px;
+  background-color: rgb(249, 188, 198);
+  height: 100%;
+  
+}
+.new_menu_area{
+  height: 200px;
+  margin-bottom: 10px;
+  border: 1px solid rgb(164, 164, 164);
+  display: flex;
+}
+.menu_customer{
+  color: red;
+  text-orientation: upright;
+}
+.menu_text_area{
+  width: 70%;
+}
+.menu_resevation_btn_area{
+  width: 30%;
+  background-color:white;
+}
+.menu_category_area{
+  display: flex;
+  margin-top: 10px;
+}
+.menu_category_list{
+  font-size: 12px;
+  border:1px solid;
+  background-color: rgb(242, 139, 139);
+  color:white;
+  margin-left: 5px;
+}
+.menu_name_area{
+  width: 100%;
+  height: 60px;
+  display: flex;
+}
+.menu_name_display{
+  width: 60%;
+}
+.menu_price{
+  margin-left: 20%;
+}
+.menu_text_area1{
+  width: 100%;
+  height: 60px;
+  margin-top:30px;
+}
+.menu_text_line{
+  font-size:12px
+}

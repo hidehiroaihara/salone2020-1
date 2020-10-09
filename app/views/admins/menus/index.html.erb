@@ -1,0 +1,67 @@
+<%= render "shared/header_menu" %>
+<div class="contents">
+  <div class="section">
+    <div class="customer_title">
+      <p class="block_area"></p>
+      <h1 class="title1 stylist_space">メニュー情報一覧</h1>
+    </div>
+    <div class="stylist_display">
+      <p class="stylist_area">
+        <%= link_to "メニュー追加登録", new_admins_menu_path, class:"stylist_add" %>
+      </p>
+    </div>
+    <div class="name_area">
+      <p class="block_area"></p>
+      <h2 class="basic">メニュ一覧</h2>
+    </div>
+    <table border="1" class="stylist_table">
+      <colgroup width="40%"></colgroup>
+      <colgroup width="10%"></colgroup>
+      <colgroup width="25%"></colgroup>
+      <colgroup width="15%"></colgroup>
+      <colgroup width="5%"></colgroup>
+      <colgroup width="5%"></colgroup>
+      <tbody>
+        <tr>
+          <th rowspan="2" class="stylist_table_top">メニュー名</th>
+          <th rowspan="1" class="stylist_table_top">価格</th>
+          <th rowspan="1" class="stylist_table_top">スタイルカテゴリー</th>
+          <th rowspan="1" class="stylist_table_top">お客様ランク</th>
+          <th rowspan="1" class="stylist_table_top">詳細</th>
+          <th rowspan="1" class="stylist_table_top">削除</th>
+        </tr>
+        <tr>
+          <th rowspan="1" colspan="5" class="stylist_table_top">メニュー説明</th>
+        </tr>
+        <% @menus.each do |menu| %>
+          <tr style="height:30px;">
+            <td rowspan="2" class="stylist_info">
+                <span style="color:black;"><%= menu.menu_name %></span>
+            </td>
+            <td rowspan="1" class="stylist_info">
+              <%= menu.price %>
+            </td>
+            <td rowspan="1" class="stylist_info image-pad" >
+                <% %>
+            </td>
+            <td rowspan="1" class="stylist_info">
+              <%= menu.customer_type.name %>
+            </td>
+            <td rowspan="1" class="stylist_info">
+              <%= link_to "詳細", admins_menu_path(menu.id), class:"stylist_show" %>
+            </td>
+            <td rowspan="1" >
+              <%= link_to "削除", admins_menu_path(menu.id), method: :delete, id:"style_delete", class: "stylist_delete", data: { confirm: "本当に削除しますか？"} %>
+            </td>
+          </tr>
+          <tr>
+            <td rowspan="1" colspan="5" class="stylist_info">
+              <%= menu.menu_text %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
+<%= render "shared/footer"%>

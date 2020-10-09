@@ -1,7 +1,11 @@
 .page-footer{
   background-color: lightskyblue;
   min-width: 980px;
+}
+.page-footer1{
   margin-bottom: 60px;
+  background-color: lightskyblue;
+  min-width: 980px;
 }
 .path{
   width: 100%;

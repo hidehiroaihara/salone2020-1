@@ -12,6 +12,8 @@ class User < ApplicationRecord
   has_one :address
   has_one :user_information
   has_one :user_detail
+  has_many :user_menus
+  has_many :menus, through: :user_menus
   belongs_to :stylist, optional: true
   
   scope :search, -> (search_params) do

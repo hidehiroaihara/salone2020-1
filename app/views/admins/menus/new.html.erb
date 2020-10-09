@@ -1,0 +1,77 @@
+<%= render "shared/header_menu" %>
+<div class="contents">
+  <div class="section">
+  <div class="customer_title">
+      <p class="block_area"></p>
+      <h1 class="title1 stylist_space">メニュー掲載情報登録</h1>
+    </div>
+    <p class="item">
+      🔴必要項目
+    </p>
+    <%=form_with model:@menu, url: admins_menus_path, id: 'new_menu', local: true do |f| %>
+      <table class="new_menu" style="margin-top:10px;">
+        <tr>
+            <th>メニュー情報
+              <p class="block_area"></p>
+            </th>
+        </tr>
+      </table>
+      <table class="new_menu1" style="margin-top:15px;">
+        <colgroup width="20%"></colgroup>
+        <colgroup width="15%"></colgroup>
+        <colgroup width="10%"></colgroup>
+        <colgroup width="10%"></colgroup>
+        <colgroup width="35%"></colgroup>
+         <colgroup width="10%"></colgroup>
+        <tr class="stylist_tr">
+          <th colspan="1" class="stylist_input_name">メニュー名<span class="circle">🔴</span></th>
+          <td colspan="4" class="stylist_td">
+            <%= f.text_field :menu_name, class:"new_menu_field", maxlength:"100", id:"new_menu_field"%>
+          </td>
+          <td colspan="1" class="stylist_td1 size"><span id="count5">0</span>/100
+          </td>
+        </tr>
+          <th colspan="1" class="stylist_input_name">価格(税込)<span class="circle">🔴</span></th>
+          <td colspan="2" style="border:1px solid black;" class="stylist_td">
+            <span>￥</span><%= f.text_field :price, class:"menu_price_field" %>
+          </td>
+        </tr>
+        <tr>
+          <th colspan="1" class="stylist_input_name">施術カテゴリー<span class="circle">🔴</span></th>
+          <td colspan="5" style="border:1px solid black;" class="stylist_td">
+           <%= f.collection_check_boxes(:style_category_list_ids, StyleCategoryList.all, :id, :name, {include_hidden: false},{class:"style_category_check"}) %>
+          </td>
+        </tr>
+        <tr class="stylist_tr">
+          <th colspan="1" class="stylist_input_name">お客様ランク<span class="circle">🔴</span></th>
+          <td class="stylist_td" colspan="3" style="border:1px solid black;">
+            <%= f.collection_select(:customer_type_id, CustomerType.all, :id, :name ,{class:"menu_select", id:"menu_csutomer"}) %>
+          </td>
+        </tr>
+        <tr class="stylist_tr" style="height:30px;">
+          <th colspan="1" class="stylist_input_name">メニュー内容<span class="circle">🔴</span></th>
+          <td colspan="4" class="stylist_td">
+            <%= f.text_area :menu_text, class:"new_menu_text", maxlength:"200", id:"new_menu_text" %>
+          </td>
+          <td colspan="1" class="stylist_td1 size"><span id="count6">0</span>/200
+          </td>
+        </tr>
+      </table>
+       <table style="width:100%;height:20px;margin-top:30px;">
+        <tr>
+          <td class="register_td">
+            <ul class="stylist_register_btn">
+              <li>
+                <%= f.submit "登録", class:"register_btn"%>
+              </li>
+              <li class="stylist_cancel_btn">
+                <%= link_to "キャンセル", url: admins_menus_path, class:"cancel_btn" %>
+              </li>
+            </ul>
+          </td>
+        </tr>
+      </table>
+    <% end %>
+  </div>
+</div>
+<%= render "shared/footer"%>

@@ -1,0 +1,26 @@
+// Place all the styles related to the menus controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+.new_menu{
+  width: 100%;
+  height: 20px;
+  th{
+    width: 100%;
+    height: 28px;
+    background-color: rgb(102, 99, 99);
+    color: white;
+    padding-left: 15px;
+    font-size: 18px;
+    p{
+      height: 28px;
+      width: 10px;
+      background-color: darkturquoise;
+      float: left;
+      margin: 0;
+    }
+  }
+}
+.new_menu1{
+  width: 100%;
+  height: 400px;
+}

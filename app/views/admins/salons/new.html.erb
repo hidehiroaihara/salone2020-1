@@ -1,0 +1,47 @@
+<%= render "shared/header_salon" %>
+<div class="contents">
+  <div class="section">
+     <%= form_with model: @salon, url: admins_salons_path, id: 'new_salon', local: true do |f| %>
+      <table class="salon_new_table" style="float:left;margin-left:45px;">
+          <colgroup width="15%"></colgroup>
+          <colgroup width="10%"></colgroup>
+          <colgroup width="10%"></colgroup>
+          <colgroup width="15%"></colgroup>
+          <colgroup width="10%"></colgroup>
+          <colgroup width="10%"></colgroup>
+          <tr>
+            <th colspan="6" class="stylist_title">営業時間設定
+              <p class="block_area"></p>
+            </th>
+          </tr>
+          <tr>
+            <th colspan="1" class="stylist_input_name">開始時間<span class="circle">🔴</span></th>
+            <td colspan="5" class="stylist_td">
+              <%= f.time_select :start_time, class:"new_salon_field", id:"new_salon_field"%>
+            </td>
+          </tr>
+          <tr>
+            <th colspan="1" class="stylist_input_name">終了時間<span class="circle">🔴</span></th>
+            <td colspan="5" class="stylist_td">
+              <%= f.time_select :end_time, class:"new_salon_field", id:"new_salon_field"%>
+            </td>
+          </tr>
+      </table>
+      <table style="width:100%;height:20px;margin-top:30px;">
+        <tr>
+          <td class="register_td">
+            <ul class="salon_register_btn">
+              <li>
+                <%= f.submit "登録", class:"register_btn"%>
+              </li>
+              <li class="stylist_cancel_btn">
+                <%= link_to "キャンセル", url: admins_salons_path, class:"cancel_btn" %>
+              </li>
+            </ul>
+          </td>
+        </tr>
+      </table>
+    <% end %>
+  </div>
+</div>
+<%= render "shared/footer"%>

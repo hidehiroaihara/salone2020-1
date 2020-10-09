@@ -15,18 +15,18 @@
           <tr class="address_table">
             <th class="input_name">住所</th>
             <td class="address_input bd">
-              <span>〒</span>
+              <span>郵便番号</span>
                 <%= f.text_field :post_code, class:"post_feild", placeholder:"例）123-4567", onKeyUp:"AjaxZip3.zip2addr('address[post_code]','','address[prefecture_id]','address[address_all]');" %>
             </td>
           </tr> 
         <tr>
-          <th class="input_name">氏名(カナ)</th>
+          <th class="input_name">都道府県</th>
           <td class="bd">
             <%= f.collection_select(:prefecture_id, Prefecture.all, :id, :name, {include_blank: "--"}, {class:"select-box", id:"prefecture"}) %>
           </td>
         </tr>
         <tr>
-          <th class="input_name">EMAIL</th>
+          <th class="input_name">住所L</th>
           <td class="bd">
             <%= f.text_field :address_all, class:"address_field" %>
           </td>

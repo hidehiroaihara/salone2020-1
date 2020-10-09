@@ -1,0 +1,11 @@
+.salon_new_table{
+  width: 70%;
+  height: 10px;
+}
+.stylist_register_btn{
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 30px;
+  margin-bottom: 30px;
+}

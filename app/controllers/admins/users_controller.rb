@@ -1,7 +1,7 @@
 class UserAddress
 
   include ActiveModel::Model
-  include ActiveModel::Attributes
+  # include ActiveModel::Attributes
   attr_accessor :first_name, :last_name, :first_name_cana, :last_name_cana, :email, :birthday, :phone_number, :gender_id, :stylist_id, :blood_id, :job_id, :customer_text, :member_id, :customer_number, :post_code, :prefecture_id, :address_all, :user_id, :information_date, :information_text, :consent_id
   
   
@@ -35,6 +35,7 @@ class UserAddress
   end
 end
 class Admins::UsersController < ApplicationController
+  
   before_action :authenticate_admin!
   before_action :set_user, only: [:edit, :update, :show, :destroy] 
   def index
@@ -85,7 +86,7 @@ class Admins::UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user_address).permit(:first_name, :last_name, :first_name_cana, :last_name_cana, :phone_number, :email, :customer_number, :post_code, :prefecture_id, :address_all, :gender_id, :blood_id, :job_id, :customer_text, :member_id, :information_text, :visit_time, :consent_id, :stylist_id, :information_date).merge(birthday: set_birthday, information_date: set_information_date )
+    params.require(:user_address).permit(:first_name, :last_name, :first_name_cana, :last_name_cana, :phone_number, :email, :customer_number, :post_code, :prefecture_id, :address_all, :gender_id, :blood_id, :job_id, :customer_text, :member_id, :information_text, :visit_time, :consent_id, :stylist_id).merge(birthday: set_birthday, information_date: set_information_date )
   end
 
   def user_search_params

@@ -63,7 +63,7 @@
           </td>
           <th class="stylist_input_name">性  別<span class="circle">🔴</span></th>
           <td colspan="2" class="stylist_td">
-            <%= f.collection_select(:gender_id, Gender.all, :id, :name, {include_blank: "--"},{class:"stylist_select", id:"stylist_gender"}) %>
+            <%= f.collection_select(:gender_id, Gender.all, :id, :name,{class:"stylist_select", id:"stylist_gender"}) %>
           </td>
         </tr>
         <tr class="stylist_tr">

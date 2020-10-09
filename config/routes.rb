@@ -54,6 +54,8 @@ Rails.application.routes.draw do
     resources :users
     resources :reservations
     resources :stylists
+    resources :menus
+    resources :salons
   end
   root to: "users/reservations#index"
 end
