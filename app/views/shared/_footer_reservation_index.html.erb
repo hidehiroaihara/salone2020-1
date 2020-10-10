@@ -37,7 +37,9 @@
       <div class="section_wf">
         <div class="calendar_block01">
           <p class="block one" id="openCalendar">
-            <%= link_to image_tag("calendar.png", class:"btn_calendar_01"), "#" %>
+            <%= link_to admins_reservations_path do %>
+               <%= image_tag("calendar.png", class:"btn_calendar_01") %>
+            <% end %>
           </p>
           <p class="block two">
             <%= link_to image_tag("today.png", class:"btn_calendar_02"), "#" %>

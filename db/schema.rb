@@ -61,7 +61,7 @@ ActiveRecord::Schema.define(version: 2020_10_09_115141) do
     t.integer "price", null: false
     t.integer "customer_type_id"
     t.text "menu_text", null: false
-    t.time "menu_time", null: false
+    t.time "menu_time"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

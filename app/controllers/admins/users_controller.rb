@@ -67,6 +67,7 @@ class Admins::UsersController < ApplicationController
   end
 
   def update
+    # params[:user_address][:information_date] = set_information_date
     @user_address = UserAddress.new(user_params)
     if @user_address.save_update(params[:id])
        redirect_to admins_users_path
@@ -86,7 +87,8 @@ class Admins::UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user_address).permit(:first_name, :last_name, :first_name_cana, :last_name_cana, :phone_number, :email, :customer_number, :post_code, :prefecture_id, :address_all, :gender_id, :blood_id, :job_id, :customer_text, :member_id, :information_text, :visit_time, :consent_id, :stylist_id).merge(birthday: set_birthday, information_date: set_information_date )
+    params.require(:user_address).permit(:first_name, :last_name, :first_name_cana, :last_name_cana, :phone_number, :email, :customer_number, :post_code, :prefecture_id, :address_all, :gender_id, :blood_id, :job_id, :customer_text, :member_id, :information_text, :visit_time, :consent_id, :stylist_id, :information_date ).merge(birthday: set_birthday)
+      #  information_date: set_information_date )
   end
 
   def user_search_params
@@ -125,10 +127,19 @@ class Admins::UsersController < ApplicationController
     end
   end  
   def set_birthday
+    # date = params[:user_address][:birthday]
+    # if date["birthday(1i)"].empty? && date["birthday(2i)"].empty? && date["birthday(3i)"].empty?
+    #   return
+    # end
     Date.new(params.require(:user_address).require("birthday(1i)").to_i,params.require(:user_address).require("birthday(2i)").to_i,params.require(:user_address).require("birthday(3i)").to_i)
   end
 
   def set_information_date 
+    # date = params[:user_address][:information_date]
+    # if params.require(:user_address).require("information_date(1i)").empty? && params.require(:user_address).require("information_date(2i)").empty? && params.require(:user_address).require("information_date(3i)").empty?
+    # if date["information_date(1i)"].empty? && date["information_date(2i)"].empty? && date["information_date(3i)"].empty?
+    #   return
+    # end
     Date.new(params.require(:user_address).require("information_date(1i)").to_i,params.require(:user_address).require("information_date(2i)").to_i,params.require(:user_address).require("information_date(3i)").to_i)
   end
 

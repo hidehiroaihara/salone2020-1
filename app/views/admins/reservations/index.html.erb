@@ -3,7 +3,7 @@
   <div class="section">
     <div class="schedule_head">
       <p class="left-click" id="left-click"> 
-       <%= link_to image_tag("left-direction.png", class:"click-icon"), root_path(params:{ago:(@ago + 1)})%>
+       <%= link_to image_tag("left-direction.png", class:"click-icon"), admins_reservations_path(params:{ago:(@ago + 1)})%>
       </p>
       <p class="schedule-date" id="schedule-date">
        <%= link_to @time.strftime("%m/%d(#{@wd[@time.wday]})"), "#", class:"schedule-today" %>

@@ -1,40 +1,142 @@
 <div class="contents_new" style="background-color: rgb(237, 228, 217);">
+  <div class="new_reservation_top_area">
     <%= link_to users_reservations_path do%>
-      <p class="new_reservation_top">トップページに戻る</p>
+        <p class="new_reservation_top">トップページに戻る</p>
     <% end%>
-    <div class="search_category_area">
-
-    </div>
-    <div class="display_menu">
-      <% @menus.each do |menu| %>
-        <div class="new_menu_area">
-          <p class="block_area_menu">
-            <span class="menu_customer"><%= menu.customer_type.name %></span>
-          </p>
-          <div class="menu_text_area">
-            <ul class="menu_category_area">
-              <% menu.style_category_lists.each do |category| %>
-                <li class="menu_category_list">
-                  <%= category.name%>
-                </li>
-              <% end %>
-            </ul>
-            <div class="menu_name_area">
-              <p class="menu_name_display">
-                <%= menu.menu_name %>
-              </p>
-              <p class="menu_price">
-                ¥<span style="color:rgb(225, 111, 111);"><%= menu.price %></span>
-              </p>
-            </div>
-            <div class="menu_text_area1">
-              <span class="menu_text_line"><%= menu.menu_text %></span>
-            </div>
-          </div>
-          <div class="menu_resevation_btn_area">
-           <%= link_to "#"%>
-          </div>
-        </div>
+  </div>
+  <div class="salon_title_area">
+      <div class="new_reservation_display">
+        <ul class="new_reservation_display_list">
+          <li class="reservation_li1">予約確認</li>
+          <li class="reservation_li2">※予約完了した時点で予約が確定します。</li>
+        </ul>
+      </div>
+      <div class="re_new_salon_title">
+        <p class="re_new_title">
+          <% %>sapmle<span style="margin-left:10px;"><% %>読み方<span>
+        </p>
+        <p class="re_new_subtitle">
+          <% %>読み方
+        </p>
+      </div>
+  </div>
+  <div class="new_reservation_description_area">
+    <h2 class="new_reservation_description1">
+      ご希望するご来店日を選択してください
+    </h2>
+    <p class="new_reservation_description2">
+      <span class="new_reservation_maru">◎</span> の日時から施術を開始することが出来ます。ご希望の来店日時の <span class="new_reservation_maru">◎</span> を選択してください。
+    </p>
+  </div>
+  <div class="new_reservation_menu_area">
+    <p class="new_reservation_choice">
+      選択済みメニュー
+    </p>
+    <ul class="new_reservation_menu1">
+      <li class="new_reservation_category">
+        <%= @menu.customer_type.name %>
+      </li>
+      <li class="new_reservation_menu_name">
+        <%= @menu.menu_name %>
+      </li>
+      <li class="new_reservation_menu_price">
+        <span style="color:rgb(242, 106, 106);">￥<%= @menu.price%> </span>税込
+      </li>
+      <li class="new_reservation_menu_time">
+        <% %>時間
+      </li>
+    </ul>
+  </div>
+  <div class="time_sum_area">
+    <li class="time_sum_name">
+      施術時間合計 (目安)
+    </li>  
+    <li class="time_sum">
+     <% %>時間
+    </li>
+  </div>
+  <div class="table_reservation_new_area">
+    <p class="salon_free_name">
+      サロン空き状況
+    </p>
+    <table class="table_reservation_new1" border="1" style="margin-top:30px;">
+       <colgroup width="10%"></colgroup>
+       <colgroup width="5%"></colgroup>
+       <colgroup width="5%"></colgroup>
+       <colgroup width="5%"></colgroup>
+       <colgroup width="5%"></colgroup>
+       <colgroup width="5%"></colgroup>
+       <colgroup width="5%"></colgroup>
+       <colgroup width="5%"></colgroup>
+       <colgroup width="5%"></colgroup>
+       <colgroup width="5%"></colgroup>
+       <colgroup width="5%"></colgroup>
+       <colgroup width="5%"></colgroup>
+       <colgroup width="5%"></colgroup>
+       <colgroup width="5%"></colgroup>
+       <colgroup width="5%"></colgroup>
+       <colgroup width="10%"></colgroup>
+       <tr>
+         <th rowspan="2" class="reservation_top_name">
+           <ul class="ago_week_area">
+             <li class="ago_week">
+               前の一週間
+             </li>
+           </ul>
+         </th>
+         <th colspan="14" class="reservation_center_name">
+           当月
+         </th>
+         <th rowspan="2" class="reservation_top_name">
+           <ul class="next_week_area">
+             <li class="next_week">
+               次の一週間
+             </li>
+           </ul>
+         </th>
+       </tr>
+       <tr>
+        <% 14.times do |num|%>
+          <th class="new_reservation_date">
+          </th>
+        <% end %>
+      </tr>
+      <% 24.times do |num| %>
+        <tr>
+          <th class="new_reservation_time">
+          </th>
+          <td class="new_reservation_date_btn">
+          </td>
+          <td class="new_reservation_date_btn">
+          </td>
+          <td class="new_reservation_date_btn">
+          </td>
+          <td class="new_reservation_date_btn">
+          </td>
+          <td class="new_reservation_date_btn">
+          </td>
+          <td class="new_reservation_date_btn">
+          </td>
+          <td class="new_reservation_date_btn">
+          </td>
+          <td class="new_reservation_date_btn">
+          </td>
+          <td class="new_reservation_date_btn">
+          </td>
+          <td class="new_reservation_date_btn">
+          </td>
+          <td class="new_reservation_date_btn">
+          </td>
+          <td class="new_reservation_date_btn">
+          </td>
+          <td class="new_reservation_date_btn">
+          </td>
+          <td class="new_reservation_date_btn">
+          </td>
+          <th class="new_reservation_time">
+          </th>
+        </tr>
       <% end %>
-    </div>
+    </table>
+  <div>
 </div>

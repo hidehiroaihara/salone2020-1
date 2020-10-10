@@ -1,9 +1,7 @@
 <div class="contents_new" style="background-color: rgb(237, 228, 217);">
-  <div class="new_reservation_top_area">
     <%= link_to users_reservations_path do%>
-        <p class="new_reservation_top">トップページに戻る</p>
+      <p class="new_reservation_top">トップページに戻る</p>
     <% end%>
-  </div>
     <div class="search_category_area">
 
     </div>
@@ -34,8 +32,7 @@
             </div>
           </div>
           <div class="menu_resevation_btn_area">
-           <%= link_to new_users_reservation_path(menu) do %>
-           <%# ,menu_id: menu.id, menu_name: menu.menu_name, menu_name: menu.price, customer_type_id: menu.customer_type  %>
+           <%= link_to new_users_reservation_path ,menu_id: menu.id, menu_name: menu.menu_name, menu_name: menu.price do %>
              <%# menu_time: @menu.menu_time %>
              <p class="menu_link_btn">予約する</p>
            <% end %>

@@ -5,14 +5,16 @@ class Users::ReservationsController < ApplicationController
     @wd = ["日", "月", "火", "水", "木", "金", "土"]
     @ago = params.fetch(:ago,0).to_i
     @time = Date.today - @ago   
+    @menus = Menu.all 
+    params[:format]
   end
 
   def new
-    @Reservation = Reservation.new
-    @menus = Menu.all 
-    # @menus = Menu.includes(:style_category_list)
+    # binding.pry
+    @menu = Menu.find_by(id: params[:format])
+    @reservation = Reservation.new
   end
-
+  
   def create
     @reservation = Rservation.new()
   end
@@ -44,4 +46,10 @@ class Users::ReservationsController < ApplicationController
   def reservation_params
     params.require(:resevation).permit(:stylist_id)
   end
+  # def new_reservation
+  #   params[:menu_id]
+  #   params[:menu_name]
+  #   params[:menu_name]
+  #   params[:customer_type_id]
+  # end
 end

@@ -46,9 +46,11 @@ Rails.application.routes.draw do
     post 'addresses', to: 'users/registrations#create_address'
     get 'user_details', to: 'users/registrations#new_detail'
     post 'user_details', to: 'users/registrations#create_detail'
+    get "times", to: 'users/reservations#new_time'
   end
   namespace :users do
     resources :reservations
+    resources :users
   end
   namespace :admins do
     resources :users
@@ -57,5 +59,5 @@ Rails.application.routes.draw do
     resources :menus
     resources :salons
   end
-  root to: "users/reservations#index"
+  root to: "users/users#index"
 end

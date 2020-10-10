@@ -1,6 +1,10 @@
+.new_reservation_top_area{
+  width: 90%;
+  display: flex;
+  justify-content: flex-end;
+}
 .new_reservation_top{
   color: rgb(69, 69, 226);
-  margin-left: 80%;
 }
 .contents_new{
   min-width: 980px;
