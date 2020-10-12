@@ -6,12 +6,12 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-# Admin.create!(
-#   name: 'salone',
-#   email: 'salone@salone.com',
-#   password: 'salone2020',
-#   admin: true
-# )
+Admin.create!(
+  name: 'salone',
+  email: 'salone@salone.com',
+  password: 'salone2020',
+  admin: true
+)
 StyleCategoryList.create([ {name: 'カット'},
                            { name: 'カラー' },
                          { name: 'パーマ'},
