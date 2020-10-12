@@ -130,7 +130,7 @@
 .image-file{
   color: black;
   background-color: rgba(151, 151, 151, 0.5);
-  border-bottom: 5px solid rgba(63, 63, 63);
+  border-bottom: 5px solid rgb(63, 63, 63);
   border-radius: 4px;
   margin: 0 15px
 }
@@ -145,7 +145,7 @@
 .show_space_area{
   color: white;
   background-color: rgb(125, 196, 224);
-  border-bottom: 7px solid rgba(63, 63, 63);
+  border-bottom: 7px solid rgb(63, 63, 63);
   border-radius: 4px;
   padding: 5px 40px;
 }
