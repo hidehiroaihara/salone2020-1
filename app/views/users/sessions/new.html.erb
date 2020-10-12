@@ -1,26 +1,33 @@
-<h2>Log in</h2>
+<div class="login-form">
+  <h2>Log in</h2>
+  <div class="login-inputs">
+    <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+      <div class="login-field">
+        <%= f.label :email, class: "login-text" %><br />
+        <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "login-input-area" %>
+      </div>
 
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+      <div class="login-field">
+        <%= f.label :password, class: "login-text" %><br />
+        <%= f.password_field :password, autocomplete: "current-password", class: "login-input-area" %>
+      </div>
+
+      <% if devise_mapping.rememberable? %>
+        <div class="login-field">
+          <%= f.check_box :remember_me %>
+          <%= f.label :remember_me, class: "login-text" %>
+        </div>
+      <% end %>
+
+      <div class="login-actions">
+        <%= f.submit "Log in", class: "login-btn" %>
+      </div>
+    <% end %>
   </div>
-
-  <div class="field">
-    <%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "current-password" %>
+  <div class="login-back_area">
+    <%= link_to "Back to the Future", root_path, class:"login-back_btn" %>
   </div>
-
-  <% if devise_mapping.rememberable? %>
-    <div class="field">
-      <%= f.check_box :remember_me %>
-      <%= f.label :remember_me %>
-    </div>
-  <% end %>
-
-  <div class="actions">
-    <%= f.submit "Log in" %>
+  <div class="login-forgot">
+    <%= render "users/shared/links" %>
   </div>
-<% end %>
-
-<%= render "users/shared/links" %>
+</div>

@@ -12,5 +12,8 @@ class Stylist < ApplicationRecord
   def set_name
     self.stylist_first_name + self.stylist_last_name
   end
+  def set_name_cana
+    self.stylist_first_name_cana + self.stylist_last_name_cana
+  end
 
 end

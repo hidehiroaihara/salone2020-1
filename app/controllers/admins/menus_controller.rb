@@ -20,6 +20,6 @@ class Admins::MenusController < ApplicationController
   private
 
   def menu_params
-    params.require(:menu).permit(:menu_name, :price, :customer_type_id, :menu_text, {style_category_list_ids: []})
+    params.require(:menu).permit(:menu_name, :price, :customer_type_id, :menu_text, :menu_time_id, {style_category_list_ids: []})
   end
 end

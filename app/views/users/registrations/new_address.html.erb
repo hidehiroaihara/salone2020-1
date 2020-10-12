@@ -9,14 +9,14 @@
     </div>
     <%= form_for @address do |f| %>
       <%= render "users/shared/error_messages", resource: @address %>
-      <table class="user_entry_table" border="1" style="margin-left:10%;">
+      <table class="user_entry_table address_height" border="1" style="margin-left:10%;">
           <colgroup width="35%"></colgroup>
           <colgroup width="65%"></colgroup>
           <tr class="address_table">
             <th class="input_name">住所</th>
             <td class="address_input bd">
-              <span>郵便番号</span>
-                <%= f.text_field :post_code, class:"post_feild", placeholder:"例）123-4567", onKeyUp:"AjaxZip3.zip2addr('address[post_code]','','address[prefecture_id]','address[address_all]');" %>
+              <span style="float:left;">〒</span>
+                <%= f.text_field :post_code, class:"post_field1", placeholder:"例）123-4567", onKeyUp:"AjaxZip3.zip2addr('address[post_code]','','address[prefecture_id]','address[address_all]');" %>
             </td>
           </tr> 
         <tr>
@@ -26,15 +26,15 @@
           </td>
         </tr>
         <tr>
-          <th class="input_name">住所L</th>
+          <th class="input_name">市町村、番地</th>
           <td class="bd">
-            <%= f.text_field :address_all, class:"address_field" %>
+            <%= f.text_field :address_all, class:"address_field", placeholder:"例）中央区豊海町１ー２−３" %>
           </td>
         </tr>
       </table>
       <div class="user_submit_save">
         <p class="user_registration_area">
-          <%= f.submit "登録する", class:"user_registration" %>
+          <%= f.submit "次へ", class:"user_registration" %>
         </p>
       </div> 
     <% end %>

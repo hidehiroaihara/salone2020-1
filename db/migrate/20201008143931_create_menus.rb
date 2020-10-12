@@ -5,7 +5,7 @@ class CreateMenus < ActiveRecord::Migration[6.0]
       t.integer :price,           null: false 
       t.integer :customer_type_id
       t.text :menu_text,          null: false
-      t.time :menu_time
+      t.integer :menu_time_id
       t.timestamps
     end
   end

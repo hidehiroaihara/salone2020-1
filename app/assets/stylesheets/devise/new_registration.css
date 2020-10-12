@@ -4,6 +4,10 @@
   margin: 5px;
   text-align: center;
 }
+.new_user_maru{
+  margin-left: 70%
+
+}
 .user_name_area{ 
   display: flex;
   margin-bottom: 15px;

@@ -160,3 +160,6 @@ li{
   border-bottom: 2px solid rgba(63, 63, 63, 0.3);
   background-color: rgba(151, 151, 151, 0.3);
 }
+.time_area{
+  margin-top: 30px;
+}

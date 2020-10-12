@@ -48,6 +48,12 @@
             <%= f.collection_select(:customer_type_id, CustomerType.all, :id, :name ,{class:"menu_select", id:"menu_csutomer"}) %>
           </td>
         </tr>
+        <tr class="stylist_tr">
+          <th colspan="1" class="stylist_input_name">メニュー時間<span class="circle">🔴</span></th>
+          <td class="stylist_td" colspan="3" style="border:1px solid black;">
+            <%= f.collection_select(:menu_time_id, MenuTime.all, :id, :name ,{class:"menu_select", id:"menu_time"}) %>
+          </td>
+        </tr>
         <tr class="stylist_tr" style="height:30px;">
           <th colspan="1" class="stylist_input_name">メニュー内容<span class="circle">🔴</span></th>
           <td colspan="4" class="stylist_td">

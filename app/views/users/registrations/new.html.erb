@@ -3,6 +3,9 @@
     <div class="customer_title">
       <h1 class="user_entry_title1">新規登録</h1>
     </div>
+    <p class="new_user_maru">
+      🔴必要項目
+    </p>
     <div class="user_name_area">
       <p class="user_block_area"></p>
       <h2 class="user_basic">基本情報</h2>
@@ -11,7 +14,7 @@
       <%= render "users/shared/error_messages", resource: @user %>
       <table class="user_entry_table" border="1" style="margin-left:10%;">
         <tr>
-          <th class="input_name">氏名(漢字)</th>
+          <th class="input_name">氏名(漢字)<span class="circle">🔴</span></th>
           <td class="bd">
             <%= f.text_field :first_name , class:"user_new_field", maxlength:"25" %>
           </td>
@@ -20,7 +23,7 @@
           </td>
         </tr>
         <tr>
-          <th class="input_name">氏名(カナ)</th>
+          <th class="input_name">氏名(カナ)<span class="circle">🔴</span></th>
           <td class="bd">
             <%= f.text_field :first_name_cana, class:"user_new_field", maxlength:"25" %>
           </td>
@@ -29,13 +32,13 @@
           </td>
         </tr>
         <tr>
-          <th class="input_name">EMAIL</th>
+          <th class="input_name">EMAIL<span class="circle">🔴</span></th>
           <td colspan="2" class="bd">
             <%= f.email_field :email, autofocus: true, autocomplete: "email", class:"user_email_field" %>
           </td>
         </tr>
         <tr>
-          <th class="input_name toparea">Password</th>
+          <th class="input_name toparea">Password<span class="circle">🔴</span></th>
           <td colspan="2" class="bd">
             <% if @minimum_password_length %>
               <br /><em>(<%= @minimum_password_length %> 文字以上)</em>
@@ -44,19 +47,19 @@
           </td>
         </tr>
         <tr>
-          <th class="input_name">Password<br />(確認用)</th>
+          <th class="input_name">Password<br />(確認用)<span class="circle">🔴</span></th>
           <td colspan="2" class="bd">
            <%= f.password_field :password_confirmation, autocomplete: "new-password", class:"user_password_field" %>
           </td>
         </tr>
         <tr>
-          <th class="input_name">電話番号</th>
+          <th class="input_name">電話番号<span class="circle">🔴</span></th>
           <td colspan="2" class="bd"> 
             <%= f.text_field :phone_number, class:"phone_field", maxlength:"15" %>
           </td>
         </tr>
         <tr class="birth_colum">
-          <th class="input_name">誕生日</th>
+          <th class="input_name">誕生日<span class="circle">🔴</span></th>
             <td class="user_birth_table" clospan="2">
               <%= raw sprintf(
                 f.date_select(
@@ -80,7 +83,7 @@
       </table>
       <div class="user_submit_save">
         <p class="user_registration_area">
-          <%= f.submit "登録する", class:"user_registration" %>
+          <%= f.submit "次へ", class:"user_registration" %>
         </p>
       </div> 
     <% end %>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_09_115141) do
+ActiveRecord::Schema.define(version: 2020_10_10_120228) do
 
   create_table "active_storage_attachments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
@@ -61,20 +61,23 @@ ActiveRecord::Schema.define(version: 2020_10_09_115141) do
     t.integer "price", null: false
     t.integer "customer_type_id"
     t.text "menu_text", null: false
-    t.time "menu_time"
+    t.integer "menu_time_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "reservations", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.integer "stylist_id", null: false
-    t.integer "seat_id", null: false
+    t.integer "seat_id"
     t.time "time", null: false
     t.date "date", null: false
     t.integer "menu_id", null: false
     t.integer "user_id", null: false
-    t.integer "status_id", null: false
+    t.integer "status_id"
     t.integer "salon_id", null: false
+    t.time "menu_start_time"
+    t.time "menu_end_time"
+    t.integer "set_price", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -83,6 +86,14 @@ ActiveRecord::Schema.define(version: 2020_10_09_115141) do
     t.time "start_time", null: false
     t.time "end_time", null: false
     t.date "holiday"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "sns_credentials", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "provider"
+    t.string "uid"
+    t.integer "user"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

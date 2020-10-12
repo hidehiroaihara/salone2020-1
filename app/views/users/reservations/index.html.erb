@@ -1,6 +1,6 @@
 <div class="contents_new" style="background-color: rgb(237, 228, 217);">
   <div class="new_reservation_top_area">
-    <%= link_to users_reservations_path do%>
+    <%= link_to root_path do%>
         <p class="new_reservation_top">トップページに戻る</p>
     <% end%>
   </div>
@@ -27,6 +27,9 @@
               </p>
               <p class="menu_price">
                 ¥<span style="color:rgb(225, 111, 111);"><%= menu.price %></span>
+              </p>
+              <p class="time_area">
+                <%= menu.menu_time.name%>
               </p>
             </div>
             <div class="menu_text_area1">

@@ -15,6 +15,10 @@ class User < ApplicationRecord
   has_many :user_menus
   has_many :menus, through: :user_menus
   belongs_to :stylist, optional: true
+
+  def set_user_name
+    self.first_name + self.last_name
+  end
   
   scope :search, -> (search_params) do
     return if search_params.blank?

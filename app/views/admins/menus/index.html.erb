@@ -42,7 +42,13 @@
               <%= menu.price %>
             </td>
             <td rowspan="1" class="stylist_info image-pad" >
-                <% %>
+              <% menu.style_category_lists.each do |category| %>
+                <ul class="index_category_name_area">
+                  <li class="index_category_name">
+                    <%= category.name %>
+                  </li>
+                </ul>
+              <% end %>
             </td>
             <td rowspan="1" class="stylist_info">
               <%= menu.customer_type.name %>

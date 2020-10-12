@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  # devise_for :users, controllers: {
+  #   omniauth_callbacks: 'users/omniauth_callbacks'}
   # get 'reservations/index'
   # get 'reservations/show'
   # get 'reservations/edit'
@@ -47,10 +49,24 @@ Rails.application.routes.draw do
     get 'user_details', to: 'users/registrations#new_detail'
     post 'user_details', to: 'users/registrations#create_detail'
     get "times", to: 'users/reservations#new_time'
+    # get|post 'users_facebook_omniauth_authorize', to: 'users/omniauth_callbacks#passthru'
   end
+  # devise_for :users, controllers: {
+  #   omniauth_callbacks: 'users/omniauth_callbacks',
+  #   registrations: 'users/registrations'
+  # }
+#   user_facebook_omniauth_authorize GET|POST /users/auth/facebook(.:format)                              users/omniauth_callbacks#passthru
+#    user_facebook_omniauth_callback GET|POST /users/auth/facebook/callback(.:format)                         users/omniauth_callbacks#facebook
+# user_google_oauth2_omniauth_authorize GET|POST /users/auth/google_oauth2(.:format)                           users/omniauth_callbacks#passthru
+#  user_google_oauth2_omniauth_callback GET|POST /users/auth/google_oauth2/callback(.:format)                       users/omniauth_callbacks#google_oauth2
   namespace :users do
-    resources :reservations
+    resources :reservations do
+      collection do 
+        get :confirm
+      end
+    end
     resources :users
+   
   end
   namespace :admins do
     resources :users
