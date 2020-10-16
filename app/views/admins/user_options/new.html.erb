@@ -19,7 +19,7 @@
         <tr>
           <th colspan="1" class="stylist_input_name">施術カテゴリー<span class="circle">🔴</span></th>
           <td colspan="5" style="border:1px solid black;" class="stylist_td">
-           <%= f.collection_check_boxes(:style_category_list_ids, StyleCategoryList.all, :id, :name, {include_hidden: false},{class:"style_category_check"}) %>
+           <%= f.collection_select(:menu_id, Menu.all, :id, :menu_name,{include_blank: "--"},{class:"option_category_check"}) %>
           </td>
         </tr>
         <tr class="stylist_tr">

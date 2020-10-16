@@ -24,7 +24,7 @@ class Admins::UserOptionsController < ApplicationController
   private
 
   def user_option_params
-    params.require(:user_option).permit(:menu_time_id, {style_category_list_ids: []}).merge(user_id: @user.id)
+    params.require(:user_option).permit(:menu_time_id, :menu_id).merge(user_id: @user.id)
   end
 
   def set_user

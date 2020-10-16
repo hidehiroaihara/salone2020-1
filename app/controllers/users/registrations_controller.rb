@@ -100,6 +100,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
     @user.build_address(@address.attributes)
     @user.build_user_detail(@detail.attributes)
     @user.build_user_information
+    @user.build_user_option
     @user.save
     session["devise.regist_data"]["user"].clear
     session["address"].clear

@@ -66,13 +66,6 @@ ActiveRecord::Schema.define(version: 2020_10_15_072058) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "option_lists", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.integer "user_option_id", null: false
-    t.integer "style_category_list_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
   create_table "reservations", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.integer "stylist_id", null: false
     t.integer "seat_id"
@@ -167,7 +160,8 @@ ActiveRecord::Schema.define(version: 2020_10_15_072058) do
   end
 
   create_table "user_options", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.integer "menu_time_id"
+    t.integer "menu_time_id", default: 0
+    t.integer "menu_id", default: 0
     t.integer "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false

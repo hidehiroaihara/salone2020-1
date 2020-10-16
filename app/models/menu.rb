@@ -8,5 +8,5 @@ class Menu < ApplicationRecord
   has_many :reservations
   has_many :user_menus
   has_many :users, through: :user_menus
-
+  has_many :user_options
 end

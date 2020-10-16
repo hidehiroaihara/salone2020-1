@@ -30,7 +30,7 @@ class Users::ReservationsController < ApplicationController
     @visit_date = params[:date]
     @wd = ["日", "月", "火", "水", "木", "金", "土"]
     @day = Date.today 
-    @menu_end_time = menu_end_time
+    # @menu_end_time = menu_end_time
   end
   
   def create
@@ -42,42 +42,12 @@ class Users::ReservationsController < ApplicationController
       render :index
     end
   end
-    # :stylist_id, :time, :menu_start_time, :date, :menu_id, :user_id, :salon_id, :set_price, :menu_end_time]
-  #   unless @user.valid?
-  #     flash.now[:alert] = @user.errors.full_messages
-  #     render :new and return
-  #   end
-  #   session["devise.regist_data"] = {user: @user.attributes}
-  #   session["devise.regist_data"][:user]["password"] = params[:user][:password]
-  #   @address = @user.build_address
-  #   render :new_address
-  # end
-
-  # def create_address
-  #   @user = User.new(session["devise.regist_data"]["user"])
-  #   @address = Address.new(address_params)
-  #   unless @address.valid?
-  #     flash.now[:alert] = @address.errors.full_messages
-  #     render :new_address and return
-  #   end
-  #   @user.build_address(@address.attributes)
-  #   session["address"] = @address.attributes
-  #   @detail = @user.build_user_detail
-  #   render :new_detail
-  # end
-  
 
   private
   def reservation_params
     params.require(:reservation).permit(:date, :menu_end_time, :menu_id, :menu_start_time, :salon_id, :set_price, :stylist_id, :time, :user_id)
   end
   
-  # def new_reservation
-  #   params[:menu_id]
-  #   params[:menu_name]
-  #   params[:menu_name]
-  #   params[:customer_type_id]
-  # end
   def salon_time
     @salons = Salon.all
     @salons.each do |salon|
@@ -96,7 +66,18 @@ class Users::ReservationsController < ApplicationController
       
     end
   end
-  def menu_end_time
-    @visit_time.to_time + @menu.menu_time.sum
-  end
+  # def menu_end_time
+  #   option_check = false 
+  #   @user.user_option.each do |option|
+  #     if @menu.id == @user.user_option.menu_id && @user.id == @user.user_option.user_id
+  #       option_check = true
+  #     end
+  #   end
+  #   if option_check
+  #      @visit_time.to_time + @menu.menu_time.sum - @user.user_option.menu_time.sum 
+  #      option_check = false
+  #   else  
+  #       @visit_time.to_time + @menu.menu_time.sum 
+  #   end 
+  # end
 end

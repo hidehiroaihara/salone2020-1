@@ -19,65 +19,34 @@
       </div>
     </div>
   </div>
-
   <div class="table-all" id="table-all">
-    <table class="table" style="margin-bottom:30px;">
-      <div class="table01" id="table01">  
-        <thead class="table1">
-          <tr>
-          <th class="table_head">予約時間</th>
-            <%# <% times.%>
-              <th colspan="2" class="table_head_time">10:00</th>
-              <th colspan="2" class="table_head_time">11:00</th>
-              <th colspan="2" class="table_head_time">12:00</th>
-              <th colspan="2" class="table_head_time">13:00</th>
-              <th colspan="2" class="table_head_time">14:00</th>
-              <th colspan="2" class="table_head_time">15:00</th>
-              <th colspan="2" class="table_head_time">16:00</th>
-              <th colspan="2" class="table_head_time">17:00</th>
-              <th colspan="2" class="table_head_time">18:00</th>
-              <th colspan="2" class="table_head_time">19:00</th>
-              <th colspan="2" class="table_head_time">20:00</th>
-          </tr>
-        </thead>
-      </div>
-      <div class="table02" id="table02">
-        <thead class="table2">
-          <tr>
-            <th class="table_bodytop"> 予約数 </th>
-            <td class="am">3</td><td class="pm">3</td>
-            <td class="am">3</td><td class="pm">3</td>
-            <td class="am">3</td><td class="pm">3</td>
-            <td class="am">3</td><td class="pm">3</td>
-            <td class="am">3</td><td class="pm">3</td>
-            <td class="am">3</td><td class="pm">3</td>
-            <td class="am">3</td><td class="pm">3</td>
-            <td class="am">3</td><td class="pm">3</td>
-            <td class="am">3</td><td class="pm">3</td>
-            <td class="am">3</td><td class="pm">3</td>
-            <td class="am">3</td><td class="pm">3</td>
-          </tr>
-          <tr>
-            <%# 残り残席数 %>
-            <th class="table_bodytop">残り受付数 <% %></th>
-            <td class="am">4</td><td class="pm">4</td>
-            <td class="am">4</td><td class="pm">4</td>
-            <td class="am">4</td><td class="pm">4</td>
-            <td class="am">4</td><td class="pm">4</td>
-            <td class="am">4</td><td class="pm">4</td>
-            <td class="am">4</td><td class="pm">4</td>
-            <td class="am">4</td><td class="pm">4</td>
-            <td class="am">4</td><td class="pm">4</td>
-            <td class="am">4</td><td class="pm">4</td>
-            <td class="am">4</td><td class="pm">4</td>
-            <td class="am">4</td><td class="pm">4</td>
-          </tr>
-        </thead>
-      </div>
+    <table class="table" style="margin-bottom:30px;"> 
+      <tr>
+        <th class="table_head">予約時間</th>
+        <% 24.times do |i| %>
+          <% @salon_time = (@salon_start + (i * 60.minutes)).strftime("%H:%M") %>
+          <% break if @salon_time.to_i >  @salon_end.strftime("%H:%M").to_i %>
+          <th colspan="2" class="table_head_time"><%= @salon_time%></th>
+        <% end %>
+      </tr>
+      <tr>
+        <th class="table_bodytop"> 予約数 </th>
+        <% 24.times do |i| %>
+          <% @salon_time = (@salon_start + (i * 30.minutes)).strftime("%H:%M") %>
+          <% break if @salon_time.to_i >  @salon_end.strftime("%H:%M").to_i %> 
+          <td class="am"><% @salon_time%>3</td>
+        <% end %>
+      </tr>
+       <tr>
+        <th class="table_bodytop"> 残り席数 </th>
+        <% 24.times do |i| %>
+          <% @salon_time = (@salon_start + (i * 30.minutes)).strftime("%H:%M") %>
+          <% break if @salon_time.to_i >  @salon_end.strftime("%H:%M").to_i %> 
+          <td class="am"><% @salon_time%>3</td>
+        <% end %>
+      </tr>
       <div class="table03" id="table03">
-        <thead class="table3">
-          <%= render partial: 'reservations', collection: @stylists %>
-        </thead>
+          <%= render partial: 'reservations', collection: @reservations %>
       </div>
     </table>
   </div>
