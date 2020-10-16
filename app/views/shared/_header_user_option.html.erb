@@ -1,0 +1,36 @@
+<header class='top-page-header'>
+  <div class="header" id="header-name"> 
+    <div class="header-section">
+      <p class="logo" id="logo">
+       <%= link_to image_tag("salone-logo.png", class:"salone-icon"), "/" %>
+      </p>     
+      <div class="btn_area" id="bot-all">
+        <ul class="shop_name_wrap">
+          <li class="shop_area">ヘアサロン</li>
+          <li class="shop_name">sample</li>
+        </ul>
+        <ul class="btn-all">
+          <li><%= link_to "予約管理", admins_reservations_path, class:"management"%></li>
+          <li><%= link_to "お客様管理", admins_users_path, class:"user-management"%></li>
+          <li><%= link_to "スタイリスト管理", admins_stylists_path ,class:"salon_management"%></li>
+          <li><%= link_to "店舗管理", new_admins_salon_path ,class:"salon_management"%></li>
+          <li><%= link_to "店舗メニュー", admins_menus_path, class: "salon_management" %></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="btn-bottom" id="btn-bottom">
+    <div class="section-bottom">
+      <div class="btn-column">
+        <ul class="column-all">
+            <li><%= link_to "時間設定一覧", admins_user_options_path, class:"customer-list" %></li>
+            <li><%= link_to "時間登録", new_admins_user_option_path, class:"customer-list" %></li>
+            <li><%= link_to "変更", "#", class:"customer-list" %></li>
+            <li><%= link_to "削除", "#", class:"customer-list" %></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+   
+
+</header>

@@ -1,0 +1,45 @@
+<%= render "shared/header_user_option" %>
+<div class="contents">
+  <div class="section">
+    <div class="user_option_area">
+      <table class="time_index_table" style="float:left;margin-bottom:30px;">
+        <tr>
+          <th class="user_option_title">お客様情報
+            <p class="block_area"></p>
+          </th>
+        </tr>
+      </table>
+      <table class="user_option_title1" align="left" style="margin-bottom:30px;">
+        <colgroup width="15%"></colgroup>
+        <colgroup width="35%"></colgroup>
+        <tr>
+          <th class="show_name">氏名(漢字)</th>
+          <td class="show_bd">
+            <span class="show_field"><%=  @user.first_name.to_s +   @user.last_name.to_s  %></span>
+          </td>
+        </tr>
+      </table>
+      <table class="user_option_title1">
+        <tr>
+          <th class="show_name">氏名(カナ)</th>
+          <td class="show_bd">
+            <span class="show_field"><%=  @user.first_name_cana.to_s +   @user.last_name_cana.to_s %></span>
+          </td>
+        </tr>
+      </table>
+      <table class="time_index_table" style="margin-bottom:30px;">
+        <tr>
+          <th class="user_option_title">メニュー時間設定
+            <p class="block_area"></p>
+          </th>
+        </tr>
+      </table>
+       <div class="stylist_display">
+        <p class="option_time">
+          <%= link_to "個人時間登録", new_admins_user_user_option_path(@user.id), class:"time_add" %>
+        </p>
+    </div>
+    </div>
+  </div>
+</div>
+<%= render "shared/footer"%>

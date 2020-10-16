@@ -11,12 +11,14 @@ class Users::ReservationsController < ApplicationController
   end
 
   def new
+    # binding.pry
     @ago = params.fetch(:ago,0).to_i
     reservation_days
     salon_time
     @menu = Menu.find_by(id: params[:format])
-    @day = Date.today 
+    @day = Date.today - @ago
     @wd = ["日", "月", "火", "水", "木", "金", "土"]
+    @reservations = Reservation.all
   end
 
   def confirm
@@ -32,7 +34,7 @@ class Users::ReservationsController < ApplicationController
   end
   
   def create
-    binding.pry
+    # binding.pry
     @reservation = Reservation.new(reservation_params)
     if @reservation.save
       return redirect_to root_path
@@ -87,10 +89,11 @@ class Users::ReservationsController < ApplicationController
   def reservation_days
     @reservation_days = Reservation.all
     @reservation_days.each do |day| 
-      @resrvation_time = day.time
-      @resevation_date = day.date
-      @reseravtion_menu_start = day.menu_start_time
+      @reservation_time = day.time
+      @reservation_date = day.date
+      @reservation_menu_start = day.menu_start_time
       @reservation_menu_end = day.menu_end_time
+      
     end
   end
   def menu_end_time

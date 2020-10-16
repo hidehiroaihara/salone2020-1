@@ -189,7 +189,7 @@
   padding-right: 15px;
 }
 .time_sum{
-  margin-left: 70px;
+  margin-left: 30px;
   font-size: 12px;
   padding: 3px;
 }
@@ -259,10 +259,17 @@
 }
 .new_reservation_date{
   height: 40px;
+  font-size: 12px;
 }
 .new_reservation_time{
   height: 40px;
 }
 .new_reservation_maru{
   color:rgb(242, 124, 124);
+}
+.next_week1{
+  color: rgb(193, 32, 32);
+}
+.today_color{
+  color: rgb(88, 88, 244);
 }

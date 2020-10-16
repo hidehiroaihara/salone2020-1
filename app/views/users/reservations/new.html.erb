@@ -52,7 +52,7 @@
       施術時間合計 (目安)
     </li>  
     <li class="time_sum">
-     <%Time.at(@menu.menu_time.sum).utc.strftime("%H時間%M分")  %>時間
+     <%= Time.at(@menu.menu_time.sum).utc.strftime("%H時間%M分")  %>
     </li>
   </div>
   <div class="table_reservation_new_area">
@@ -80,17 +80,25 @@
          <th rowspan="2" class="reservation_top_name">
            <ul class="ago_week_area">
              <li class="ago_week">
-               前の一週間
+               <% if @ago == 0 %>
+                 前の一週間
+               <% else %>
+                 <%= link_to new_users_reservation_path(@menu, params:{ago:(@ago + 14)}), class:"next_week1" do%>
+                   前の一週間
+                 <% end %>
+               <% end %>
              </li>
            </ul>
          </th>
          <th colspan="14" class="reservation_center_name">
-           当月
+          <%= link_to new_users_reservation_path(@menu) do %>
+            <span class="today_color"><%= Date.today.strftime("%Y/%m/%d(#{@wd[(@day).wday] })")%>  (当日に戻る)</span>
+          <% end %>
          </th>
          <th rowspan="2" class="reservation_top_name">
            <ul class="next_week_area">
              <li class="next_week">
-               <%= link_to new_users_reservation_path do%>
+               <%= link_to new_users_reservation_path(@menu, params:{ago:(@ago - 14)}), class:"next_week1" do%>
                  次の一週間
                <% end %>
              </li>
@@ -98,152 +106,234 @@
          </th>
        </tr>
        <tr>
-       <%= %>
+        <% check = false %>
         <% 14.times do |num|%>
           <th class="new_reservation_date">
-            <%= @days = (@day + num).strftime("%d(#{@wd[(@day + num).wday] })")%>
+            <%= @days = (@day + num).strftime("%m/%d(#{@wd[(@day + num).wday] })")%>
           </th>
         <% end %>
-      </tr> 
+      </tr>
       <% 24.times do |i| %>
-         <% @salon_time = (@salon_start + (i * 30.minutes)).strftime("%H:%M") %>
-         <% break if @salon_time.to_i >  @salon_end.strftime("%H:%M").to_i %>
+        <% @salon_time = (@salon_start + (i * 30.minutes)).strftime("%H:%M") %>
+        <% break if @salon_time.to_i >  @salon_end.strftime("%H:%M").to_i %>
         <tr>
           <th class="new_reservation_time">
-          <%= @salon_time %>
-          
+            <%= @salon_time %>
           </th>
           <td class="new_reservation_date_btn">
-            <% if @reservation_menu_end.strftime("%H:%M") <= Time.at(5400).strftime("%H:%M") &&  @reseravtion_menu_start.strftime("%H:%M") >=  Time.at(5400).strftime("%H:%M") then %>
-              ×
-            <% else %>
-             <%= link_to confirm_users_reservations_path(@menu,time: @salon_start + (i * 30.minutes), date: ((@day).strftime("%Y/%m/%d(#{@wd[(@day).wday] })"))) do %>
-               <span class="new_reservation_maru">◎</span>
-             <% end %>
-            <% end %>
-          </td>
-          <td class="new_reservation_date_btn">
-            <% if @reservation_time == @salon_start + (i * 30.minutes) && @reservation_day == @day + 1  %>
-              ×
-            <% else %>
-              <%= link_to confirm_users_reservations_path(@menu, time: @salon_start + (i * 30.minutes), date: ((@day + 1).strftime("%Y/%m/%d(#{@wd[(@day + 1).wday] })")))  do %>
-               <span class="new_reservation_maru">◎</span>
+            <% @reservations.each do |reservation|%>
+              <% if reservation.menu_start_time.strftime("%H%M").to_i <= (@salon_start + (i * 30.minutes)).strftime("%H%M").to_i && (@salon_start + (i * 30.minutes)).strftime("%H%M").to_i < reservation.menu_end_time.strftime("%H%M").to_i && reservation.date.strftime("%Y年%m月%d日") == @day.strftime("%Y年%m月%d日") %>
+                <% check = true %>
               <% end %>
             <% end %>
-          </td>
-          <td class="new_reservation_date_btn">
-            <% if @reservation_time == @salon_start + (i * 30.minutes) && @reservation_day == @day + 2 %>
-              ×
+             <% if check %>
+              × 
+              <% check = false%>
             <% else %>
-              <%= link_to confirm_users_reservations_path(@menu,time: @salon_start + (i * 30.minutes), date: ((@day + 2).strftime("%Y/%m/%d(#{@wd[(@day + 2).wday] })"))) do %>
-               <span class="new_reservation_maru">◎</span>
-              <% end %>
+              <%= link_to confirm_users_reservations_path(@menu,time: @salon_start + (i * 30.minutes), date: ((@day).strftime("%Y/%m/%d(#{@wd[(@day).wday] })"))) do %>
+                <span class="new_reservation_maru">◎</span>
+               <% end %>
             <% end %>
-          </td>
-          <td class="new_reservation_date_btn">
-            <% if @reservation_time == @salon_start + (i * 30.minutes) && @reservation_day == @day + 3 %>
-              ×
-            <% else %>
-              <%= link_to confirm_users_reservations_path(@menu,time: @salon_start + (i * 30.minutes), date: ((@day + 3).strftime("%Y/%m/%d(#{@wd[(@day + 3).wday] })"))) do %>
-               <span class="new_reservation_maru">◎</span>
+            </td>
+            <td class="new_reservation_date_btn">
+              <% @reservations.each do |reservation|%>
+                <% if reservation.menu_start_time.strftime("%H%M").to_i <= (@salon_start + (i * 30.minutes)).strftime("%H%M").to_i && (@salon_start + (i * 30.minutes)).strftime("%H%M").to_i < reservation.menu_end_time.strftime("%H%M").to_i && reservation.date.strftime("%Y年%m月%d日") == (@day+ 1).strftime("%Y年%m月%d日") %>
+                  <% check = true %>
+                <% end %>
               <% end %>
-            <% end %>
-          </td>
-          <td class="new_reservation_date_btn">
-            <% if @reservation_time == @salon_start + (i * 30.minutes) && @reservation_day == @day + 4 %>
-              ×
-            <% else %>
-              <%= link_to confirm_users_reservations_path(@menu,time: @salon_start + (i * 30.minutes), date: ((@day + 4).strftime("%Y/%m/%d(#{@wd[(@day + 4).wday] })"))) do %>
-               <span class="new_reservation_maru">◎</span>
+              <% if check%>
+                × 
+                <% check = false%>
+              <% else %>
+                <%= link_to confirm_users_reservations_path(@menu,time: @salon_start + (i * 30.minutes), date: ((@day).strftime("%Y/%m/%d(#{@wd[(@day).wday] })"))) do %>
+                  <span class="new_reservation_maru">◎</span>
+                <% end %>
               <% end %>
-            <% end %>
-          </td>
-          <td class="new_reservation_date_btn">
-            <% if @reservation_time == @salon_start + (i * 30.minutes) && @reservation_day == @day + 5 %>
-              ×
-            <% else %>
-              <%= link_to confirm_users_reservations_path(@menu,time: @salon_start + (i * 30.minutes), date: ((@day + 5).strftime("%Y/%m/%d(#{@wd[(@day + 5).wday] })"))) do %>
-               <span class="new_reservation_maru">◎</span>
+            </td>
+            <td class="new_reservation_date_btn">
+              <% @reservations.each do |reservation|%>
+                <% if reservation.menu_start_time.strftime("%H%M").to_i <= (@salon_start + (i * 30.minutes)).strftime("%H%M").to_i && (@salon_start + (i * 30.minutes)).strftime("%H%M").to_i < reservation.menu_end_time.strftime("%H%M").to_i && reservation.date.strftime("%Y年%m月%d日") == (@day + 2).strftime("%Y年%m月%d日") %>
+                  <% check = true %>
+                <% end %>
               <% end %>
-            <% end %>
-          </td>
-          <td class="new_reservation_date_btn">
-            <% if @reservation_time == @salon_start + (i * 30.minutes) && @reservation_day == @day + 6 %>
-              ×
-            <% else %>
-              <%= link_to confirm_users_reservations_path(@menu,time: @salon_start + (i * 30.minutes), date: ((@day + 6).strftime("%Y/%m/%d(#{@wd[(@day + 6).wday] })"))) do %>
-               <span class="new_reservation_maru">◎</span>
+              <% if check%>
+                × 
+                <% check = false%>
+              <% else %>
+                <%= link_to confirm_users_reservations_path(@menu,time: @salon_start + (i * 30.minutes), date: ((@day).strftime("%Y/%m/%d(#{@wd[(@day).wday] })"))) do %>
+                  <span class="new_reservation_maru">◎</span>
+                <% end %>
               <% end %>
-            <% end %>
-          </td>
-          <td class="new_reservation_date_btn">
-            <% if @reservation_time == @salon_start + (i * 30.minutes) && @reservation_day == @day + 7 %>
-              ×
-            <% else %>
-              <%= link_to confirm_users_reservations_path(@menu,time: @salon_start + (i * 30.minutes), date:((@day + 7).strftime("%Y/%m/%d(#{@wd[(@day + 7).wday] })"))) do %>
-               <span class="new_reservation_maru">◎</span>
+            </td>
+            <td class="new_reservation_date_btn">
+              <% @reservations.each do |reservation|%>
+                <% if reservation.menu_start_time.strftime("%H%M").to_i <= (@salon_start + (i * 30.minutes)).strftime("%H%M").to_i && (@salon_start + (i * 30.minutes)).strftime("%H%M").to_i < reservation.menu_end_time.strftime("%H%M").to_i && reservation.date.strftime("%Y年%m月%d日") == (@day + 3).strftime("%Y年%m月%d日") %>
+                  <% check = true %>
+                <% end %>
               <% end %>
-            <% end %>
-          </td>
-          <td class="new_reservation_date_btn">
-            <% if @reservation_time == @salon_start + (i * 30.minutes) && @reservation_day == @day + 8 %>
-              ×
-            <% else %>
-              <%= link_to confirm_users_reservations_path(@menu,time: @salon_start + (i * 30.minutes), date: ((@day + 8).strftime("%Y/%m/%d(#{@wd[(@day + 8).wday] })"))) do %>
-               <span class="new_reservation_maru">◎</span>
+              <% if check%>
+                × 
+                <% check = false%>
+              <% else %>
+                <%= link_to confirm_users_reservations_path(@menu,time: @salon_start + (i * 30.minutes), date: ((@day).strftime("%Y/%m/%d(#{@wd[(@day).wday] })"))) do %>
+                  <span class="new_reservation_maru">◎</span>
+                <% end %>
               <% end %>
-            <% end %>
-          </td>
-          <td class="new_reservation_date_btn">
-            <% if @reservation_time == @salon_start + (i * 30.minutes) && @reservation_day == @day + 9 %>
-              ×
-            <% else %>
-              <%= link_to confirm_users_reservations_path(@menu,time: @salon_start + (i * 30.minutes), date: ((@day + 9).strftime("%Y/%m/%d(#{@wd[(@day + 9).wday] })"))) do %>
-               <span class="new_reservation_maru">◎</span>
+            </td>
+            <td class="new_reservation_date_btn">
+              <% @reservations.each do |reservation|%>
+                <% if reservation.menu_start_time.strftime("%H%M").to_i <= (@salon_start + (i * 30.minutes)).strftime("%H%M").to_i && (@salon_start + (i * 30.minutes)).strftime("%H%M").to_i < reservation.menu_end_time.strftime("%H%M").to_i && reservation.date.strftime("%Y年%m月%d日") == (@day + 4).strftime("%Y年%m月%d日") %>
+                  <% check = true %>
+                <% end %>
               <% end %>
-            <% end %>
-          </td>
-          <td class="new_reservation_date_btn">
-            <% if @reservation_time == @salon_start + (i * 30.minutes) && @reservation_day == @day + 10 %>
-              ×
-            <% else %>
-              <%= link_to confirm_users_reservations_path(@menu,time: @salon_start + (i * 30.minutes), date:((@day + 10).strftime("%Y/%m/%d(#{@wd[(@day + 10).wday] })"))) do %>
-               <span class="new_reservation_maru">◎</span>
+              <% if check%>
+                × 
+                <% check = false%>
+              <% else %>
+                <%= link_to confirm_users_reservations_path(@menu,time: @salon_start + (i * 30.minutes), date: ((@day).strftime("%Y/%m/%d(#{@wd[(@day).wday] })"))) do %>
+                  <span class="new_reservation_maru">◎</span>
+                <% end %>
               <% end %>
-            <% end %>
-          </td>
-          <td class="new_reservation_date_btn">
-            <% if @reservation_time == @salon_start + (i * 30.minutes) && @reservation_day == @day + 11 %>
-              ×
-            <% else %>
-              <%= link_to confirm_users_reservations_path(@menu,time: @salon_start + (i * 30.minutes), date: ((@day + 11).strftime("%Y/%m/%d(#{@wd[(@day + 11).wday] })"))) do %>
-               <span class="new_reservation_maru">◎</span>
+            </td>
+            <td class="new_reservation_date_btn">
+              <% @reservations.each do |reservation|%>
+                <% if reservation.menu_start_time.strftime("%H%M").to_i <= (@salon_start + (i * 30.minutes)).strftime("%H%M").to_i && (@salon_start + (i * 30.minutes)).strftime("%H%M").to_i < reservation.menu_end_time.strftime("%H%M").to_i && reservation.date.strftime("%Y年%m月%d日") == (@day + 5).strftime("%Y年%m月%d日") %>
+                  <% check = true %>
+                <% end %>
               <% end %>
-            <% end %>
-          </td>
-          <td class="new_reservation_date_btn">
-            <% if @reservation_time == @salon_start + (i * 30.minutes) && @reservation_day == @day + 12 %>
-              ×
-            <% else %>
-              <%= link_to confirm_users_reservations_path(@menu,time: @salon_start + (i * 30.minutes), date:((@day + 12).strftime("%Y/%m/%d(#{@wd[(@day + 12).wday] })"))) do %>
-               <span class="new_reservation_maru">◎</span>
+              <% if check%>
+                × 
+                <% check = false%>
+              <% else %>
+                <%= link_to confirm_users_reservations_path(@menu,time: @salon_start + (i * 30.minutes), date: ((@day).strftime("%Y/%m/%d(#{@wd[(@day).wday] })"))) do %>
+                  <span class="new_reservation_maru">◎</span>
+                <% end %>
               <% end %>
-            <% end %>
-          </td>
-          <td class="new_reservation_date_btn">
-            <% if @reservation_time == @salon_start + (i * 30.minutes) && @reservation_day == @day + 13 %>
-              ×
-            <% else %>
-              <%= link_to confirm_users_reservations_path(@menu,time: @salon_start + (i * 30.minutes), date: ((@day + 13).strftime("%Y/%m/%d(#{@wd[(@day + 13).wday] })"))) do %>
-               <span class="new_reservation_maru">◎</span>
+            </td>
+            <td class="new_reservation_date_btn">
+              <% @reservations.each do |reservation|%>
+                <% if reservation.menu_start_time.strftime("%H%M").to_i <= (@salon_start + (i * 30.minutes)).strftime("%H%M").to_i && (@salon_start + (i * 30.minutes)).strftime("%H%M").to_i < reservation.menu_end_time.strftime("%H%M").to_i && reservation.date.strftime("%Y年%m月%d日") == (@day + 6).strftime("%Y年%m月%d日") %>
+                  <% check = true %>
+                <% end %>
               <% end %>
-            <% end %>
-          </td>
-          <th class="new_reservation_time">
-           <%= @salon_time %>
-             
-          </th>
-        </tr>
+              <% if check%>
+                × 
+                <% check = false%>
+              <% else %>
+                <%= link_to confirm_users_reservations_path(@menu,time: @salon_start + (i * 30.minutes), date: ((@day).strftime("%Y/%m/%d(#{@wd[(@day).wday] })"))) do %>
+                  <span class="new_reservation_maru">◎</span>
+                <% end %>
+              <% end %>
+            </td>
+            <td class="new_reservation_date_btn">
+              <% @reservations.each do |reservation|%>
+                <% if reservation.menu_start_time.strftime("%H%M").to_i <= (@salon_start + (i * 30.minutes)).strftime("%H%M").to_i && (@salon_start + (i * 30.minutes)).strftime("%H%M").to_i < reservation.menu_end_time.strftime("%H%M").to_i && reservation.date.strftime("%Y年%m月%d日") == (@day + 7).strftime("%Y年%m月%d日") %>
+                  <% check = true %>
+                <% end %>
+              <% end %>
+              <% if check%>
+                × 
+                <% check = false%>
+              <% else %>
+                <%= link_to confirm_users_reservations_path(@menu,time: @salon_start + (i * 30.minutes), date: ((@day).strftime("%Y/%m/%d(#{@wd[(@day).wday] })"))) do %>
+                  <span class="new_reservation_maru">◎</span>
+                <% end %>
+              <% end %>
+            </td>
+            <td class="new_reservation_date_btn">
+              <% @reservations.each do |reservation|%>
+                <% if reservation.menu_start_time.strftime("%H%M").to_i <= (@salon_start + (i * 30.minutes)).strftime("%H%M").to_i && (@salon_start + (i * 30.minutes)).strftime("%H%M").to_i < reservation.menu_end_time.strftime("%H%M").to_i && reservation.date.strftime("%Y年%m月%d日") == (@day + 8).strftime("%Y年%m月%d日") %>
+                  <% check = true %>
+                <% end %>
+              <% end %>
+              <% if check%>
+                × 
+                <% check = false%>
+              <% else %>
+                <%= link_to confirm_users_reservations_path(@menu,time: @salon_start + (i * 30.minutes), date: ((@day).strftime("%Y/%m/%d(#{@wd[(@day).wday] })"))) do %>
+                  <span class="new_reservation_maru">◎</span>
+                <% end %>
+              <% end %>
+            </td>
+            <td class="new_reservation_date_btn">
+              <% @reservations.each do |reservation|%>
+                <% if reservation.menu_start_time.strftime("%H%M").to_i <= (@salon_start + (i * 30.minutes)).strftime("%H%M").to_i && (@salon_start + (i * 30.minutes)).strftime("%H%M").to_i < reservation.menu_end_time.strftime("%H%M").to_i && reservation.date.strftime("%Y年%m月%d日") == (@day + 9).strftime("%Y年%m月%d日") %>
+                  <% check = true %>
+                <% end %>
+              <% end %>
+              <% if check%>
+                × 
+                <% check = false%>
+              <% else %>
+                <%= link_to confirm_users_reservations_path(@menu,time: @salon_start + (i * 30.minutes), date: ((@day).strftime("%Y/%m/%d(#{@wd[(@day).wday] })"))) do %>
+                  <span class="new_reservation_maru">◎</span>
+                <% end %>
+              <% end %>
+            </td>
+            <td class="new_reservation_date_btn">
+              <% @reservations.each do |reservation|%>
+                <% if reservation.menu_start_time.strftime("%H%M").to_i <= (@salon_start + (i * 30.minutes)).strftime("%H%M").to_i && (@salon_start + (i * 30.minutes)).strftime("%H%M").to_i < reservation.menu_end_time.strftime("%H%M").to_i && reservation.date.strftime("%Y年%m月%d日") == (@day + 10).strftime("%Y年%m月%d日") %>
+                  <% check = true %>
+                <% end %>
+              <% end %>
+              <% if check%>
+                × 
+                <% check = false%>
+              <% else %>
+                <%= link_to confirm_users_reservations_path(@menu,time: @salon_start + (i * 30.minutes), date: ((@day).strftime("%Y/%m/%d(#{@wd[(@day).wday] })"))) do %>
+                  <span class="new_reservation_maru">◎</span>
+                <% end %>
+              <% end %>
+            </td>
+            <td class="new_reservation_date_btn">
+              <% @reservations.each do |reservation|%>
+                <% if reservation.menu_start_time.strftime("%H%M").to_i <= (@salon_start + (i * 30.minutes)).strftime("%H%M").to_i && (@salon_start + (i * 30.minutes)).strftime("%H%M").to_i < reservation.menu_end_time.strftime("%H%M").to_i && reservation.date.strftime("%Y年%m月%d日") == (@day + 11).strftime("%Y年%m月%d日") %>
+                  <% check = true %>
+                <% end %>
+              <% end %>
+              <% if check%>
+                × 
+                <% check = false%>
+              <% else %>
+                <%= link_to confirm_users_reservations_path(@menu,time: @salon_start + (i * 30.minutes), date: ((@day).strftime("%Y/%m/%d(#{@wd[(@day).wday] })"))) do %>
+                    <span class="new_reservation_maru">◎</span>
+                  <% end %>
+              <% end %>
+            </td>
+            <td class="new_reservation_date_btn">
+              <% @reservations.each do |reservation|%>
+                <% if reservation.menu_start_time.strftime("%H%M").to_i <= (@salon_start + (i * 30.minutes)).strftime("%H%M").to_i && (@salon_start + (i * 30.minutes)).strftime("%H%M").to_i < reservation.menu_end_time.strftime("%H%M").to_i && reservation.date.strftime("%Y年%m月%d日") == (@day + 12).strftime("%Y年%m月%d日") %>
+                  <% check = true %>
+                <% end %>
+              <% end %>
+              <% if check%>
+                × 
+                <% check = false%>
+              <% else %>
+                <%= link_to confirm_users_reservations_path(@menu,time: @salon_start + (i * 30.minutes), date: ((@day).strftime("%Y/%m/%d(#{@wd[(@day).wday] })"))) do %>
+                  <span class="new_reservation_maru">◎</span>
+                <% end %>
+              <% end %>
+            </td>
+            <td class="new_reservation_date_btn">
+              <% @reservations.each do |reservation|%>
+                <% if reservation.menu_start_time.strftime("%H%M").to_i <= (@salon_start + (i * 30.minutes)).strftime("%H%M").to_i && (@salon_start + (i * 30.minutes)).strftime("%H%M").to_i < reservation.menu_end_time.strftime("%H%M").to_i && reservation.date.strftime("%Y年%m月%d日") == (@day + 13).strftime("%Y年%m月%d日") %>
+                  <% check = true %>
+                <% end %>
+              <% end %>
+              <% if check%>
+                × 
+                <% check = false%>
+              <% else %>
+                <%= link_to confirm_users_reservations_path(@menu,time: @salon_start + (i * 30.minutes), date: ((@day).strftime("%Y/%m/%d(#{@wd[(@day).wday] })"))) do %>
+                  <span class="new_reservation_maru">◎</span>
+                <% end %>
+              <% end %>
+            </td>
+            <th class="new_reservation_time">
+              <%= @salon_time %>
+            </th>
+          </tr>
       <% end %>
     </table>
   <div>

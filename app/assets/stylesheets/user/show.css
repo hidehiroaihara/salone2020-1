@@ -130,3 +130,23 @@
 .cosent_box{
   margin:0 10px;
 }
+.user_option{
+  margin-left:80%;
+  margin-bottom:30px;
+}
+.user_option_btn{
+  margin-left: 0;
+  width: 200px;
+  padding: 10px 15px;
+  border: 1px solid skyblue;
+  background-color:skyblue;
+  color: white;
+  box-shadow:
+    0 1.9px 2.5px rgba(211, 211, 211, 0.057),
+    0 5px 6.1px rgba(211, 211, 211, 0.076),
+    0 10.1px 11.4px rgba(211, 211, 211, 0.086),
+    0 19.2px 19.8px rgba(211, 211, 211, 0.092),
+    0 38.4px 34.8px rgba(211, 211, 211, 0.1),
+    0 101px 74px rgba(211, 211, 211, 0.13);
+  border-radius: 1px;
+}

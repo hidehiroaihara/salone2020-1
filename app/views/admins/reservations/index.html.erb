@@ -9,7 +9,7 @@
        <%= link_to @time.strftime("%m/%d(#{@wd[@time.wday]})"), "#", class:"schedule-today" %>
       </p>
       <p class="right-click" id="right-click">
-       <%= link_to image_tag("right-direction.png", class:"click-icon"),root_path(params:{ago:(@ago - 1)})%>
+       <%= link_to image_tag("right-direction.png", class:"click-icon"), admins_reservations_path(params:{ago:(@ago - 1)})%>
       </p>
       <div class="stylist-name" id="stylist-name">
         <%= form_with url:"#" do |f| %>
@@ -26,7 +26,7 @@
         <thead class="table1">
           <tr>
           <th class="table_head">予約時間</th>
-            <%# <% times.%> %>
+            <%# <% times.%>
               <th colspan="2" class="table_head_time">10:00</th>
               <th colspan="2" class="table_head_time">11:00</th>
               <th colspan="2" class="table_head_time">12:00</th>

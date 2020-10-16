@@ -12,7 +12,7 @@ class User < ApplicationRecord
   has_one :address
   has_one :user_information
   has_one :user_detail
-  has_many :user_menus
+  has_one :user_option
   has_many :menus, through: :user_menus
   belongs_to :stylist, optional: true
 

@@ -104,7 +104,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
     session["devise.regist_data"]["user"].clear
     session["address"].clear
     sign_in(:user, @user)
-    redirect_to users_reservations_path
+    redirect_to root_path
   end
 
   protected

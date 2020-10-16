@@ -23,3 +23,9 @@ StyleCategoryList.create([ {name: 'カット'},
                          { name: '着付け' },
                          { name: 'その他' }]
                         )
+# Stylist.create(
+#   stylist_first_name: "フ",
+#   stylist_last_name_cana: "リー",
+#   stylist_first_name: "フ",
+#   stylist_last_name_cana: "リー"　　　　　　　　　　　
+# )

@@ -4,12 +4,17 @@
     <div class="customer_title">
       <h1 class="title1">お客様情報詳細</h1>
     </div>
+    <div class="customer_title">
+      <%= link_to admins_user_user_options_path(@user) do%>
+       <p class="user_option"><span class="user_option_btn">メニュー時間変更</span></p>
+      <% end %>
+    </div>
     <div class="name_area">
       <p class="block_area"></p>
       <h2 class="basic">基本情報</h2>
     </div>
     <div class="detail">
-        <table class="detail_table" align="left">
+        <table class="detail_table" align="left" >
           <colgroup width="15%"></colgroup>
           <colgroup width="35%"></colgroup>
           <tr>

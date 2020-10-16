@@ -69,11 +69,14 @@ Rails.application.routes.draw do
    
   end
   namespace :admins do
-    resources :users
+    resources :users do
+      resources :user_options
+    end 
     resources :reservations
     resources :stylists
     resources :menus
     resources :salons
+    resources :user_options
   end
   root to: "users/users#index"
 end
