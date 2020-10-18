@@ -87,8 +87,7 @@ class Admins::UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user_address).permit(:first_name, :last_name, :first_name_cana, :last_name_cana, :phone_number, :email, :customer_number, :post_code, :prefecture_id, :address_all, :gender_id, :blood_id, :job_id, :customer_text, :member_id, :information_text, :visit_time, :consent_id, :stylist_id, :information_date ).merge(birthday: set_birthday)
-      #  information_date: set_information_date )
+    params.require(:user_address).permit(:first_name, :last_name, :first_name_cana, :last_name_cana, :phone_number, :email, :customer_number, :post_code, :prefecture_id, :address_all, :gender_id, :blood_id, :job_id, :customer_text, :member_id, :information_text, :visit_time, :consent_id, :stylist_id).merge(birthday: set_birthday, information_date: set_information_date )
   end
 
   def user_search_params
