@@ -5,4 +5,12 @@ class StylistDetail < ApplicationRecord
   belongs_to_active_hash :nomination
 
   belongs_to :stylist
+
+  if self.stylist.rank_id == 1
+    with_options presence: true do
+      validates :stylist_history
+      validates :nomination
+      validates :style_type
+    end
+  end
 end

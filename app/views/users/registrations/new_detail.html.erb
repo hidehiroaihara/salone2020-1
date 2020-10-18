@@ -31,7 +31,7 @@
             </td>
           </tr>
           <tr>
-            <th class="input_name">メール配信</th>
+            <th class="input_name">メール配信<span class="circle">🔴</span></th>
             <td class="bd">
               <%= f.collection_select(:consent_id, Consent.all, :id, :name, {include_blank: "--"}, {class:"select-box1", id:"consent"}) %>
             </td>

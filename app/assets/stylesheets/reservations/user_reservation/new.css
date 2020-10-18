@@ -21,6 +21,7 @@
 .menu_customer{
   color: red;
   text-orientation: upright;
+  text-orientation: mixed;
 }
 .menu_text_area{
   width: 70%;

@@ -134,11 +134,10 @@ class Admins::UsersController < ApplicationController
   end
 
   def set_information_date 
-    # date = params[:user_address][:information_date]
-    # if params.require(:user_address).require("information_date(1i)").empty? && params.require(:user_address).require("information_date(2i)").empty? && params.require(:user_address).require("information_date(3i)").empty?
-    # if date["information_date(1i)"].empty? && date["information_date(2i)"].empty? && date["information_date(3i)"].empty?
-    #   return
-    # end
+    date = params[:user_address]
+    if date["information_date(1i)"].empty? && date["information_date(2i)"].empty? && date["information_date(3i)"].empty?
+      return
+    end
     Date.new(params.require(:user_address).require("information_date(1i)").to_i,params.require(:user_address).require("information_date(2i)").to_i,params.require(:user_address).require("information_date(3i)").to_i)
   end
 

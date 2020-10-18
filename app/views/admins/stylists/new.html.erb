@@ -123,23 +123,23 @@
           </td>
         </tr>
         <tr class="stylist_tr">
-          <th class="stylist_input_name">スタイリスト歴<span class="circle">🔴</span></th>
+          <th class="stylist_input_name">スタイリスト歴<span class="stylist_font">(スタイリストのみ)</span><span class="circle">🔴</span></th>
           <td class="stylist_td1">
             <%= f.collection_select(:stylist_history_id, StylistHistory.all, :id, :name, {include_blank: "--"}, {class:"stylist_select", id:"stylist_history"}) %>
           </td>
-          <th class="stylist_tr">指名<span class="circle">🔴</span></th>
+          <th class="stylist_tr">指名<span class="stylist_font">(スタイリストのみ)</span><span class="circle">🔴</span></th>
           <td colspan="2" class="stylist_td1">
             <%= f.collection_select(:nomination_id, Nomination.all, :id, :name, {include_blank: "--"}, {class:"stylist_select1", id:"stylist_nomination"}) %>
           </td>
         </tr>
         <tr class="stylist_tr">
-          <th class="stylist_input_name">指名料</th>
+          <th class="stylist_input_name">指名料<span class="stylist_font">(スタイリストのみ)</span></th>
           <td colspan="4" class="stylist_td1"><span class="en">￥</span>
             <%= f.text_field :nomination_price, class:"stylist_field_price" %><span class="en">(税込)</span>
           </td>
         </tr>
         <tr class="stylist_tr" style="height:80px;">
-          <th class="stylist_input_name">得意なイメージ<span class="circle">🔴</span></th>
+          <th class="stylist_input_name">得意なイメージ<span class="stylist_font">(スタイリストのみ)</span><span class="circle">🔴</span></th>
             <td colspan="4" class="stylist_td1">
               <%= f.collection_radio_buttons(:style_type_id, StyleType.all, :id, :name, {include_hidden: false},{class:"style_type_check"}) %>
             </td>
