@@ -5,7 +5,7 @@ class Admins::ReservationsController < ApplicationController
     @stylist = Stylist.all
     @wd = ["日", "月", "火", "水", "木", "金", "土"]
     @ago = params.fetch(:ago,0).to_i
-    @time = Time.now - @ago  
+    @time = Date.today - @ago  
     salon_time
   end
 

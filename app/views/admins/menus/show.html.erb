@@ -1,0 +1,66 @@
+<%= render "shared/header_menu" %>
+<div class="contents">
+  <div class="section">
+    <div class="stylist_display">
+      <p class="stylist_area">
+        <%= link_to "メニュー変更", edit_admins_menu_path(@menu.id), class:"stylist_add" %>
+      </p>
+    </div>
+    <div class="name_area">
+      <p class="block_area"></p>
+      <h2 class="basic">メニュー詳細</h2>
+    </div>
+    <table border="1" class="edit_menu_table" style="margin-bottom:30px;">
+      <colgroup width="40%"></colgroup>
+      <colgroup width="10%"></colgroup>
+      <colgroup width="25%"></colgroup>
+      <colgroup width="15%"></colgroup>
+      <colgroup width="5%"></colgroup>
+      <colgroup width="5%"></colgroup>
+      <tbody>
+        <tr>
+          <th rowspan="2" class="stylist_table_top">メニュー名</th>
+          <th rowspan="1" class="stylist_table_top">価格</th>
+          <th rowspan="1" class="stylist_table_top">スタイルカテゴリー</th>
+          <th rowspan="1" class="stylist_table_top">お客様ランク</th>
+          <th colspan="2" rowspan="1" class="stylist_table_top">メニュー時間</th>
+        </tr>
+        <tr>
+          <th rowspan="1" colspan="5" class="stylist_table_top">メニュー説明</th>
+        </tr>
+        <tr>
+          <td rowspan="2" class="stylist_info">
+            <span style="color:black;"><%= @menu.menu_name %></span>
+          </td>
+          <td rowspan="1" class="stylist_info">
+              <%= @menu.price %>
+          </td>
+          <td rowspan="1" class="stylist_info image-pad" >
+            <% @menu.style_category_lists.each do |category| %>
+              <ul class="index_category_name_area">
+                <li class="index_category_name">
+                  <%= category.name %>
+                </li>
+              </ul>
+            <% end %>
+          </td>
+          <td rowspan="1" class="stylist_info">
+            <%= @menu.customer_type.name %>
+          </td>
+          <td colspan="2" rowspan="1" class="stylist_info">
+            <%= @menu.menu_time.name %>
+          </td>
+        </tr>
+        <tr>
+          <td rowspan="1" colspan="5" class="stylist_info">
+            <%= @menu.menu_text %>
+          </td>
+        </tr>
+      <tbody>
+    </table>
+    <div class="edit_menu_area">
+      <%= link_to "メニュー変更", edit_admins_menu_path(@menu.id), class:"edit_menu_btn"%>
+    </div>
+  </div>
+</div>
+<%= render "shared/footer"%>

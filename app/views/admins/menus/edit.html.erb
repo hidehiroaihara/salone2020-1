@@ -8,7 +8,7 @@
     <p class="item">
       🔴必要項目
     </p>
-    <%=form_with model:@menu, url: admins_menus_path, id: 'new_menu', local: true do |f| %>
+    <%=form_with model:@menu, url: admins_menu_path(@menu.id), method: :patch, id: 'new_menu', local: true do |f| %>
       <table class="new_menu" style="margin-top:10px;">
         <tr>
             <th>メニュー情報
@@ -68,7 +68,7 @@
           <td class="register_td">
             <ul class="stylist_register_btn">
               <li>
-                <%= f.submit "登録", class:"register_btn"%>
+                <%= f.submit "更新", class:"register_btn"%>
               </li>
               <li class="stylist_cancel_btn">
                 <%= link_to "キャンセル", url: admins_menus_path, class:"cancel_btn" %>

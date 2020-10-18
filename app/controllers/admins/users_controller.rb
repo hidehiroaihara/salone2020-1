@@ -49,14 +49,14 @@ class Admins::UsersController < ApplicationController
     @user = UserAddress.new
   end
 
-  # def create
-  #   @user = UserAddress.new(user_params)
-  #   if @user.save
-  #      return redirect_to admins_users_path
-  #   else 
-  #      render :new
-  #   end
-  # end
+  def create
+    @user = UserAddress.new(user_params)
+    if @user.save
+       return redirect_to admins_users_path
+    else 
+       render :new
+    end
+  end
 
   def show
   end

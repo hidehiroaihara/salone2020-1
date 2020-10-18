@@ -1,8 +1,7 @@
- <% @stylist.each do |stylist|%>
-  <tr>
+ <tr>
     <th class="table_stylist_top"> 
       <%= link_to "#" do %>
-        <p class="reservation_name"><%= stylist.stylist_first_name.to_s +  stylist.stylist_last_name.to_s %></p>
+        <p class="reservation_name"><%= reservations.stylist_first_name.to_s +  reservations.stylist_last_name.to_s %></p>
       <% end %>
     </th>
     <td class="table_stylist">
@@ -72,4 +71,3 @@
       <p class="table_stylist1"></p><p class="table_stylist2"></p><p class="table_stylist3"></p>
     </td>
   </tr>
-<% end %>

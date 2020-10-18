@@ -10,4 +10,8 @@
 .new_menu_text{
   width: 80%;
   margin-top:7px;
+  height: 80%;
+}
+.menu_text_area_th{
+  height: 120px;
 }

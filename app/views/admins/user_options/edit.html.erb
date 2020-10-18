@@ -1,0 +1,49 @@
+<%= render "shared/header_user_option" %>
+<div class="contents">
+  <div class="section">
+    <%= form_with model: [@user, @user_option], url: admins_user_user_option_path(@user.id,@user_option.id), method: :patch, id: 'new_menu', local: true do |f| %>
+      <table class="new_menu" style="margin-top:10px;">
+        <tr>
+            <th>メニュー情報
+              <p class="block_area"></p>
+            </th>
+        </tr>
+      </table>
+      <table class="new_time_option1" style="margin-top:15px;margin-bottom:30px;">
+        <colgroup width="20%"></colgroup>
+        <colgroup width="15%"></colgroup>
+        <colgroup width="10%"></colgroup>
+        <colgroup width="10%"></colgroup>
+        <colgroup width="35%"></colgroup>
+        <colgroup width="10%"></colgroup>
+        <tr>
+          <th colspan="1" class="stylist_input_name">施術カテゴリー<span class="circle">🔴</span></th>
+          <td colspan="5" style="border:1px solid black;" class="stylist_td">
+           <%= f.collection_select(:menu_id, Menu.all, :id, :menu_name,{include_blank: "--"},{class:"option_category_check"}) %>
+          </td>
+        </tr>
+        <tr class="stylist_tr">
+          <th colspan="1" class="stylist_input_name">メニュー時間<span class="circle">🔴</span></th>
+          <td class="stylist_td" colspan="3" style="border:1px solid black;">
+            <%= f.collection_select(:menu_time_id, MenuTime.all, :id, :name ,{class:"menu_select", id:"menu_time"}) %>
+          </td>
+        </tr>
+      </table>
+      <table style="width:100%;height:20px;margin-top:30px;">
+        <tr>
+          <td class="register_td">
+            <ul class="stylist_register_btn">
+              <li>
+                <%= f.submit "登録", class:"register_btn"%>
+              </li>
+              <li class="stylist_cancel_btn">
+                <%= link_to "キャンセル", url: admins_users_path, class:"cancel_btn" %>
+              </li>
+            </ul>
+          </td>
+        </tr>
+      </table>
+    <% end %>
+  </div>
+</div>
+<%= render "shared/footer"%>

@@ -30,7 +30,7 @@ class Users::ReservationsController < ApplicationController
     @visit_date = params[:date]
     @wd = ["日", "月", "火", "水", "木", "金", "土"]
     @day = Date.today 
-    # @menu_end_time = menu_end_time
+    @menu_end_time = menu_end_time
   end
   
   def create
@@ -44,6 +44,7 @@ class Users::ReservationsController < ApplicationController
   end
 
   private
+  
   def reservation_params
     params.require(:reservation).permit(:date, :menu_end_time, :menu_id, :menu_start_time, :salon_id, :set_price, :stylist_id, :time, :user_id)
   end
@@ -56,6 +57,7 @@ class Users::ReservationsController < ApplicationController
       @salon_id = salon.id
     end
   end
+
   def reservation_days
     @reservation_days = Reservation.all
     @reservation_days.each do |day| 
@@ -66,18 +68,20 @@ class Users::ReservationsController < ApplicationController
       
     end
   end
-  # def menu_end_time
-  #   option_check = false 
-  #   @user.user_option.each do |option|
-  #     if @menu.id == @user.user_option.menu_id && @user.id == @user.user_option.user_id
-  #       option_check = true
-  #     end
-  #   end
-  #   if option_check
-  #      @visit_time.to_time + @menu.menu_time.sum - @user.user_option.menu_time.sum 
-  #      option_check = false
-  #   else  
-  #       @visit_time.to_time + @menu.menu_time.sum 
-  #   end 
-  # end
+
+  def menu_end_time
+    option_check = false
+    @user_option = UserOption.all
+    @user_option.each do |option|
+      if @menu.id == option.menu_id && @user.id == option.user_id 
+        @user_time = option.menu_time
+        option_check = true
+      end
+    end
+      if option_check
+         @visit_time.to_time + @menu.menu_time.sum - @user_time.sum 
+      else 
+         @visit_time.to_time + @menu.menu_time.sum 
+      end 
+  end
 end

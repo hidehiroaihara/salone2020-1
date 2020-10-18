@@ -25,7 +25,7 @@
             </li>
           <% elsif admin_signed_in? %>
             <li class="salon_new_btn_li">
-              <%= link_to "予約表", admins_reservations_path, class:"salon_new_btn"%>
+              <%= link_to "管理設定画面", new_admins_salon_path, class:"salon_new_btn"%>
             </li>
             <li class="salon_log_btn_li">
               <%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class:"salon_log_btn" %>

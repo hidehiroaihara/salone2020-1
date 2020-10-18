@@ -34,6 +34,36 @@
           </th>
         </tr>
       </table>
+      <table class="time_index_table" style="margin-bottom:30px;">
+        <colgroup width="30%"></colgroup>
+        <colgroup width="50%"></colgroup>
+        <colgroup width="10%"></colgroup>
+        <colgroup width="10%"></colgroup>
+        <% @user_options.each do |option|%>
+          <% unless option.menu_id == 0 %>
+           <% if @user.id == option.user_id %>
+            <tr>
+              <th class="show_name index_user_option_th">時間設定メニュー</th>
+              <td colspan="3" class="show_bd">
+                <span class="show_field"><%= option.menu.menu_name  %>
+              </td>
+            </tr>
+            <tr>
+              <th class="show_name">設定マイナス時間</th>
+              <td class="show_bd index_user_option_td">
+                <span class="show_field">-<%= option.menu_time.name  %></span>
+              </td>
+              <td class="show_bd">
+                <%= link_to "編集", edit_admins_user_user_option_path(@user,option.id), class:"stylist_show" %>
+              </td>
+              <td class="show_bd">
+                <%= link_to "削除", admins_user_user_option_path(@user,option.id), method: :delete, id:"style_delete", class: "stylist_delete", data: { confirm: "本当に削除しますか？"} %>
+              </td>
+            </tr>
+           <% end %>
+          <% end%>
+        <% end %>
+      </table>
        <div class="stylist_display">
         <p class="option_time">
           <%= link_to "個人時間登録", new_admins_user_user_option_path(@user.id), class:"time_add" %>

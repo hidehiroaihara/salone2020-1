@@ -6,7 +6,7 @@
        <%= link_to image_tag("left-direction.png", class:"click-icon"), admins_reservations_path(params:{ago:(@ago + 1)})%>
       </p>
       <p class="schedule-date" id="schedule-date">
-       <%= link_to @time.strftime("%m/%d(#{@wd[@time.wday]})"), "#", class:"schedule-today" %>
+       <%= link_to @time.strftime("%m/%d(#{@wd[@time.wday]})"), admins_reservations_path(params:{ago: 0}), class:"schedule-today" %>
       </p>
       <p class="right-click" id="right-click">
        <%= link_to image_tag("right-direction.png", class:"click-icon"), admins_reservations_path(params:{ago:(@ago - 1)})%>
@@ -46,7 +46,27 @@
         <% end %>
       </tr>
       <div class="table03" id="table03">
-          <%= render partial: 'reservations', collection: @reservations %>
+        <% @stylist.each do |stylist|%>
+          <tr>
+            <th class="table_stylist_top"> 
+              <%= link_to "#" do %>
+                <p class="reservation_name"><%= stylist.stylist_first_name.to_s +  stylist.stylist_last_name.to_s %></p>
+              <% end %>
+            </th>
+            <% 24.times do |i| %>
+              <% @salon_time = (@salon_start + (i * 30.minutes)).strftime("%H:%M") %>
+              <% break if @salon_time.to_i >  @salon_end.strftime("%H:%M").to_i %>
+              <% @reservations.each do |reservation| %>
+                <td class="table_stylist">
+                  <p class="table_stylist1"></p>
+                    <p class="table_stylist2"><% reservation.menu_start_time%></p>
+                    <p class="table_stylist3"></p>
+              
+                </td>
+              <% end %>
+            <% end %>
+          </tr>
+        <% end %>
       </div>
     </table>
   </div>

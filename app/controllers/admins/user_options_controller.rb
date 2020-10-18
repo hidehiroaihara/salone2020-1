@@ -1,6 +1,7 @@
 class Admins::UserOptionsController < ApplicationController
   before_action :authenticate_admin!
   before_action :set_user
+  before_action :set_user_option, only: [:edit, :update, :destroy]
 
   def index 
     @user_options = UserOption.all
@@ -21,6 +22,25 @@ class Admins::UserOptionsController < ApplicationController
     end
   end
 
+  def edit
+  end
+
+  def update
+    if @user_option.update(user_option_params)
+      redirect_to admins_reservations_path
+    else
+      render :edit
+    end
+  end
+
+  def destroy
+    if @user_option.destroy
+      redirect_to admins_reservations_path
+    else
+      render :index
+    end
+  end
+
   private
 
   def user_option_params
@@ -29,5 +49,9 @@ class Admins::UserOptionsController < ApplicationController
 
   def set_user
     @user = User.find(params[:user_id])
+  end
+
+  def set_user_option
+    @user_option = UserOption.find(params[:id])
   end
 end
