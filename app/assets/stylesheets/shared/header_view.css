@@ -106,6 +106,26 @@
   background: #ffefd7;
   background-size: cover;
 }
+.salon_new_btn1{
+  border: 1px solid #ffedcf;
+  background-color: #f8fa95a6;
+  box-shadow: 0 1.9px 2.5px rgb(107, 107, 107);
+  text-align: center;
+  margin-left: 20%;
+  padding: 10px 5px;
+  color: rgb(94, 73, 53);
+  border-radius: 5px;
+}
+.salon_log_btn1{
+  border: 1px solid #ffedcf;
+  background-color: #f8fa95a6;
+  box-shadow: 0 1.9px 2.5px rgb(107, 107, 107);
+  padding: 10px 5px;
+  text-align: center;
+  margin-left: 10%;
+  color: rgb(94, 73, 53);
+  border-radius: 5px;
+}
 
 
 .salon_view_bottom_ul{

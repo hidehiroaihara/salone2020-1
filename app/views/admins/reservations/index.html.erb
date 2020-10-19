@@ -45,6 +45,7 @@
           <td class="am"><% @salon_time%>3</td>
         <% end %>
       </tr>
+      
       <div class="table03" id="table03">
         <% @stylist.each do |stylist|%>
           <tr>
@@ -56,12 +57,15 @@
             <% 24.times do |i| %>
               <% @salon_time = (@salon_start + (i * 30.minutes)).strftime("%H:%M") %>
               <% break if @salon_time.to_i >  @salon_end.strftime("%H:%M").to_i %>
-              <% @reservations.each do |reservation| %>
+              <% stylist.reservations.each do |reservation| %>
                 <td class="table_stylist">
                   <p class="table_stylist1"></p>
-                    <p class="table_stylist2"><% reservation.menu_start_time%></p>
-                    <p class="table_stylist3"></p>
-              
+                  <% if reservation.date.strftime("%Y/%m/%d") == @time.strftime("%Y/%m/%d") && stylist.id == reservation.stylist.id && reservation.menu_start_time.strftime("%H:%M") == (@salon_start + (i * 30.minutes)).strftime("%H:%M") %>
+                    <p class="table_stylist2"> <%= reservation.menu_start_time.strftime("%H:%M")%></p>
+                  <% else %>
+                     <p class="table_stylist2"></p>
+                  <% end %>
+                  <p class="table_stylist3"></p>
                 </td>
               <% end %>
             <% end %>

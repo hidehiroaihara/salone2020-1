@@ -1,13 +1,21 @@
 class Users::ReservationsController < ApplicationController
   before_action :authenticate_user!, except: :index
+  before_action :move_to_index
   require "date"
   def index
-    # @stylists = Stylist.all
+    # binding.pry
     @wd = ["日", "月", "火", "水", "木", "金", "土"]
     @ago = params.fetch(:ago,0).to_i
     @time = Date.today - @ago   
     @menus = Menu.all 
     params[:format]
+    @user = User.find_by(id: current_user.id)
+    # begin
+    #   selected_menu_ids = selected_menus_params
+    #   filtered_list_ids = Menu.filter(selected_menus_ids)
+    #   @lists = StyleCategoryList.where(id :filtered_lists_ids)
+    # rescue
+    #   redirect_to root_path
   end
 
   def new
@@ -49,6 +57,9 @@ class Users::ReservationsController < ApplicationController
     params.require(:reservation).permit(:date, :menu_end_time, :menu_id, :menu_start_time, :salon_id, :set_price, :stylist_id, :time, :user_id)
   end
   
+  # def selected_menus_params
+  #   params.require(:menu_ids)
+
   def salon_time
     @salons = Salon.all
     @salons.each do |salon|
@@ -65,7 +76,6 @@ class Users::ReservationsController < ApplicationController
       @reservation_date = day.date
       @reservation_menu_start = day.menu_start_time
       @reservation_menu_end = day.menu_end_time
-      
     end
   end
 
@@ -83,5 +93,9 @@ class Users::ReservationsController < ApplicationController
       else 
          @visit_time.to_time + @menu.menu_time.sum 
       end 
+  end
+
+  def move_to_index
+    redirect_to new_user_session_path unless user_signed_in?
   end
 end

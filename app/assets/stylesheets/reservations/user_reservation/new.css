@@ -20,8 +20,9 @@
 }
 .menu_customer{
   color: red;
+  -webkit-text-orientation: upright;
   text-orientation: upright;
-  text-orientation: mixed;
+  writing-mode: vertical-lr;
 }
 .menu_text_area{
   width: 70%;
@@ -273,4 +274,8 @@
 }
 .today_color{
   color: rgb(88, 88, 244);
+}
+.category_font{
+  text-orientation: mixed;
+  text-orientation: upright;
 }
