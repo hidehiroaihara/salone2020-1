@@ -27,6 +27,7 @@ class Users::ReservationsController < ApplicationController
     @day = DateTime.now - @ago
     @wd = ["日", "月", "火", "水", "木", "金", "土"]
     @reservations = Reservation.all
+    @date = Date.today
   end
 
   def confirm
