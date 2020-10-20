@@ -24,7 +24,7 @@ class Users::ReservationsController < ApplicationController
     reservation_days
     salon_time
     @menu = Menu.find_by(id: params[:format])
-    @day = Date.today - @ago
+    @day = DateTime.now - @ago
     @wd = ["日", "月", "火", "水", "木", "金", "土"]
     @reservations = Reservation.all
   end

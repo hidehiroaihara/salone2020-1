@@ -75,8 +75,8 @@ ActiveRecord::Schema.define(version: 2020_10_15_072058) do
     t.integer "user_id", null: false
     t.integer "status_id"
     t.integer "salon_id", null: false
-    t.time "menu_start_time"
-    t.time "menu_end_time"
+    t.datetime "menu_start_time"
+    t.datetime "menu_end_time"
     t.integer "set_price", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false

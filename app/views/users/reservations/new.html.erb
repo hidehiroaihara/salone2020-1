@@ -125,8 +125,10 @@
               <% if reservation.menu_start_time.strftime("%H%M").to_i <= (@salon_start + (i * 30.minutes)).strftime("%H%M").to_i && (@salon_start + (i * 30.minutes)).strftime("%H%M").to_i < reservation.menu_end_time.strftime("%H%M").to_i && reservation.date.strftime("%Y年%m月%d日") == @day.strftime("%Y年%m月%d日") %>
                 <% check = true %>
               <% end %>
+              <% @reservation = reservation %>
             <% end %>
              <% if check %>
+              <%# <% if @salon_start + (i * 30.minutes)).strftime("%H%M").to_i <= @day%> %>
               × 
               <% check = false%>
             <% else %>
@@ -322,6 +324,7 @@
                 <% end %>
               <% end %>
               <% if check%>
+                <% if %>
                 × 
                 <% check = false%>
               <% else %>

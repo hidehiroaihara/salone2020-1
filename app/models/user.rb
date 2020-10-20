@@ -19,6 +19,10 @@ class User < ApplicationRecord
   def set_user_name
     self.first_name + self.last_name
   end
+
+  def set_user_name_cana
+    self.first_name_cana + self.last_name_cana
+  end
   
   scope :search, -> (search_params) do
     return if search_params.blank?

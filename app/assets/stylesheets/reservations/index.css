@@ -94,12 +94,30 @@ table{
 }
 .table_stylist1{
  height: 20px;
- border-bottom-style: dashed;
+ /* border-bottom-style: dashed; */
 
 }
 .table_stylist2{
   height: 60px;
+  /* border-bottom-style: dashed; */
+}
+.table_stylist_2hour{
+  height: 60px;
   border-bottom-style: dashed;
+  border: 1px solid rgb(235, 96, 119);
+  border-radius: 5px;
+  background-color: rgb(255, 199, 206);
+  color: white;
+  box-shadow: 0 3px rgb(159, 66, 81);
+}
+.table_stylist_reservation_font{
+  font-family: '851マカポップ';
+  letter-spacing: 3px;
+}
+.category_font_size{
+  font-size:10px;
+  margin-left: 5px;
+  color: rgb(116, 28, 56);
 }
 .table_stylist3{
   height: 20px;

@@ -135,9 +135,10 @@
           <td class="register_td">
             <ul class="stylist_register_btn">
               <li>
-                <%= link_to users_reservations_path(reservation: {stylist_id: @user.stylist.id, time: @visit_time, menu_start_time: @visit_time, date: @visit_date.to_date, menu_id: @menu.id, user_id: @user.id, salon_id: @salon_id, set_price: @set_price, menu_end_time: @menu_end_time}), method: :post do %>
+                <%= link_to users_reservations_path(reservation: {stylist_id: @user.stylist.id, time: @visit_time, menu_start_time: @visit_date.to_date.midnight.since(@visit_time.to_time.seconds_since_midnight).to_datetime, date: @visit_date.to_date, menu_id: @menu.id, user_id: @user.id, salon_id: @salon_id, set_price: @set_price, menu_end_time: @visit_date.to_date.midnight.since(@menu_end_time.to_time.seconds_since_midnight).to_datetime,}), method: :post do %>
                  <p class="register_btn">登録</p>
                 <% end %>
+                <%= @use%>
               </li>
             </ul>
           </td>

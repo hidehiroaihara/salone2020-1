@@ -9,8 +9,8 @@ class CreateReservations < ActiveRecord::Migration[6.0]
       t.integer :user_id, null: false, foreign_key: true
       t.integer :status_id
       t.integer :salon_id, null: false, foreign_key: true
-      t.time :menu_start_time
-      t.time :menu_end_time
+      t.datetime :menu_start_time
+      t.datetime :menu_end_time
       t.integer :set_price, null: false 
       t.timestamps
     end
