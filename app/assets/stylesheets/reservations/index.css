@@ -111,7 +111,7 @@ table{
   box-shadow: 0 3px rgb(159, 66, 81);
 }
 .table_stylist_reservation_font{
-  font-family: '851マカポップ';
+  /* font-family: '851マカポップ'; */
   letter-spacing: 3px;
 }
 .category_font_size{

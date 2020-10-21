@@ -115,19 +115,19 @@
       </tr>
       <% 24.times do |i| %>
         <% @salon_time = (@salon_start + (i * 30.minutes)).strftime("%H:%M") %>
-        <% break if @salon_time.to_i >  @salon_end.strftime("%H:%M").to_i %>
+        <% break if @salon_time.to_i >  (@salon_end - 3600).strftime("%H:%M").to_i %>
         <tr>
           <th class="new_reservation_time">
             <%= @salon_time %>
           </th>
           <td class="new_reservation_date_btn">
             <% @reservations.each do |reservation|%>
-              <% if reservation.menu_start_time.strftime("%H%M").to_i <= (@salon_start + (i * 30.minutes)).strftime("%H%M").to_i && (@salon_start + (i * 30.minutes)).strftime("%H%M").to_i < reservation.menu_end_time.strftime("%H%M").to_i && reservation.date.strftime("%Y年%m月%d日") == @day.strftime("%Y年%m月%d日") || reservation.menu_start_time.strftime("%H%M").to_i > ((@salon_start + (i * 30.minutes)).to_time + @menu.menu_time.sum).strftime("%H%M").to_i%>
+              <% if reservation.menu_start_time.strftime("%H%M").to_i <= (@salon_start + (i * 30.minutes)).strftime("%H%M").to_i && (@salon_start + (i * 30.minutes)).strftime("%H%M").to_i < reservation.menu_end_time.strftime("%H%M").to_i && reservation.date.strftime("%Y年%m月%d日") == @day.strftime("%Y年%m月%d日") || (@salon_start + (i * 30.minutes)).strftime("%H%M").to_i > (reservation.menu_start_time - @menu.menu_time.sum).strftime("%H%M").to_i && (@salon_start + (i * 30.minutes)).strftime("%H%M").to_i < reservation.menu_start_time.strftime("%H%M").to_i && reservation.date.strftime("%Y年%m月%d日") == (@day).strftime("%Y年%m月%d日") %>
                  <% @reservation = reservation %>
                 <% check = true %>
               <% end %>
             <% end %>
-             <% if check || @day >=  @day.midnight.since(@salon_start.seconds_since_midnight) + (i * 30.minutes) %>
+             <% if check || @day >=  @day.midnight.since(@salon_start.seconds_since_midnight) + (i * 30.minutes) || (@salon_start + (i * 30.minutes) + @menu.menu_time.sum).strftime("%H%M").to_i > @salon_end.strftime("%H%M").to_i %>
                  × 
               <% check = false%>
             <% else %>
@@ -138,11 +138,11 @@
             </td>
             <td class="new_reservation_date_btn">
               <% @reservations.each do |reservation|%>
-                <% if reservation.menu_start_time.strftime("%H%M").to_i <= (@salon_start + (i * 30.minutes)).strftime("%H%M").to_i && (@salon_start + (i * 30.minutes)).strftime("%H%M").to_i < reservation.menu_end_time.strftime("%H%M").to_i && reservation.date.strftime("%Y年%m月%d日") == (@day+ 1).strftime("%Y年%m月%d日") || reservation.menu_start_time.strftime("%H%M").to_i > ((@salon_start + (i * 30.minutes)).to_time + @menu.menu_time.sum).strftime("%H%M").to_i%>
+                <% if reservation.menu_start_time.strftime("%H%M").to_i <= (@salon_start + (i * 30.minutes)).strftime("%H%M").to_i && (@salon_start + (i * 30.minutes)).strftime("%H%M").to_i < reservation.menu_end_time.strftime("%H%M").to_i && reservation.date.strftime("%Y年%m月%d日") == (@day+ 1).strftime("%Y年%m月%d日") || (@salon_start + (i * 30.minutes)).strftime("%H%M").to_i > (reservation.menu_start_time - @menu.menu_time.sum).strftime("%H%M").to_i && (@salon_start + (i * 30.minutes)).strftime("%H%M").to_i < reservation.menu_start_time.strftime("%H%M").to_i && reservation.date.strftime("%Y年%m月%d日") == (@day + 1).strftime("%Y年%m月%d日")%>
                   <% check = true %>
                 <% end %>
               <% end %>
-              <% if check %>
+              <% if check || (@salon_start + (i * 30.minutes) + @menu.menu_time.sum).strftime("%H%M").to_i > @salon_end.strftime("%H%M").to_i%>
                 × 
                 <% check = false%>
               <% else %>
@@ -153,11 +153,11 @@
             </td>
             <td class="new_reservation_date_btn">
               <% @reservations.each do |reservation|%>
-                <% if reservation.menu_start_time.strftime("%H%M").to_i <= (@salon_start + (i * 30.minutes)).strftime("%H%M").to_i && (@salon_start + (i * 30.minutes)).strftime("%H%M").to_i < reservation.menu_end_time.strftime("%H%M").to_i && reservation.date.strftime("%Y年%m月%d日") == (@day + 2).strftime("%Y年%m月%d日") %>
+                <% if reservation.menu_start_time.strftime("%H%M").to_i <= (@salon_start + (i * 30.minutes)).strftime("%H%M").to_i && (@salon_start + (i * 30.minutes)).strftime("%H%M").to_i < reservation.menu_end_time.strftime("%H%M").to_i && reservation.date.strftime("%Y年%m月%d日") == (@day + 2).strftime("%Y年%m月%d日") || (@salon_start + (i * 30.minutes)).strftime("%H%M").to_i > (reservation.menu_start_time - @menu.menu_time.sum).strftime("%H%M").to_i && (@salon_start + (i * 30.minutes)).strftime("%H%M").to_i < reservation.menu_start_time.strftime("%H%M").to_i && reservation.date.strftime("%Y年%m月%d日") == (@day + 2).strftime("%Y年%m月%d日")%>
                   <% check = true %>
                 <% end %>
               <% end %>
-              <% if check %>
+              <% if check || (@salon_start + (i * 30.minutes) + @menu.menu_time.sum).strftime("%H%M").to_i > @salon_end.strftime("%H%M").to_i%>
                 × 
                 <% check = false%>
               <% else %>
@@ -168,11 +168,11 @@
             </td>
             <td class="new_reservation_date_btn">
               <% @reservations.each do |reservation|%>
-                <% if reservation.menu_start_time.strftime("%H%M").to_i <= (@salon_start + (i * 30.minutes)).strftime("%H%M").to_i && (@salon_start + (i * 30.minutes)).strftime("%H%M").to_i < reservation.menu_end_time.strftime("%H%M").to_i && reservation.date.strftime("%Y年%m月%d日") == (@day + 3).strftime("%Y年%m月%d日") %>
+                <% if reservation.menu_start_time.strftime("%H%M").to_i <= (@salon_start + (i * 30.minutes)).strftime("%H%M").to_i && (@salon_start + (i * 30.minutes)).strftime("%H%M").to_i < reservation.menu_end_time.strftime("%H%M").to_i && reservation.date.strftime("%Y年%m月%d日") == (@day + 3).strftime("%Y年%m月%d日") || (@salon_start + (i * 30.minutes)).strftime("%H%M").to_i > (reservation.menu_start_time - @menu.menu_time.sum).strftime("%H%M").to_i && (@salon_start + (i * 30.minutes)).strftime("%H%M").to_i < reservation.menu_start_time.strftime("%H%M").to_i && reservation.date.strftime("%Y年%m月%d日") == (@day + 3).strftime("%Y年%m月%d日")%>
                   <% check = true %>
                 <% end %>
               <% end %>
-              <% if check %>
+              <% if check || (@salon_start + (i * 30.minutes) + @menu.menu_time.sum).strftime("%H%M").to_i > @salon_end.strftime("%H%M").to_i%>
                 × 
                 <% check = false%>
               <% else %>
@@ -183,11 +183,11 @@
             </td>
             <td class="new_reservation_date_btn">
               <% @reservations.each do |reservation|%>
-                <% if reservation.menu_start_time.strftime("%H%M").to_i <= (@salon_start + (i * 30.minutes)).strftime("%H%M").to_i && (@salon_start + (i * 30.minutes)).strftime("%H%M").to_i < reservation.menu_end_time.strftime("%H%M").to_i && reservation.date.strftime("%Y年%m月%d日") == (@day + 4).strftime("%Y年%m月%d日") %>
+                <% if reservation.menu_start_time.strftime("%H%M").to_i <= (@salon_start + (i * 30.minutes)).strftime("%H%M").to_i && (@salon_start + (i * 30.minutes)).strftime("%H%M").to_i < reservation.menu_end_time.strftime("%H%M").to_i && reservation.date.strftime("%Y年%m月%d日") == (@day + 4).strftime("%Y年%m月%d日") || (@salon_start + (i * 30.minutes)).strftime("%H%M").to_i > (reservation.menu_start_time - @menu.menu_time.sum).strftime("%H%M").to_i && (@salon_start + (i * 30.minutes)).strftime("%H%M").to_i < reservation.menu_start_time.strftime("%H%M").to_i && reservation.date.strftime("%Y年%m月%d日") == (@day + 4).strftime("%Y年%m月%d日")%>
                   <% check = true %>
                 <% end %>
               <% end %>
-              <% if check %>
+              <% if check || (@salon_start + (i * 30.minutes) + @menu.menu_time.sum).strftime("%H%M").to_i > @salon_end.strftime("%H%M").to_i%>
                 × 
                 <% check = false%>
               <% else %>
@@ -198,11 +198,11 @@
             </td>
             <td class="new_reservation_date_btn">
               <% @reservations.each do |reservation|%>
-                <% if reservation.menu_start_time.strftime("%H%M").to_i <= (@salon_start + (i * 30.minutes)).strftime("%H%M").to_i && (@salon_start + (i * 30.minutes)).strftime("%H%M").to_i < reservation.menu_end_time.strftime("%H%M").to_i && reservation.date.strftime("%Y年%m月%d日") == (@day + 5).strftime("%Y年%m月%d日") %>
+                <% if reservation.menu_start_time.strftime("%H%M").to_i <= (@salon_start + (i * 30.minutes)).strftime("%H%M").to_i && (@salon_start + (i * 30.minutes)).strftime("%H%M").to_i < reservation.menu_end_time.strftime("%H%M").to_i && reservation.date.strftime("%Y年%m月%d日") == (@day + 5).strftime("%Y年%m月%d日") || (@salon_start + (i * 30.minutes)).strftime("%H%M").to_i > (reservation.menu_start_time - @menu.menu_time.sum).strftime("%H%M").to_i && (@salon_start + (i * 30.minutes)).strftime("%H%M").to_i < reservation.menu_start_time.strftime("%H%M").to_i && reservation.date.strftime("%Y年%m月%d日") == (@day + 5).strftime("%Y年%m月%d日")%>
                   <% check = true %>
                 <% end %>
               <% end %>
-              <% if check%>
+              <% if check || (@salon_start + (i * 30.minutes) + @menu.menu_time.sum).strftime("%H%M").to_i > @salon_end.strftime("%H%M").to_i %>
                 × 
                 <% check = false%>
               <% else %>
@@ -213,11 +213,11 @@
             </td>
             <td class="new_reservation_date_btn">
               <% @reservations.each do |reservation|%>
-                <% if reservation.menu_start_time.strftime("%H%M").to_i <= (@salon_start + (i * 30.minutes)).strftime("%H%M").to_i && (@salon_start + (i * 30.minutes)).strftime("%H%M").to_i < reservation.menu_end_time.strftime("%H%M").to_i && reservation.date.strftime("%Y年%m月%d日") == (@day + 6).strftime("%Y年%m月%d日") %>
+                <% if reservation.menu_start_time.strftime("%H%M").to_i <= (@salon_start + (i * 30.minutes)).strftime("%H%M").to_i && (@salon_start + (i * 30.minutes)).strftime("%H%M").to_i < reservation.menu_end_time.strftime("%H%M").to_i && reservation.date.strftime("%Y年%m月%d日") == (@day + 6).strftime("%Y年%m月%d日") || (@salon_start + (i * 30.minutes)).strftime("%H%M").to_i > (reservation.menu_start_time - @menu.menu_time.sum).strftime("%H%M").to_i && (@salon_start + (i * 30.minutes)).strftime("%H%M").to_i < reservation.menu_start_time.strftime("%H%M").to_i && reservation.date.strftime("%Y年%m月%d日") == (@day + 6).strftime("%Y年%m月%d日")%>
                   <% check = true %>
                 <% end %>
               <% end %>
-              <% if check%>
+              <% if check || (@salon_start + (i * 30.minutes) + @menu.menu_time.sum).strftime("%H%M").to_i > @salon_end.strftime("%H%M").to_i %>
                 × 
                 <% check = false%>
               <% else %>
@@ -228,11 +228,11 @@
             </td>
             <td class="new_reservation_date_btn">
               <% @reservations.each do |reservation|%>
-                <% if reservation.menu_start_time.strftime("%H%M").to_i <= (@salon_start + (i * 30.minutes)).strftime("%H%M").to_i && (@salon_start + (i * 30.minutes)).strftime("%H%M").to_i < reservation.menu_end_time.strftime("%H%M").to_i && reservation.date.strftime("%Y年%m月%d日") == (@day + 7).strftime("%Y年%m月%d日") %>
+                <% if reservation.menu_start_time.strftime("%H%M").to_i <= (@salon_start + (i * 30.minutes)).strftime("%H%M").to_i && (@salon_start + (i * 30.minutes)).strftime("%H%M").to_i < reservation.menu_end_time.strftime("%H%M").to_i && reservation.date.strftime("%Y年%m月%d日") == (@day + 7).strftime("%Y年%m月%d日") || (@salon_start + (i * 30.minutes)).strftime("%H%M").to_i > (reservation.menu_start_time - @menu.menu_time.sum).strftime("%H%M").to_i && (@salon_start + (i * 30.minutes)).strftime("%H%M").to_i < reservation.menu_start_time.strftime("%H%M").to_i && reservation.date.strftime("%Y年%m月%d日") == (@day + 7).strftime("%Y年%m月%d日")%>
                   <% check = true %>
                 <% end %>
               <% end %>
-              <% if check%>
+              <% if check || (@salon_start + (i * 30.minutes) + @menu.menu_time.sum).strftime("%H%M").to_i > @salon_end.strftime("%H%M").to_i %>
                 × 
                 <% check = false%>
               <% else %>
@@ -243,11 +243,11 @@
             </td>
             <td class="new_reservation_date_btn">
               <% @reservations.each do |reservation|%>
-                <% if reservation.menu_start_time.strftime("%H%M").to_i <= (@salon_start + (i * 30.minutes)).strftime("%H%M").to_i && (@salon_start + (i * 30.minutes)).strftime("%H%M").to_i < reservation.menu_end_time.strftime("%H%M").to_i && reservation.date.strftime("%Y年%m月%d日") == (@day + 8).strftime("%Y年%m月%d日") %>
+                <% if reservation.menu_start_time.strftime("%H%M").to_i <= (@salon_start + (i * 30.minutes)).strftime("%H%M").to_i && (@salon_start + (i * 30.minutes)).strftime("%H%M").to_i < reservation.menu_end_time.strftime("%H%M").to_i && reservation.date.strftime("%Y年%m月%d日") == (@day + 8).strftime("%Y年%m月%d日") || (@salon_start + (i * 30.minutes)).strftime("%H%M").to_i > (reservation.menu_start_time - @menu.menu_time.sum).strftime("%H%M").to_i && (@salon_start + (i * 30.minutes)).strftime("%H%M").to_i < reservation.menu_start_time.strftime("%H%M").to_i && reservation.date.strftime("%Y年%m月%d日") == (@day + 8).strftime("%Y年%m月%d日")%>
                   <% check = true %>
                 <% end %>
               <% end %>
-              <% if check%>
+              <% if check || (@salon_start + (i * 30.minutes) + @menu.menu_time.sum).strftime("%H%M").to_i > @salon_end.strftime("%H%M").to_i %>
                 × 
                 <% check = false%>
               <% else %>
@@ -258,11 +258,11 @@
             </td>
             <td class="new_reservation_date_btn">
               <% @reservations.each do |reservation|%>
-                <% if reservation.menu_start_time.strftime("%H%M").to_i <= (@salon_start + (i * 30.minutes)).strftime("%H%M").to_i && (@salon_start + (i * 30.minutes)).strftime("%H%M").to_i < reservation.menu_end_time.strftime("%H%M").to_i && reservation.date.strftime("%Y年%m月%d日") == (@day + 9).strftime("%Y年%m月%d日") %>
+                <% if reservation.menu_start_time.strftime("%H%M").to_i <= (@salon_start + (i * 30.minutes)).strftime("%H%M").to_i && (@salon_start + (i * 30.minutes)).strftime("%H%M").to_i < reservation.menu_end_time.strftime("%H%M").to_i && reservation.date.strftime("%Y年%m月%d日") == (@day + 9).strftime("%Y年%m月%d日") || (@salon_start + (i * 30.minutes)).strftime("%H%M").to_i > (reservation.menu_start_time - @menu.menu_time.sum).strftime("%H%M").to_i && (@salon_start + (i * 30.minutes)).strftime("%H%M").to_i < reservation.menu_start_time.strftime("%H%M").to_i && reservation.date.strftime("%Y年%m月%d日") == (@day + 9).strftime("%Y年%m月%d日")%>
                   <% check = true %>
                 <% end %>
               <% end %>
-              <% if check%>
+              <% if check || (@salon_start + (i * 30.minutes) + @menu.menu_time.sum).strftime("%H%M").to_i > @salon_end.strftime("%H%M").to_i %>
                 × 
                 <% check = false%>
               <% else %>
@@ -273,11 +273,11 @@
             </td>
             <td class="new_reservation_date_btn">
               <% @reservations.each do |reservation|%>
-                <% if reservation.menu_start_time.strftime("%H%M").to_i <= (@salon_start + (i * 30.minutes)).strftime("%H%M").to_i && (@salon_start + (i * 30.minutes)).strftime("%H%M").to_i < reservation.menu_end_time.strftime("%H%M").to_i && reservation.date.strftime("%Y年%m月%d日") == (@day + 10).strftime("%Y年%m月%d日") %>
+                <% if reservation.menu_start_time.strftime("%H%M").to_i <= (@salon_start + (i * 30.minutes)).strftime("%H%M").to_i && (@salon_start + (i * 30.minutes)).strftime("%H%M").to_i < reservation.menu_end_time.strftime("%H%M").to_i && reservation.date.strftime("%Y年%m月%d日") == (@day + 10).strftime("%Y年%m月%d日") || (@salon_start + (i * 30.minutes)).strftime("%H%M").to_i > (reservation.menu_start_time - @menu.menu_time.sum).strftime("%H%M").to_i && (@salon_start + (i * 30.minutes)).strftime("%H%M").to_i < reservation.menu_start_time.strftime("%H%M").to_i && reservation.date.strftime("%Y年%m月%d日") == (@day + 10).strftime("%Y年%m月%d日")%>
                   <% check = true %>
                 <% end %>
               <% end %>
-              <% if check%>
+              <% if check || (@salon_start + (i * 30.minutes) + @menu.menu_time.sum).strftime("%H%M").to_i > @salon_end.strftime("%H%M").to_i %>
                 × 
                 <% check = false%>
               <% else %>
@@ -288,11 +288,11 @@
             </td>
             <td class="new_reservation_date_btn">
               <% @reservations.each do |reservation|%>
-                <% if reservation.menu_start_time.strftime("%H%M").to_i <= (@salon_start + (i * 30.minutes)).strftime("%H%M").to_i && (@salon_start + (i * 30.minutes)).strftime("%H%M").to_i < reservation.menu_end_time.strftime("%H%M").to_i && reservation.date.strftime("%Y年%m月%d日") == (@day + 11).strftime("%Y年%m月%d日") %>
+                <% if reservation.menu_start_time.strftime("%H%M").to_i <= (@salon_start + (i * 30.minutes)).strftime("%H%M").to_i && (@salon_start + (i * 30.minutes)).strftime("%H%M").to_i < reservation.menu_end_time.strftime("%H%M").to_i && reservation.date.strftime("%Y年%m月%d日") == (@day + 11).strftime("%Y年%m月%d日") || (@salon_start + (i * 30.minutes)).strftime("%H%M").to_i > (reservation.menu_start_time - @menu.menu_time.sum).strftime("%H%M").to_i && (@salon_start + (i * 30.minutes)).strftime("%H%M").to_i < reservation.menu_start_time.strftime("%H%M").to_i && reservation.date.strftime("%Y年%m月%d日") == (@day + 11).strftime("%Y年%m月%d日")%>
                   <% check = true %>
                 <% end %>
               <% end %>
-              <% if check%>
+              <% if check || (@salon_start + (i * 30.minutes) + @menu.menu_time.sum).strftime("%H%M").to_i > @salon_end.strftime("%H%M").to_i %>
                 × 
                 <% check = false%>
               <% else %>
@@ -303,11 +303,11 @@
             </td>
             <td class="new_reservation_date_btn">
               <% @reservations.each do |reservation|%>
-                <% if reservation.menu_start_time.strftime("%H%M").to_i <= (@salon_start + (i * 30.minutes)).strftime("%H%M").to_i && (@salon_start + (i * 30.minutes)).strftime("%H%M").to_i < reservation.menu_end_time.strftime("%H%M").to_i && reservation.date.strftime("%Y年%m月%d日") == (@day + 12).strftime("%Y年%m月%d日") %>
+                <% if reservation.menu_start_time.strftime("%H%M").to_i <= (@salon_start + (i * 30.minutes)).strftime("%H%M").to_i && (@salon_start + (i * 30.minutes)).strftime("%H%M").to_i < reservation.menu_end_time.strftime("%H%M").to_i && reservation.date.strftime("%Y年%m月%d日") == (@day + 12).strftime("%Y年%m月%d日") || (@salon_start + (i * 30.minutes)).strftime("%H%M").to_i > (reservation.menu_start_time - @menu.menu_time.sum).strftime("%H%M").to_i && (@salon_start + (i * 30.minutes)).strftime("%H%M").to_i < reservation.menu_start_time.strftime("%H%M").to_i && reservation.date.strftime("%Y年%m月%d日") == (@day + 12).strftime("%Y年%m月%d日")%>
                   <% check = true %>
                 <% end %>
               <% end %>
-              <% if check%>
+              <% if check || (@salon_start + (i * 30.minutes) + @menu.menu_time.sum).strftime("%H%M").to_i > @salon_end.strftime("%H%M").to_i %>
                 × 
                 <% check = false%>
               <% else %>
@@ -318,11 +318,11 @@
             </td>
             <td class="new_reservation_date_btn">
               <% @reservations.each do |reservation|%>
-                <% if reservation.menu_start_time.strftime("%H%M").to_i <= (@salon_start + (i * 30.minutes)).strftime("%H%M").to_i && (@salon_start + (i * 30.minutes)).strftime("%H%M").to_i < reservation.menu_end_time.strftime("%H%M").to_i && reservation.date.strftime("%Y年%m月%d日") == (@day + 13).strftime("%Y年%m月%d日") %>
+                <% if reservation.menu_start_time.strftime("%H%M").to_i <= (@salon_start + (i * 30.minutes)).strftime("%H%M").to_i && (@salon_start + (i * 30.minutes)).strftime("%H%M").to_i < reservation.menu_end_time.strftime("%H%M").to_i && reservation.date.strftime("%Y年%m月%d日") == (@day + 13).strftime("%Y年%m月%d日") || (@salon_start + (i * 30.minutes)).strftime("%H%M").to_i > (reservation.menu_start_time - @menu.menu_time.sum).strftime("%H%M").to_i && (@salon_start + (i * 30.minutes)).strftime("%H%M").to_i < reservation.menu_start_time.strftime("%H%M").to_i && reservation.date.strftime("%Y年%m月%d日") == (@day + 13).strftime("%Y年%m月%d日")%>
                   <% check = true %>
                 <% end %>
               <% end %>
-              <% if check%>
+              <% if check || (@salon_start + (i * 30.minutes) + @menu.menu_time.sum).strftime("%H%M").to_i > @salon_end.strftime("%H%M").to_i%>
                 × 
                 <% check = false%>
               <% else %>

@@ -25,7 +25,7 @@
         <th class="table_head">予約時間</th>
         <% 24.times do |i| %>
           <% @salon_time = (@time.midnight.since(@salon_start.seconds_since_midnight) + (i * 60.minutes)).strftime("%H:%M") %>
-          <% break if @salon_time.to_i >  @salon_end.strftime("%H:%M").to_i %>
+          <% break if @salon_time.to_i >  (@salon_end + 3600).strftime("%H:%M").to_i %>
           <th colspan="2" class="table_head_time"><%= @salon_time%></th>
         <% end %>
       </tr>
@@ -33,7 +33,7 @@
         <th class="table_bodytop"> 予約数 </th>
         <% 24.times do |i| %>
           <% @salon_time = (@time.midnight.since(@salon_start.seconds_since_midnight) + (i * 30.minutes)).strftime("%H:%M") %>
-          <% break if @salon_time.to_i >  @salon_end.strftime("%H:%M").to_i %> 
+          <% break if @salon_time.to_i >  (@salon_end + 3600).strftime("%H:%M").to_i %> 
           <td class="am"><% @salon_time%>3</td>
         <% end %>
       </tr>
@@ -41,7 +41,7 @@
         <th class="table_bodytop"> 残り席数 </th>
         <% 24.times do |i| %>
           <% @salon_time = (@time.midnight.since(@salon_start.seconds_since_midnight) + (i * 30.minutes)).strftime("%H:%M") %>
-          <% break if @salon_time.to_i >  @salon_end.strftime("%H:%M").to_i %> 
+          <% break if @salon_time.to_i >  (@salon_end + 3600).strftime("%H:%M").to_i %> 
           <td class="am"><% @salon_time%>3</td>
         <% end %>
       </tr>
@@ -56,7 +56,7 @@
             </th>
             <% 24.times do |i| %>
               <% @salon_time = (@time.midnight.since(@salon_start.seconds_since_midnight) + (i * 30.minutes)).strftime("%H:%M") %>
-              <% break if @salon_time.to_i >  @salon_end.strftime("%H:%M").to_i %>
+              <% break if @salon_time.to_i >  (@salon_end + 3600).strftime("%H:%M").to_i %>
                 <% stylist.reservations.each do |reservation| %>
                   <% if reservation.date.strftime("%Y/%m/%d") == @time.strftime("%Y/%m/%d") && stylist.id == reservation.stylist.id && (reservation.menu_start_time == @time.midnight.since(@salon_start.seconds_since_midnight) + (i * 30.minutes)) %>
                     <% reservation_check = true %>

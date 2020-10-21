@@ -126,7 +126,12 @@ select{
 .user_full_name{
   color: rgb(30, 87, 209);
 }
-
+.paginate_class{
+  color: black;
+}
+.first a, .prev a, .page a, .pagination a{
+  color:rgb(144, 179, 218);
+}
 /* .sorttbl{
   border-collapse: collapse;
   border-spacing: 0;

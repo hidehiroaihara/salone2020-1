@@ -181,6 +181,40 @@
             <td class="show_message_bd">6<% %></td>
           </tr>
         </table>
+        <table class="visit_history_table" style="margin-bottom:30px;">
+          <colgroup width="15%"></colgroup>
+          <colgroup width="10%"></colgroup>
+          <colgroup width="30%"></colgroup>
+          <colgroup width="15%"></colgroup>
+          <colgroup width="20%"></colgroup>
+          <colgroup width="10%"></colgroup>
+          <tr class="message_colum" style="height: 50px;">
+            <th class="show_delivery">来店日日時</th>
+            <th class="show_delivery">担当スタイリスト</th>
+            <th class="show_delivery show_delivery_stylist">メニュー</th>
+            <th class="show_delivery">料金</th>
+            <th class="show_delivery">商品購入履歴</th>
+            <th class="show_delivery">ステータス</th>
+          </tr>
+          <% @user.reservations.each do |reservation|%>
+            <tr style="height:10px;">
+              <td class="visit_history"><%= reservation.menu_start_time.strftime("%Y年%-m月%-d日 %-H時%-M分") %></td>
+              <td class="visit_history"><%= reservation.stylist.set_name %></td>
+              <td class="visit_history"><%= reservation.menu.menu_name%>
+                <ul class="visit_history_category">
+                  <% reservation.menu.style_category_lists.each do |category| %>
+                    <li class="visit_history_category_name">
+                      <%= category.name %>
+                    </li>
+                  <% end %>
+                </ul>
+              </td>
+              <td class="visit_history"><span class="visit_history_font1">メニュー料金</span>￥<span class="visit_history_font"><%= reservation.menu.price%></span><br><span class="visit_history_font1">指名料</span>￥<span class="visit_history_font"><%= reservation.stylist.stylist_detail.nomination_price %></span></td>
+              <td class="visit_history"><% %></td>
+              <td class="visit_history"><% %></td>
+            </tr>
+          <% end %>
+        </table>
         <div class="change_btn">
           <p class="change_area_delete">
             <%= link_to "削除する", admins_user_path(@user.id), method: :delete, class:"show_delete" %>
