@@ -1,8 +1,9 @@
 .header_view{
   min-width: 980px;
-  min-height: 100px;
+  min-height: 90px;
   background: #fff9ed;
   background-size: cover;
+  
 }
 .salon_view_top{
   margin: 0 auto;

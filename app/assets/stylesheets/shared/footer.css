@@ -54,3 +54,27 @@
   margin-left: 25px;
   border-bottom: 2px solid white;
 }
+.calendar1{
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  height: 40px;
+ 
+  z-index: 999;
+}
+.book_btn1{
+  border: 1px solid #da5e0b;
+  background-color: #ee7727;
+  box-shadow: 0 1.9px 2.5px rgb(49, 49, 49);
+  padding: 10px 30px;
+  color: rgb(255, 235, 235);
+  margin-bottom: 5px;
+  margin-left: 40px;
+}
+.book_btn1:hover{
+  opacity: 0.8;
+}
+.book_btn1:active{
+  bottom: 5px;
+  box-shadow: none;
+}

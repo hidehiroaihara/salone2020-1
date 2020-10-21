@@ -23,8 +23,8 @@
     <div class="section-bottom">
       <div class="btn-column">
         <ul class="column-all">
-            <li><%= link_to "時間設定一覧", admins_user_options_path, class:"customer-list" %></li>
-            <li><%= link_to "時間登録", new_admins_user_option_path, class:"customer-list" %></li>
+            <li><%= link_to "時間設定一覧", admins_user_user_options_path(user_id: @user), class:"customer-list" %></li>
+            <li><%= link_to "時間登録", new_admins_user_user_option_path(user_id: @user), class:"customer-list" %></li>
             <li><%= link_to "変更", "#", class:"customer-list" %></li>
             <li><%= link_to "削除", "#", class:"customer-list" %></li>
         </ul>

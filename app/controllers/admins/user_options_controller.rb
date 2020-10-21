@@ -16,7 +16,7 @@ class Admins::UserOptionsController < ApplicationController
   def create
     @user_option = UserOption.new(user_option_params)
     if @user_option.save
-      redirect_to admins_reservations_path
+      redirect_to admins_user_user_options_path(user_id: @user)
     else
       render :new
     end
@@ -49,6 +49,7 @@ class Admins::UserOptionsController < ApplicationController
 
   def set_user
     @user = User.find(params[:user_id])
+    # @user = User.find_by(id: params[:format])
   end
 
   def set_user_option

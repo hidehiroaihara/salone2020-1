@@ -86,6 +86,12 @@ ActiveRecord::Schema.define(version: 2020_10_15_072058) do
     t.time "start_time", null: false
     t.time "end_time", null: false
     t.date "holiday"
+    t.string "salon_name"
+    t.string "post_code", null: false
+    t.integer "prefecture_id", null: false
+    t.string "address_all", null: false
+    t.string "salon_slogan", null: false
+    t.string "salon_info", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -180,6 +186,7 @@ ActiveRecord::Schema.define(version: 2020_10_15_072058) do
     t.integer "customer_number"
     t.integer "age_id"
     t.boolean "admin", default: false
+    t.integer "salon_id", null: false
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"

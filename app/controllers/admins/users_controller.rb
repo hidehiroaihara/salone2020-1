@@ -40,7 +40,7 @@ class Admins::UsersController < ApplicationController
   def index
     age_update
     @search_params = user_search_params
-    @users = User.search(@search_params).includes(:stylist).page(params[:page]).per(1)#menu
+    @users = User.search(@search_params).includes(:stylist).page(params[:page]).per(20)#menu
     
   end
 
