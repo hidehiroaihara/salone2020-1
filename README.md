@@ -171,7 +171,7 @@ VSCode
 
 # ER図
 
-![alt](app/assets/images/ER.jpg)
+![alt](app/assets/images/ER.png)
 
 # DB設計
 
