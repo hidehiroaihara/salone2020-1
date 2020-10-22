@@ -1,27 +1,5 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
 # salone2020
 
 ## 概要
@@ -145,7 +123,7 @@ JavaScript
 
 ## データベース
 
-MySQL
+MySQL, MariaDB
 
 ## インフラ
 
@@ -191,6 +169,10 @@ VSCode
 - 訪問前にカウセリングができるチャット機能
 - カテゴリー別商品検索機能
 
+# ER図
+
+![alt](app/assets/images/ER.jpg)
+
 # DB設計
 
 ## users テーブル
@@ -223,6 +205,7 @@ VSCode
 - belongs_to :stylist, optional: true
 - has_one :user_information
 - has_one :user_detail
+- belongs_to :salon
 
 ## user_informations テーブル
 
@@ -394,7 +377,14 @@ VSCode
 | start_time          | time         | null: false                   |
 | end_time            | time         | null: false                   |
 | holiday             | date         |                               |
+| salon_name          | string       | null: false                   |
+| post_code           | string       | null: false                   |
+| prefecture_id       | integer      | null: false                   |
+| address_all         | string       | null: false                   |
+| salon_slogan        | string       | null: false                   |
+| salon_info          | string       | null: false                   |
 
 ### Association
 
 - has_one :reservation
+- has_one :user

@@ -86,7 +86,7 @@ ActiveRecord::Schema.define(version: 2020_10_15_072058) do
     t.time "start_time", null: false
     t.time "end_time", null: false
     t.date "holiday"
-    t.string "salon_name"
+    t.string "salon_name", null: false
     t.string "post_code", null: false
     t.integer "prefecture_id", null: false
     t.string "address_all", null: false

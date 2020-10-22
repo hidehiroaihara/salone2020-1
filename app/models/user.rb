@@ -15,6 +15,7 @@ class User < ApplicationRecord
   has_one :user_option
   has_many :menus, through: :user_menus
   belongs_to :stylist, optional: true
+  belongs_to :salon
 
   def set_user_name
     self.first_name + self.last_name

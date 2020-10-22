@@ -2,28 +2,113 @@
 <div class="contents">
   <div class="section">
      <%= form_with model: @salon, url: admins_salons_path, id: 'new_salon', local: true do |f| %>
-      <table class="salon_new_table" style="float:left;margin-left:45px;">
-          <colgroup width="15%"></colgroup>
-          <colgroup width="10%"></colgroup>
-          <colgroup width="10%"></colgroup>
-          <colgroup width="15%"></colgroup>
+      <table class="salon_new_table">
+          <colgroup width="20%"></colgroup>
+          <colgroup width="20%"></colgroup>
+          <colgroup width="20%"></colgroup>
+          <colgroup width="20%"></colgroup>
           <colgroup width="10%"></colgroup>
           <colgroup width="10%"></colgroup>
           <tr>
-            <th colspan="6" class="stylist_title">営業時間設定
+            <th colspan="6" class="stylist_title">サロン情報設定
               <p class="block_area"></p>
             </th>
           </tr>
           <tr>
+            <th colspan="1" class="stylist_input_name">サロン名<span class="circle">🔴</span></th>
+            <td colspan="5" class="salon_new_td">
+              <%= f.text_field :salon_name, class:"new_salon_name_filed"%>
+            </td>
+          </tr>
+          <tr>
+            <th colspan="1" class="stylist_input_name">サロンスローガン<span class="circle">🔴</span></th>
+            <td colspan="5" class="salon_new_td">
+              <%= f.text_field :salon_slogan, class:"new_salon_name_filed"%>
+            </td>
+          </tr>
+          <tr>
+            <th colspan="1" class="stylist_input_name">サロン情報（説明）<span class="circle">🔴</span></th>
+            <td colspan="5" class="salon_new_td">
+              <%= f.text_field :salon_info, class:"new_salon_name_filed"%>
+            </td>
+          </tr>
+          <tr class="address_table1">
+            <th class="input_name">住所</th>
+            <td colspan="5" class="salon_address_input">
+              <ul class="salon_address_input1">
+                <li>
+                  〒
+                </li>
+                <li class="new_salon_post">
+                  <%= f.text_field :post_code, class:"post_feild1", placeholder:"例）123-4567", onKeyUp:"AjaxZip3.zip2addr('salon[post_code]','','salon[prefecture_id]','salon[address_all]');" %>
+                </li>
+                <li>
+                  <%= f.collection_select(:prefecture_id, Prefecture.all, :id, :name, {include_blank: "--"}, {class:"select-box", id:"prefecture"}) %>
+                </li>
+                <li>
+                  <%= f.text_field :address_all, class:"address_field" %>
+                </li>
+              </ul>
+            </td>
+          </tr> 
+          <tr>
             <th colspan="1" class="stylist_input_name">開始時間<span class="circle">🔴</span></th>
-            <td colspan="5" class="stylist_td">
+            <td colspan="5" class="salon_new_td">
               <%= f.time_select :start_time, class:"new_salon_field", id:"new_salon_field", minuite_step: 30%>
             </td>
           </tr>
           <tr>
             <th colspan="1" class="stylist_input_name">終了時間<span class="circle">🔴</span></th>
-            <td colspan="5" class="stylist_td">
+            <td colspan="5" class="salon_new_td">
               <%= f.time_select :end_time, class:"new_salon_field", id:"new_salon_field", minuite_step: 30%>
+            </td>
+          </tr>
+        </table>
+        <table class="salon_new_table1">
+          <colgroup width="20%"></colgroup>
+          <colgroup width="20%"></colgroup>
+          <colgroup width="20%"></colgroup>
+          <colgroup width="20%"></colgroup>
+          <colgroup width="10%"></colgroup>
+          <colgroup width="10%"></colgroup>
+          <tr>
+            <th colspan="6" class="stylist_title">サロントップ画像設定
+              <p class="block_area"></p>
+            </th>
+          </tr>
+          <tr>
+            <td class="stylist_image">
+              <div class="image_area">
+              </div>
+              <label class="form-image">
+                <span class="image-file">アップロード</span>
+                <%= f.file_field :salon_top_image, class:"image_style"  %>
+              </label>
+              <div id="image_top_list" class="image-size"></div>
+            </td>
+          </tr>
+      </table>
+      <table class="salon_new_table1">
+          <colgroup width="20%"></colgroup>
+          <colgroup width="20%"></colgroup>
+          <colgroup width="20%"></colgroup>
+          <colgroup width="20%"></colgroup>
+          <colgroup width="10%"></colgroup>
+          <colgroup width="10%"></colgroup>
+          <tr>
+            <th colspan="6" class="stylist_title">サロン詳細画像設定
+              <p class="block_area"></p>
+            </th>
+          </tr>
+          <tr>
+            <td class="stylist_image">
+              <div class="image_area">
+              </div>
+              <label class="form-image">
+                <span class="image-file">アップロード</span>
+                <%= f.file_field :salon_bottom_image, class:"image_style"  %>
+              </label>
+              <div id="image_bottom_list" class="image-size"></div>
             </td>
           </tr>
       </table>

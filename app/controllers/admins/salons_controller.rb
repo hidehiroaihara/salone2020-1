@@ -21,7 +21,7 @@ class Admins::SalonsController < ApplicationController
   private
 
   def salon_params
-    params.require(:salon).permit(:start_time, :end_time)
+    params.require(:salon).permit(:start_time, :end_time, :salon_name, :post_code, :prefecture_id, :address_all, :salon_slogan, :salon_info, :salon_top_image, :salon_bottom_image)
   end
 
   def set_salon
