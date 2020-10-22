@@ -13,4 +13,6 @@ class StylistDetail < ApplicationRecord
       validates :style_type
     end
   end
+  PRICE_REGEX = /\A[0-9]+\z/.freeze
+  validates_format_of :nomination_price, with: PRICE_REGEX, message: 'には半角数字で入力して下さい'
 end

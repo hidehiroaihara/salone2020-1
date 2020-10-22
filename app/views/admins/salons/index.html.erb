@@ -14,22 +14,38 @@
       <p class="block_area"></p>
       <h2 class="basic">サロン情報</h2>
     </div>
-   <table class="time_index_table" style="margin-bottom:30px;">
-      <colgroup width="30%"></colgroup>
-      <colgroup width="50%"></colgroup>
-      <colgroup width="10%"></colgroup>
-      <colgroup width="10%"></colgroup>
-      <% @salons.each do |salon| %>
+     <% @salons.each do |salon| %>
+      <table class="time_index_table" style="margin-bottom:30px;">
+        <colgroup width="30%"></colgroup>
+        <colgroup width="70%"></colgroup>
+        <tr>
+          <th class="show_name">サロン名</th>
+          <td class="show_bd">
+            <span class="show_field"><%= salon.salon_name %>
+          </td>
+        </tr>
+        <tr>
+          <th class="show_name">サロンスローガン</th>
+          <td class="show_bd index_user_option_td">
+            <span class="show_field"><%= salon.salon_slogan %></span>
+          </td>
+        </tr>
+        <tr>
+          <th class="show_name">サロン説明</th>
+          <td class="show_bd">
+            <span class="show_field"><%= salon.salon_info %>
+          </td>
+        </tr>
+        <tr>
+          <th class="show_name">サロン住所</th>
+          <td class="show_bd index_user_option_td">
+            <span class="show_field">〒<%= salon.post_code %><%= salon.prefecture.name %><%= salon.address_all %></span>
+          </td>
+        </tr>
         <tr>
           <th class="show_name">営業時間</th>
           <td class="show_bd">
             <span class="show_field"><%= salon.start_time.strftime("%H時間%M分") %>
-          </td>
-          <td class="show_bd">
-            <%= link_to "編集", edit_admins_salon_path(salon.id), class:"stylist_show" %>
-          </td>
-          <td class="show_bd">
-            <%= link_to "削除", admins_salon_path(salon.id), method: :delete, id:"style_delete", class: "stylist_delete", data: { confirm: "本当に削除しますか？"} %>
           </td>
         </tr>
         <tr>
@@ -37,15 +53,13 @@
           <td class="show_bd index_user_option_td">
             <span class="show_field"><%= salon.end_time.strftime("%H時間%M分") %></span>
           </td>
-          <td class="show_bd">
-            <%= link_to "編集",  edit_admins_salon_path(salon.id), class:"stylist_show" %>
-          </td>
-          <td class="show_bd">
-            <%= link_to "削除", admins_salon_path(salon.id), method: :delete, id:"style_delete", class: "stylist_delete", data: { confirm: "本当に削除しますか？"} %>
-          </td>
         </tr>
-      <% end %>
-    </table>
+      </table>
+      <div class="edit_menu_area">
+        <%= link_to "変更", edit_admins_salon_path(salon.id), class:"edit_menu_btn1"%>
+        <%= link_to "削除", admins_salon_path(salon.id), method: :delete, id:"style_delete", class: "stylist_delete1", data: { confirm: "本当に削除しますか？"} %>
+      </div>
+    <% end %>
   </div>
 </div>
 <%= render "shared/footer"%>

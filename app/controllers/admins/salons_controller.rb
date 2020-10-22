@@ -17,7 +17,14 @@ class Admins::SalonsController < ApplicationController
       render :new
     end
   end
-
+  
+  def update
+    if @salon.update(salon_params)
+      redirect_to admins_salons_path
+    else
+      render :edit
+    end
+  end
   private
 
   def salon_params

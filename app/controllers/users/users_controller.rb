@@ -1,7 +1,7 @@
 class Users::UsersController < ApplicationController
   def index
     salon_all
-    @users = User.all
+    @stylists = Stylist.all
   end
 
   private

@@ -18,7 +18,7 @@ class Stylist < ApplicationRecord
   with_options presence: true do
     validates :rank
     validates :stylist_first_name
-    validates :styliset_last_name
+    validates :stylist_last_name
     validates :stylist_last_name_cana
     validates :stylist_first_name_cana
     validates :stylist_number
@@ -27,7 +27,5 @@ class Stylist < ApplicationRecord
  end
 
  validates :gender_id, numericality: { other_than: 0, message: "can't be blank" }
- PRICE_REGEX = /\A[0-9]+\z/.freeze
- validates_format_of :nomination_price, with: PRICE_REGEX, message: 'には半角数字で入力して下さい'
 
 end

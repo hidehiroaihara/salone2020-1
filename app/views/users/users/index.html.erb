@@ -39,37 +39,17 @@
       <div class="style_phot_area">
         <p class="style_phot_name">StylePhot</p>
         <ul class="style_display_area">
-          <% %>
-          <li class="style_phot">
-            <% %>
-          </li>
-          <li class="style_phot">
-            <% %>
-          </li>
-          <li class="style_phot">
-            <% %>
-          </li>
-          <li class="style_phot">
-            <% %>
-          </li>
-          <li class="style_phot">
-            <% %>
-          </li>
-          <li class="style_phot">
-            <% %>
-          </li>
-          <li class="style_phot">
-            <% %>
-          </li>
-          <li class="style_phot">
-            <% %>
-          </li>
-          <li class="style_phot">
-            <% %>
-          </li>
-          <li class="style_phot">
-            <% %>
-          </li>
+          <% @stylists.each do |stylist| %>
+             <% if stylist.portraits.attached? %>
+               <% stylist.portraits.each do |portrait| %> 
+                 
+                    <li class="style_phot">
+                      <%= image_tag portrait %>
+                    </li>
+                
+               <% end %>
+             <% end %>
+           <% end%>
         </ul>
         <div class="item_list_area">
           <%= link_to "#" do %>
