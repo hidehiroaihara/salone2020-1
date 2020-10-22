@@ -67,7 +67,7 @@
 ◎予約された日程を顧客が確認
    - 顧客の管理画面にて予約が入った予定を表示
 
-
+![alt](app/assets/images/yoyaku.gif), ![alt](app/assets/images/yoyakuadmin.png)
 
 ## ユーザー登録機能
 
@@ -169,9 +169,9 @@ VSCode
 - 訪問前にカウセリングができるチャット機能
 - カテゴリー別商品検索機能
 
-# インフラ構成図
+<!-- # インフラ構成図
 
-![alt](app/assets/images/infura.png)
+![alt](app/assets/images/infura.png) -->
 
 # ER図
 
