@@ -66,8 +66,9 @@
    - 確認画面後予約完了
 ◎予約された日程を顧客が確認
    - 顧客の管理画面にて予約が入った予定を表示
-
-![alt](app/assets/images/yoyaku.gif), ![alt](app/assets/images/yoyakuadmin.png)
+<p style="display:flex;width:100px;">
+  ![alt](app/assets/images/yoyaku.gif), ![alt](app/assets/images/yoyakuadmin.png)
+</p>
 
 ## ユーザー登録機能
 
