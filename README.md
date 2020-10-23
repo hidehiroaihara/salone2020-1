@@ -116,6 +116,7 @@
 
    - フォームオブジェクトを用いた2つのテーブルへの同時保存
    - 画像登録（activestorage,javascriptによるプレビュー表示）
+</details>
 ◎登録後のスタイリスト編集、削除機能
 <img src="app/assets/images/stylist.gif" width="60%">
 
