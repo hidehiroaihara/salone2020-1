@@ -124,11 +124,11 @@
         <tr class="stylist_tr">
           <th class="stylist_input_name">スタイリスト歴<span class="stylist_font">(スタイリストのみ)</span><span class="circle">🔴</span></th>
           <td class="stylist_td1">
-            <%= f.collection_select(:stylist_history_id, StylistHistory.all, :id, :name, {include_blank: "--"}, {class:"stylist_select", id:"stylist_history"}) %>
+            <%= f.collection_select(:stylist_history_id, StylistHistory.all, :id, :name,  {class:"stylist_select", id:"stylist_history"}) %>
           </td>
           <th class="stylist_tr">指名<span class="stylist_font">(スタイリストのみ)</span><span class="circle">🔴</span></th>
           <td colspan="2" class="stylist_td1">
-            <%= f.collection_select(:nomination_id, Nomination.all, :id, :name, {include_blank: "--"}, {class:"stylist_select1", id:"stylist_nomination"}) %>
+            <%= f.collection_select(:nomination_id, Nomination.all, :id, :name, {class:"stylist_select1", id:"stylist_nomination"}) %>
           </td>
         </tr>
         <tr class="stylist_tr">
