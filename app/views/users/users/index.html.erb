@@ -3,11 +3,31 @@
   <div class="section1">
       <div class="top_page_background_image_area">
         <p class="top_page_image">
-          <%= image_tag @salon.salon_top_image, class: "stylist-img" if @salon.salon_top_image.attached? %> 
+          <% if Salon.count == 0 %>
+            画像エリア
+          <% else %>
+            <%= image_tag @salon.salon_top_image, class: "stylist-img" if @salon.salon_top_image.attached? %> 
+          <% end %>
         </p>
       </div>
       <div class="salon_name_area">
         <ul class="salon_detail_area">
+          <% if Salon.count == 0 %>
+           <li class="salon_detail_text">
+            サンプル
+           </li>
+           <li class="salon_name1">
+            サンプル
+           </li>
+          <% else %>
+           <li class="salon_detail_text">
+            <%= @salon.salon_name %>
+           </li>
+           <li class="salon_name1">
+            <%= @salon.salon_slogan%>
+           </li>
+          <% end %>
+        </ul>
           <li class="salon_detail_text">
             <%= @salon.salon_name %>
           </li>
@@ -16,9 +36,15 @@
           </li>
         </ul>
         <ul class="salon_detail_area2">
-          <li class="salon_detail_description1">
-            <%= @salon.salon_info %>
-          </li>
+          <% if Salon.count == 0 %>
+            <li class="salon_detail_description1">
+              サンプル
+            </li>
+          <% else %>
+            <li class="salon_detail_description1">
+              <%= @salon.salon_info %>
+            </li>
+          <% end %>
         </ul>
       </div>
       <div class="item_display_area">
@@ -39,14 +65,16 @@
       <div class="style_phot_area">
         <p class="style_phot_name">StylePhot</p>
         <ul class="style_display_area">
+        <% if Stylist.count == 0 %>
+           <li class="style_phot">
+           </li>
+        <% else %>
           <% @stylists.each do |stylist| %>
              <% if stylist.portraits.attached? %>
                <% stylist.portraits.each do |portrait| %> 
-                 
-                    <li class="style_phot">
-                      <%= image_tag portrait %>
-                    </li>
-                
+                  <li class="style_phot">
+                    <%= image_tag portrait %>
+                  </li>
                <% end %>
              <% end %>
            <% end%>

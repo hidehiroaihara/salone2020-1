@@ -62,6 +62,8 @@
   - スタイリスト登録
   - 営業時間設定
   - 予約の管理
+</details>
+<details>
 <summary>◎お客様であるユーザー(user)</summary>
 
   - ユーザー登録
@@ -76,7 +78,10 @@
    - メニュークリック後予定表のページに遷移
    - 空いている日程から日時時間を選択
    - 確認画面後予約完了
+</details>
+<details>
 <summary>◎予約された日程を顧客が確認</summary>
+
    - 顧客の管理画面にて予約が入った予定を表示
 </details>
 <img src="app/assets/images/yoyaku.gif" width="45%"> <img src="app/assets/images/yoyakuadmin.png" width="45%">
@@ -101,8 +106,8 @@
    - ランク設定(activehash)
    - メニュー時間選択(activehash)
    - メニュー内容入力欄
-<summary>◎登録後のメニュー編集、削除機能</summary>
 </details>
+◎登録後のメニュー編集、削除機能
 <img src="app/assets/images/menu.gif" width="60%">
 
 ## スタイリスト登録機能
@@ -111,8 +116,7 @@
 
    - フォームオブジェクトを用いた2つのテーブルへの同時保存
    - 画像登録（activestorage,javascriptによるプレビュー表示）
-<summary>◎登録後のスタイリスト編集、削除機能</summary>
-<details>
+◎登録後のスタイリスト編集、削除機能
 <img src="app/assets/images/stylist.gif" width="60%">
 
 ## お客様検索機能
@@ -122,8 +126,8 @@
    - 各登録情報で検索できる複数検索
    - 誕生日から計算された年代での検索
    - 表示されたデータのページネーション機能(kaminari)
-<summary>◎管理者である顧客がユーザー情報の編集、削除</summary>
 </details>
+◎管理者である顧客がユーザー情報の編集、削除
 <img src="app/assets/images/kensaku.gif" width="60%">
 
 # 工夫したポイント
