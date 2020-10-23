@@ -6,10 +6,10 @@ class UserAddress
   
 
   def save
-    user = User.create(first_name: first_name, last_name: last_name, first_name_cana: first_name_cana, last_name_cana: last_name_cana, email: email, birthday: birthday, phone_number: phone_number, gender_id: gender_id, stylist_id: stylist_id, blood_type_id: blood_type_id, job_id: job_id, customer_text: customer_text, customer_number: customer_number, member_id: member_id, salon_id: salon_id)
+    user = User.create(first_name: first_name, last_name: last_name, first_name_cana: first_name_cana, last_name_cana: last_name_cana, email: email, birthday: birthday, phone_number: phone_number, stylist_id: stylist_id, customer_text: customer_text, customer_number: customer_number, member_id: member_id, salon_id: salon_id)
     Address.create(post_code: post_code, prefecture_id: prefecture_id, address_all: address_all, user_id: user.id)
     Information.create(information_date: information_date, information_text: information_text, user_id: user.id)
-    Message.create(consent: consent, user_id: user.id)
+    UserDetail.create(job_id: job_id, blood_id: blood_id, gender_id: gender_id, consent: consent, user_id: user.id)
   end
 
   def save_update(user_id)
@@ -37,11 +37,12 @@ class Admins::UsersController < ApplicationController
   
   before_action :authenticate_admin!
   before_action :set_user, only: [:edit, :update, :show, :destroy] 
+
   def index
     age_update
     @search_params = user_search_params
-    @users = User.search(@search_params).includes(:stylist).page(params[:page]).per(20)#menu
-    
+    @users = User.search(@search_params).includes([:stylist,:user_detail]).page(params[:page]).per(20)#menu
+    # binding.pry
   end
 
   def new
@@ -66,7 +67,6 @@ class Admins::UsersController < ApplicationController
   end
 
   def update
-    # params[:user_address][:information_date] = set_information_date
     @user_address = UserAddress.new(user_params)
     if @user_address.save_update(params[:id])
        redirect_to admins_users_path
@@ -125,10 +125,6 @@ class Admins::UsersController < ApplicationController
     end
   end  
   def set_birthday
-    # date = params[:user_address][:birthday]
-    # if date["birthday(1i)"].empty? && date["birthday(2i)"].empty? && date["birthday(3i)"].empty?
-    #   return
-    # end
     Date.new(params.require(:user_address).require("birthday(1i)").to_i,params.require(:user_address).require("birthday(2i)").to_i,params.require(:user_address).require("birthday(3i)").to_i)
   end
 

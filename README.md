@@ -66,9 +66,9 @@
    - 確認画面後予約完了
 ◎予約された日程を顧客が確認
    - 顧客の管理画面にて予約が入った予定を表示
-<p style="display:flex;width:100px;">
-  ![alt](app/assets/images/yoyaku.gif), ![alt](app/assets/images/yoyakuadmin.png)
-</p>
+
+![alt](app/assets/images/yoyaku.gif), ![alt](app/assets/images/yoyakuadmin.png)
+
 
 ## ユーザー登録機能
 
@@ -89,12 +89,16 @@
    - メニュー内容入力欄
 ◎登録後のメニュー編集、削除機能
 
+![alt](app/assets/images/menu.gif)
+
 ## スタイリスト登録機能
 
 ◎管理者である顧客がスタイリストを登録
    - フォームオブジェクトを用いた2つのテーブルへの同時保存
    - 画像登録（activestorage,javascriptによるプレビュー表示）
 ◎登録後のスタイリスト編集、削除機能
+
+![alt](app/assets/images/stylist.gif)
 
 ## お客様検索機能
 
@@ -103,6 +107,8 @@
    - 誕生日から計算された年代での検索
    - 表示されたデータのページネーション機能(kaminari)
 ◎管理者である顧客がユーザー情報の編集、削除
+
+![alt](app/assets/images/kensaku.gif)
 
 # 工夫したポイント
 

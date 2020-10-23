@@ -54,35 +54,35 @@
             <td colspan="2" class="cf">
               <%= f.text_field :phone_number, value: @search_params[:phone_number], class:"field_phone" %>
             </td>
-            <th class="search_left">性別:</th>
+            <th class="search_left">スタイリスト:</th>
             <td class="cf">
-              <%= f.collection_select(:gender_id, Gender.all, :id, :name, {include_blank: "--"}, selected: @search_params[:gender_id] ) %>
+              <%= f.collection_select(:stylist_id, Stylist.all, :id, :set_name, {include_blank: "--"}, selected: @search_params[:stylist_id]) %>
             </td>
+            <%# <th class="search_left">性別:</th>
+            <td class="cf">
+              <%= f.collection_select(:gender_id, Gender.all, :id, :name, selected: @search_params[:gender_id] ) %>
+            <%# </td> %> 
           </tr>
           <tr class="search_all">
             <th class="search_left">EMAIL:</th>
             <td colspan="2" class="cf">
               <%= f.text_field :email, value: @search_params[:email], class:"field_email" %>
             </td>
-            <th class="search_left">職業:</th>
+            <%# <th class="search_left">職業:</th>
             <td class="cf">
               <%= f.collection_select(:job_id, Job.all, :id, :name, {include_blank: "--"}, selected: @search_params[:job_id] ) %>
-            </td>
+            <%# </td>  %>
           </tr>
           <tr class="search_all">
             <th class="search_left">お客様番号:</th>
             <td colspan="2" class="cf">
               <%= f.text_field :customer_number, value: @search_params[:customer_number], class:"field_customer" %>
             </td>
-            <th class="search_left">スタイリスト:</th>
-            <td class="cf">
-              <%= f.collection_select(:stylist_id, Stylist.all, :id, :set_name, {include_blank: "--"}, selected: @search_params[:stylist_id]) %>
-            </td>
           </tr>
           <tr class="search_all">
             <th class="search_left">会員ランク:</th>
             <td colsapn="2" class="cf">
-              <%= f.collection_select(:member_id, Member.all, :id, :name, {include_blank: "--"}, selected: @search_params[:member_id]) %>
+              <%= f.collection_select(:member_id, Member.all, :id, :name, selected: @search_params[:member_id]) %>
             </td>
           </tr>
         </table>
