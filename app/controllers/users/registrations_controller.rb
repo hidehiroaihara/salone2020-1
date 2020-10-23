@@ -66,7 +66,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   def create
     @user = User.new(sign_up_params)
-    unless @user.valid?
+    unless @user.valid?(:registration)
       flash.now[:alert] = @user.errors.full_messages
       render :new and return
     end
@@ -93,7 +93,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
     @user = User.new(session["devise.regist_data"]["user"])
     @address = Address.new(session["address"])
     @detail = UserDetail.new(detail_params)
-    unless @detail.valid?
+    unless @detail.valid?(:registration)
       flash.now[:alert] = @detail.errors.full_messages
       render :new_address and return
     end
@@ -101,7 +101,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
     @user.build_user_detail(@detail.attributes)
     @user.build_user_information
     @user.build_user_option
-    @user.save
+    @user.save(context: :registration)
     session["devise.regist_data"]["user"].clear
     session["address"].clear
     sign_in(:user, @user)

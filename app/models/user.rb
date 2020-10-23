@@ -28,7 +28,7 @@ class User < ApplicationRecord
   scope :search, -> (search_params) do
     return if search_params.blank?
     
-    first_like(search_params[:first_name]).last_like(search_params[:last_name]).first_cana_like(search_params[:first_name_cana]).last_cana_like(search_params[:last_name_cana]).phone_like(search_params[:phone_number]).email_like(search_params[:email]).customer_number_like(search_params[:customer_number]).member_like(search_params[:menber_id]).visit_from(search_params[:visit_from]).visit_to(search_params[:visit_to]).visit_time_like(search_params[:visit_time]).birthday_from(search_params[:birthday_from]).birthday_to(search_params[:birthday_to]).age_like(search_params[:age_id]).gender_like(search_params[:gender_id]).job_like(search_params[:job_id]).stylist_like(search_params[:stylist_id])
+    first_like(search_params[:first_name]).last_like(search_params[:last_name]).first_cana_like(search_params[:first_name_cana]).last_cana_like(search_params[:last_name_cana]).phone_like(search_params[:phone_number]).email_like(search_params[:email]).customer_number_like(search_params[:customer_number]).member_like(search_params[:menber_id]).visit_from(search_params[:visit_from]).visit_to(search_params[:visit_to]).visit_time_like(search_params[:visit_time]).birthday_from(search_params[:birthday_from]).birthday_to(search_params[:birthday_to]).age_like(search_params[:age_id]).stylist_like(search_params[:stylist_id])
   end
 
   scope :first_like, -> (first_name) { where('first_name LIKE ?', "%#{first_name}%") if first_name.present? }
@@ -45,28 +45,18 @@ class User < ApplicationRecord
   scope :birthday_from, -> (from) { where('? <= birthday', from) if from.present? }
   scope :birthday_to, -> (to) { where('birthday <= ?', to) if to.present? }
   scope :age_like, -> (age_id) { where(age_id: age_id) if age_id.present? } 
-  scope :gender_like, -> (gender_id) { where(gender_id: gender_id) if gender_id.present? }
-  scope :job_like, -> (job_id) { where(job_id: job_id) if job_id.present? }
+  # scope :gender_like, -> (gender_id) { where(gender_id: gender_id) if gender_id.present? }
+  # scope :job_like, -> (job_id) { where(job_id: job_id) if job_id.present? }
   scope :stylist_like, -> (stylist_id) { where(stylist_id: stylist_id) if stylist_id.present? }
-   
-    # with_options presence: true do
-    #   validates :birthday
-    #   validates :last_name
-    #   validates :first_name
-    #   validates :last_name_cana
-    #   validates :first_name_cana
-    #   validates :phone_number, format: { with: /\A\d{10,11}\z/, message: 'にはハイフン無しの半角数字で１１桁以内入力して下さい'} 
-    #   validates :email, uniqueness: true, format: { with: /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i }
-    # end
-    #     NAME_REGEX = /\A[ぁ-んァ-ンー-龥]+\z/.freeze
-    #     validates_format_of :last_name, with: NAME_REGEX, message: '全角文字かな/カナ/漢字を使用してください'
-    #     validates_format_of :first_name, with: NAME_REGEX, message: '全角文字かな/カナ/漢字を使用してください'
 
-    #     NAME_CANA_REGEX = /\A[\p{katakana}ー－&&[^ -~｡-ﾟ]]+\z/.freeze
-    #     validates_format_of :last_name_cana, with: NAME_CANA_REGEX, message: '全角カタカナのみ入力して下さい'
-    #     validates_format_of :first_name_cana, with: NAME_CANA_REGEX, message: '全角カタカナのみ入力して下さい'
-
-    #     PASSWORD_REGEX = /\A(?=.*?[a-z])(?=.*?[\d])[a-z\d]+\z/i.freeze
-    #     validates_format_of :password, with: PASSWORD_REGEX, message: 'には英字と数字の両方を含めて設定してください'
-
+  with_options on: :registration do |registration|
+    registration.validates :birthday, presence: true
+    registration.validates :last_name, presence: true, format: { with: /\A[ぁ-んァ-ンー-龥]+\z/, message: '全角文字かな/カナ/漢字を使用してください'}
+    registration.validates :first_name, presence: true, format: { with: /\A[ぁ-んァ-ンー-龥]+\z/, message: '全角文字かな/カナ/漢字を使用してください'}
+    registration.validates :last_name_cana, presence: true, format: { with: /\A[\p{katakana}ー－&&[^ -~｡-ﾟ]]+\z/, message: '全角カタカナのみ入力して下さい'}
+    registration.validates :first_name_cana, presence: true, format: { with: /\A[\p{katakana}ー－&&[^ -~｡-ﾟ]]+\z/, message: '全角カタカナのみ入力して下さい'}
+    registration.validates :phone_number, presence: true
+    registration.validates :email, uniqueness: true, format: { with: /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i }
+    registration.validates :password, presence: true, format: { with: /\A(?=.*?[a-z])(?=.*?[\d])[a-z\d]+\z/i, message: 'には英字と数字の両方を含めて設定してください'}
+  end
 end

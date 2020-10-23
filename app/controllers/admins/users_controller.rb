@@ -41,7 +41,7 @@ class Admins::UsersController < ApplicationController
   def index
     age_update
     @search_params = user_search_params
-    @users = User.search(@search_params).includes([:stylist,:user_detail]).page(params[:page]).per(20)#menu
+    @users = User.search(@search_params).includes([:stylist,:user_detail]).page(params[:page]).per(20)
     # binding.pry
   end
 
@@ -51,7 +51,7 @@ class Admins::UsersController < ApplicationController
 
   def create
     @user = UserAddress.new(user_params)
-    if @user.save
+    if @user.save 
        return redirect_to admins_users_path
     else 
        render :new
