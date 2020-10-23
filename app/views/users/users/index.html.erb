@@ -11,30 +11,25 @@
         </p>
       </div>
       <div class="salon_name_area">
-        <ul class="salon_detail_area">
-          <% if Salon.count == 0 %>
+        <% if Salon.count == 0 %>
+          <ul class="salon_detail_area">
            <li class="salon_detail_text">
             サンプル
            </li>
            <li class="salon_name1">
             サンプル
            </li>
+          </ul>
           <% else %>
+          <ul>
            <li class="salon_detail_text">
             <%= @salon.salon_name %>
            </li>
            <li class="salon_name1">
             <%= @salon.salon_slogan%>
            </li>
+          </ul>
           <% end %>
-        </ul>
-          <li class="salon_detail_text">
-            <%= @salon.salon_name %>
-          </li>
-          <li class="salon_name1">
-            <%= @salon.salon_slogan%>
-          </li>
-        </ul>
         <ul class="salon_detail_area2">
           <% if Salon.count == 0 %>
             <li class="salon_detail_description1">
