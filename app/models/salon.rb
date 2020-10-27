@@ -5,4 +5,6 @@ class Salon < ApplicationRecord
   has_one :user
   has_one_attached :salon_top_image
   has_one_attached :salon_bottom_image
+
+  
 end

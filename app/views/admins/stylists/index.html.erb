@@ -32,11 +32,11 @@
           <th class="stylist_table_top">詳細</th>
           <th class="stylist_table_top">非掲載<br>削除</th>
         </tr>
-        <% @stylists.each do |stylist| %>
+        <% @stylists.each.with_index(1) do |stylist, i| %>
           <tr style="height:30px;">
             <td rowspan="2" class="stylist_info">
               <%= link_to edit_admins_stylist_path(stylist.id) do %>
-                <span style="color:black;">No.<%= stylist.stylist_number %></span>
+                <span style="color:black;">No.<%= i %></span>
               <% end %>
             </td>
             <td rowspan="2" class="stylist_info">

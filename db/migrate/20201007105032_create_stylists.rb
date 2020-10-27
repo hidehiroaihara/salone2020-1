@@ -9,7 +9,6 @@ class CreateStylists < ActiveRecord::Migration[6.0]
       t.integer :gender_id,               null: false, default: 0
       t.string :catchphrase,              null: false
       t.string :self_introduction,        null: false
-      t.integer :stylist_number,          null: false
       t.timestamps
     end
   end

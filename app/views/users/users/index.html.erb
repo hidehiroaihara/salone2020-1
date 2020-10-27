@@ -4,7 +4,7 @@
       <div class="top_page_background_image_area">
         <p class="top_page_image">
           <% if Salon.count == 0 %>
-            画像エリア
+            <span class="background_image"></span>
           <% else %>
             <%= image_tag @salon.salon_top_image, class: "stylist-img" if @salon.salon_top_image.attached? %> 
           <% end %>
@@ -14,14 +14,14 @@
         <% if Salon.count == 0 %>
           <ul class="salon_detail_area">
            <li class="salon_detail_text">
-            サンプル
+            サンプル(La Vie en Reflet(ラ・ヴィ・アン・ルフレット))
            </li>
            <li class="salon_name1">
-            サンプル
+            サンプル(「輝く人生」といった意味です。「薔薇色の人生」へ)
            </li>
           </ul>
-          <% else %>
-          <ul>
+        <% else %>
+          <ul class="salon_detail_area">
            <li class="salon_detail_text">
             <%= @salon.salon_name %>
            </li>
@@ -29,11 +29,11 @@
             <%= @salon.salon_slogan%>
            </li>
           </ul>
-          <% end %>
+        <% end %>
         <ul class="salon_detail_area2">
           <% if Salon.count == 0 %>
             <li class="salon_detail_description1">
-              サンプル
+              サンプル(髪だけでなく全身に癒しを与えます)
             </li>
           <% else %>
             <li class="salon_detail_description1">

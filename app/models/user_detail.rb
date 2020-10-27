@@ -8,6 +8,7 @@ class UserDetail < ApplicationRecord
   belongs_to :user, optional: true
 
   validates :consent, presence: true, on: :registration
+
   scope :search, -> (search_params) do
     return if search_params.blank?
     gender_like(search_params[:gender_id]).job_like(search_params[:job_id])

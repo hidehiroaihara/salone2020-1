@@ -2,6 +2,9 @@
 <div class="contents">
   <div class="section">
      <%= form_with model: @salon, url: admins_salon_path(@salon.id), id: 'new_salon', local: true do |f| %>
+
+      <%= render 'shared/error_messages', model: f.object %>
+      
       <table class="salon_new_table">
           <colgroup width="20%"></colgroup>
           <colgroup width="20%"></colgroup>

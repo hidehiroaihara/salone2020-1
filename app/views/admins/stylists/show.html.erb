@@ -52,12 +52,6 @@
             <span class="stylist_show_area"><%= @stylist.gender.name %></span>
           </td>
         </tr>
-        <tr class="stylist_tr">
-          <th class="stylist_input_name">スタイリスト<br>ナンバー</th>
-          <td colspan="1" class="stylist_td1">No.
-            <span class="stylist_show_area"><%= @stylist.stylist_number %></span>
-          </td>
-        </tr>
       </table>
       <table class="stylist_new_table" align="left">
       </table>
@@ -121,7 +115,11 @@
         <tr class="stylist_tr" style="height:80px;">
           <th class="stylist_input_name">得意なイメージ</th>
             <td colspan="4" class="stylist_td1">
-              <span class="stylist_show_area"><%= @stylist.stylist_detail.style_type.name %></span>
+              <% if @stylist.stylist_detail.style_type.nil? %>
+                <span class="stylist_show_area"></span>
+              <% else %>
+                <span class="stylist_show_area"><%= @stylist.stylist_detail.style_type.name %></span>
+              <% end %>
             </td>
         </tr>
         <tr class="stylist_tr" style="height:80px;">

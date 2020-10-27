@@ -66,9 +66,10 @@
   text-align: center;
 }
 select{
-  width: 200px;
+  padding: 2px 10px;
   font-size: 14px;
   margin-left: 9px;
+  float: left;
 }
 .cf2{
   width: 300px;

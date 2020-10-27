@@ -1,4 +1,4 @@
-if (document.URL.match( /new/) || document.URL.match( /edit/)){
+if (document.URL.match( /new/) || document.URL.match( /edit/) || document.URL.match( /stylists/)){
 document.addEventListener('DOMContentLoaded', function(){
   const ImageList = document.getElementById('image-list');
   const createImageHTML = (blob) => {
@@ -22,7 +22,7 @@ document.addEventListener('DOMContentLoaded', function(){
 });
 }
 
-if (document.URL.match( /new/ ) || document.URL.match( /edit/ )){
+if (document.URL.match( /new/ ) || document.URL.match( /edit/ ) || document.URL.match( /stylists/)){
   document.addEventListener('DOMContentLoaded', function(){
     const ImageList = document.getElementById('image-url')
 
@@ -61,7 +61,7 @@ if (document.URL.match( /new/ ) || document.URL.match( /edit/ )){
     });
   });
 }
-if (document.URL.match( /new/) || document.URL.match( /edit/)){
+if (document.URL.match( /new/) || document.URL.match( /edit/) || document.URL.match( /stylists/)){
   document.addEventListener('DOMContentLoaded', function(){
     const ImageList = document.getElementById('image_top_list');
     const createImageHTML = (blob) => {
@@ -84,7 +84,7 @@ if (document.URL.match( /new/) || document.URL.match( /edit/)){
     });
   });
 }
-if (document.URL.match( /new/) || document.URL.match( /edit/)){
+if (document.URL.match( /new/) || document.URL.match( /edit/) || document.URL.match( /stylists/)){
   document.addEventListener('DOMContentLoaded', function(){
     const ImageList = document.getElementById('image_bottom_list');
     const createImageHTML = (blob) => {

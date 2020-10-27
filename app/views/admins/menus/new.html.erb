@@ -9,6 +9,9 @@
       🔴必要項目
     </p>
     <%=form_with model:@menu, url: admins_menus_path, id: 'new_menu', local: true do |f| %>
+     
+      <%= render 'shared/error_messages', model: f.object %>
+      
       <table class="new_menu" style="margin-top:10px;">
         <tr>
             <th>メニュー情報

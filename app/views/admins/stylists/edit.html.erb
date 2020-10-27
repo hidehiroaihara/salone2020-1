@@ -9,6 +9,9 @@
       🔴必要項目
     </p>
     <%= form_with model: @stylist_detail, url: admins_stylist_path(@stylist.id), method: :patch, local: true do |f| %>
+
+      <%= render 'shared/error_messages', model: f.object %>
+      
       <table class="stylist_new_table" align="left">
         <tr>
           <th class="stylist_title">スタイリスト情報
@@ -64,12 +67,6 @@
           <th class="stylist_input_name">性  別<span class="circle">🔴</span></th>
           <td colspan="2" class="stylist_td">
             <%= f.collection_select(:gender_id, Gender.all, :id, :name, {include_blank: "--"},{class:"stylist_select", id:"stylist_gender"}) %>
-          </td>
-        </tr>
-        <tr class="stylist_tr">
-          <th class="stylist_input_name">スタイリスト<span class="circle">🔴</span><br>ナンバー</th>
-          <td colspan="1" class="stylist_td1">No.
-            <%= f.text_field :stylist_number, class:"stylist_field1", placeholder:"例)1" %>
           </td>
         </tr>
       </table>
@@ -141,7 +138,7 @@
         <tr class="stylist_tr" style="height:80px;">
           <th class="stylist_input_name">得意なイメージ<span class="circle">🔴</span></th>
             <td colspan="4" class="stylist_td1">
-               <%= f.collection_radio_buttons(:style_type_id, StyleType.all, :id, :name, {include_hidden: false},{class:"style_type_check"}) %> 
+               <%= f.collection_radio_buttons(:style_type_id, StyleType.all, :id, :name, {value: 0},{class:"style_type_check"}) %> 
             </td>
         </tr>
         <tr class="stylist_tr" style="height:80px;">

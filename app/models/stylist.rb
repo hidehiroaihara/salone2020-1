@@ -5,7 +5,7 @@ class Stylist < ApplicationRecord
 
   has_many :reservations
   has_many :users
-  has_one :stylist_detail
+  has_one :stylist_detail, dependent: :destroy
   has_one_attached :image
   has_many_attached :portraits
 
@@ -15,17 +15,5 @@ class Stylist < ApplicationRecord
   def set_name_cana
     self.stylist_first_name_cana + self.stylist_last_name_cana
   end
-  with_options presence: true do
-    validates :rank
-    validates :stylist_first_name
-    validates :stylist_last_name
-    validates :stylist_last_name_cana
-    validates :stylist_first_name_cana
-    validates :stylist_number
-    validates :catchphrase
-    validates :self_introduction
- end
-
- validates :gender_id, numericality: { other_than: 0, message: "can't be blank" }
-
+ 
 end

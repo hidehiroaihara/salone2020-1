@@ -9,6 +9,9 @@
       🔴必要項目
     </p>
     <%= form_with model: @stylist, url: admins_stylists_path, id: 'new_stylist', local: true do |f| %>
+      
+      <%= render 'shared/error_messages', model: f.object %>
+
       <table class="stylist_new_table" align="left">
         <tr>
           <th class="stylist_title">スタイリスト情報
@@ -65,13 +68,6 @@
             <%= f.collection_select(:gender_id, Gender.all, :id, :name,{class:"stylist_select", id:"stylist_gender"}) %>
           </td>
         </tr>
-        <tr class="stylist_tr">
-          <th class="stylist_input_name">スタイリスト<span class="circle">🔴</span><br>ナンバー</th>
-          <td colspan="1" class="stylist_td1">No.
-            <%= f.text_field :stylist_number, class:"stylist_field1", placeholder:"例)1" %>
-          </td>
-        </tr>
-      </table>
       <table class="stylist_new_table" align="left">
       </table>
       <table class="stylist_new_table2" style="float:left;margin-left: 45px;margin-top:30px;">
@@ -128,19 +124,19 @@
           </td>
           <th class="stylist_tr">指名<span class="stylist_font">(スタイリストのみ)</span><span class="circle">🔴</span></th>
           <td colspan="2" class="stylist_td1">
-            <%= f.collection_select(:nomination_id, Nomination.all, :id, :name, {class:"stylist_select1", id:"stylist_nomination"}) %>
+            <%= f.collection_select(:nomination_id, Nomination.all, :id, :name, {class:"stylist_nomination_select", id:"stylist_nomination"}) %>
           </td>
         </tr>
         <tr class="stylist_tr">
           <th class="stylist_input_name">指名料<span class="stylist_font">(スタイリストのみ)</span></th>
           <td colspan="4" class="stylist_td1"><span class="en">￥</span>
-            <%= f.text_field :nomination_price, class:"stylist_field_price" %><span class="en">(税込)</span>
+            <%= f.text_field :nomination_price, value: 0, class:"stylist_field_price" %><span class="en">(税込)</span>
           </td>
         </tr>
         <tr class="stylist_tr" style="height:80px;">
           <th class="stylist_input_name">得意なイメージ<span class="stylist_font">(スタイリストのみ)</span><span class="circle">🔴</span></th>
             <td colspan="4" class="stylist_td1">
-              <%= f.collection_radio_buttons(:style_type_id, StyleType.all, :id, :name, {include_hidden: false},{class:"style_type_check"}) %>
+              <%= f.collection_radio_buttons(:style_type_id, StyleType.all, :id, :name, {value: 0},{class:"style_type_check"}) %>
             </td>
         </tr>
         <tr class="stylist_tr" style="height:80px;">

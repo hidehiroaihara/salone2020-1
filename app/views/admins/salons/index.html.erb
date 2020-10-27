@@ -5,11 +5,6 @@
       <p class="block_area"></p>
       <h1 class="title1 stylist_space">サロン情報一覧</h1>
     </div>
-    <div class="stylist_display">
-      <p class="stylist_area">
-        <%= link_to "メニュー追加登録", new_admins_salon_path, class:"stylist_add" %>
-      </p>
-    </div>
     <div class="name_area">
       <p class="block_area"></p>
       <h2 class="basic">サロン情報</h2>
@@ -45,13 +40,13 @@
         <tr>
           <th class="show_name">営業時間</th>
           <td class="show_bd">
-            <span class="show_field"><%= salon.start_time.strftime("%H時間%M分") %>
+            <span class="show_field"><%= salon.start_time.strftime("%H時%M分") %>
           </td>
         </tr>
         <tr>
           <th class="show_name">終了時間</th>
           <td class="show_bd index_user_option_td">
-            <span class="show_field"><%= salon.end_time.strftime("%H時間%M分") %></span>
+            <span class="show_field"><%= salon.end_time.strftime("%H時%M分") %></span>
           </td>
         </tr>
       </table>

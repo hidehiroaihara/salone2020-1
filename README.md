@@ -350,7 +350,6 @@ VSCode
 | gender_id              | integer      | null: false                   |
 | catchphrase            | string       | null: false                   |
 | self-introduction      | string       | null: false                   |
-| stylist_number         | integer      | null: false                   |
 
 ### Association
 

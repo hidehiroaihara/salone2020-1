@@ -1,5 +1,6 @@
 class StyleType < ActiveHash::Base
   self.data = [
+    # { id: 0, name: 'なし' },
     { id: 1, name: 'ナチュラル' },
     { id: 2, name: 'ビジネス・オフィス' },
     { id: 3, name: 'エレガント'},

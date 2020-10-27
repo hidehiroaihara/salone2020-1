@@ -5,12 +5,21 @@
         <%= link_to image_tag("salone-logo.png", class:"salon-icon-view"), "/" %>
       </div>
     </div>
-    <div class="salon_view_right">
-      <h1 class="salon_name_view">サンプル
-        <p class="salon_name_cana">フリカナ</p>
-        <p class="salon_view_address">住所</p>
-      </h1>
-    </div>
+    <% if Salon.count == 0 %>
+      <div class="salon_view_right">
+        <h1 class="salon_name_view">サンプル(La Vie en Reflet(ラ・ヴィ・アン・ルフレット))
+          <p class="salon_name_cana">サンプルフリカナ(ラ・ヴィ・アン・ルフレット)</p>
+          <p class="salon_view_address">サンプル住所(〒206-0824東京都稲城市若葉台２−５−６)</p>
+        </h1>
+      </div>
+    <% else %>
+      <div class="salon_view_right">
+        <h1 class="salon_name_view">サンプル(La Vie en Reflet(ラ・ヴィ・アン・ルフレット))
+          <p class="salon_name_cana">サンプルフリカナ(ラ・ヴィ・アン・ルフレット)</p>
+          <p class="salon_view_address">サンプル住所(〒206-0824東京都稲城市若葉台２−５−６)</p>
+        </h1>
+      </div>
+    <% end %>
     <div class="salon_log_all">
       <div class="book_area">
         <%= link_to "予約する", users_reservations_path, class:"book_btn"%>
@@ -37,7 +46,7 @@
               <%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class:"salon_log_btn" %>
             </li>
           <% else %>
-          　<li class="salon_new_btn_li">
+            <li class="salon_new_btn_li">
               <%= link_to "新規登録", new_user_registration_path, class:"salon_new_btn"%>
             </li>
             <li class="salon_log_btn_li">
