@@ -60,7 +60,7 @@
         </tr>
         <tr class="birth_colum">
           <th class="input_name">誕生日<span class="circle">🔴</span></th>
-            <td class="user_birth_table" clospan="2">
+            <td class="user_birth_table" colspan="2">
               <%= raw sprintf(
                 f.date_select(
                   :birthday,
@@ -78,6 +78,12 @@
           <th class="input_name">担当スタイリスト</th>
           <td class="bd" colspan="2">
             <%= f.collection_select(:stylist_id, Stylist.all, :id, :set_name, {}, {class:"select-box", id:"stylists"}) %>
+          </td>
+        </tr>
+         <tr>
+          <th class="input_name">登録美容室</th>
+          <td class="bd" colspan="2">
+            <%= f.collection_select(:salon_id, Salon.all, :id, :salon_name, {}, {class:"select-box", id:"stylists"}) %>
           </td>
         </tr>
       </table>

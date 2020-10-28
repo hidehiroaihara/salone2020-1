@@ -14,9 +14,9 @@
       </div>
     <% else %>
       <div class="salon_view_right">
-        <h1 class="salon_name_view">サンプル(La Vie en Reflet(ラ・ヴィ・アン・ルフレット))
-          <p class="salon_name_cana">サンプルフリカナ(ラ・ヴィ・アン・ルフレット)</p>
-          <p class="salon_view_address">サンプル住所(〒206-0824東京都稲城市若葉台２−５−６)</p>
+        <h1 class="salon_name_view"> <%= @salon.salon_name %>
+          <p class="salon_name_cana"></p>
+          <p class="salon_view_address">〒<%= @salon.post_code%><%= @salon.prefecture.name%><%= @salon.address_all%></p>
         </h1>
       </div>
     <% end %>

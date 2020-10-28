@@ -15,19 +15,19 @@
           <tr>
             <th class="input_name">性別</th>
             <td class="bd">
-              <%= f.collection_select(:gender_id, Gender.all, :id, :name, {class:"select-box1", id:"gender"}) %>
+              <%= f.collection_select(:gender_id, Gender.all, :id, :name,{}, {class:"select-box1", id:"gender"}) %>
             </td>
           </tr>
           <tr>
             <th class="input_name">血液型</th>
             <td class="bd">
-              <%= f.collection_select(:blood_id, Blood.all, :id, :name, {class:"select-box1", id:"blood_type"}) %>
+              <%= f.collection_select(:blood_id, Blood.all, :id, :name,{}, {class:"select-box1", id:"blood_type"}) %>
             </td>
           </tr>
           <tr>
             <th class="input_name">職業</th>
             <td class="bd">
-              <%= f.collection_select(:job_id, Job.all, :id, :name, {class:"select-box1", id:"job"}) %>
+              <%= f.collection_select(:job_id, Job.all, :id, :name,{}, {class:"select-box1", id:"job"}) %>
             </td>
           </tr>
           <tr>

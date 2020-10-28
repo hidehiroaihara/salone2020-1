@@ -68,10 +68,12 @@ box-shadow: none;
 }
 .user_birth_table{
   display: flex;
-  align-items: center;
-  justify-content: space-around;
+  /* align-items: center;
+  justify-content: space-around; */
   font-size: 14px;
   padding-top: 10px;
+  height: 100%;
+  width: 100%;
   
 }
 .user_new_field{

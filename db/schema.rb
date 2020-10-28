@@ -185,7 +185,7 @@ ActiveRecord::Schema.define(version: 2020_10_15_072058) do
     t.integer "customer_number"
     t.integer "age_id"
     t.boolean "admin", default: false
-    t.integer "salon_id", default: 1, null: false
+    t.integer "salon_id", null: false
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
