@@ -1,0 +1,152 @@
+<%= render "shared/header_mypage" %>
+<div class="contents1">
+  <div class="section1">
+    <div class="mypage_show">
+      <table class="mypage_table">
+        <colgroup width="20%"></colgroup>
+        <colgroup width="30%"></colgroup>
+        <colgroup width="20%"></colgroup>
+        <colgroup width="30%"></colgroup>
+        <tr>
+          <th colspan="4" class="stylist_title">個人情報詳細
+            <p class="block_area"></p>
+          </th>
+        </tr>
+        <tr style="margin-top:30px;">
+          <th class="mypage_th">
+            氏名
+          </th>
+          <td class="mypage_td">
+             <%= @user.set_user_name %>
+          </td>
+          <th class="mypage_th">
+           電話番号
+          </th>
+          <td class="mypage_td">
+             <%= @user.phone_number%>
+          </td>
+        </tr> 
+        <tr>
+          <th class="mypage_th">氏名(フリガナ)
+          </th>
+          <td class="mypage_td">
+            <%= @user.set_user_name_cana%>
+          </td>
+          <th class="mypage_th">誕生日
+          </th>
+          <td class="mypage_td">
+            <%= @user.birthday.strftime("%Y/%m/%d")%>
+          </td>
+        </tr>
+        <tr>
+         <th class="mypage_th">メールアドレス
+         </th>
+         <td class="mypage_td">
+           <%= @user.email%>
+         </td>
+         <th class="mypage_th">担当スタイリスト
+         </th>
+         <td class="mypage_td">
+           <%= @user.stylist.set_name %>
+         </td>
+        </tr>
+        <tr>
+          <th class="mypage_th">性別
+          </th>
+          <td class="mypage_td">
+           <%= @user.user_detail.blood.name %>
+         </td>
+         <th class="mypage_th">血液型
+          </th>
+         <td class="mypage_td">
+           <%= @user.user_detail.gender.name %>
+         </td>
+        </tr>
+        <tr>
+          <th class="mypage_th">職業
+          </th>
+          <td class="mypage_td">
+           <%= @user.user_detail.job.name %>
+         </td>
+         <th class="mypage_th">メール配信
+          </th>
+         <td class="mypage_td">
+           <%= @user.user_detail.consent.name %>
+         </td>
+        </tr>
+        <tr>
+          <th class="mypage_th">住所
+          </th>
+          <td colspan="3" class="mypage_td">
+            〒<%= @user.address.post_code%><%= @user.address.prefecture.name %><%= @user.address.address_all%>
+          </td>
+        </tr>
+      </table>
+      <div class="edit_menu_area mypage_edit">
+        <%= link_to "登録情報変更", edit_users_user_path(current_user.id), class:"edit_menu_btn"%>
+      </div>
+      <table class="mypage_table1" style="margin-top:30px;">
+        <colgroup width="10%"></colgroup>
+        <colgroup width="5%"></colgroup>
+        <colgroup width="30%"></colgroup>
+        <colgroup width="15%"></colgroup>
+        <colgroup width="20%"></colgroup>
+        <colgroup width="10%"></colgroup>
+        <colgroup width="10%"></colgroup>
+        <tr>
+          <th colspan="7" class="stylist_title">来店履歴
+            <p class="block_area"></p>
+          </th>
+        </tr>
+        <tr>
+         <th class="mypage_th mypage_visit_th">
+          来店日
+         </th>
+         <th class="mypage_th mypage_visit_th">
+          時間
+         </th>
+         <th class="mypage_th mypage_visit_th">
+          施術メニュー
+         </th>
+         <th class="mypage_th mypage_visit_th">
+          お支払い料金 
+         </th>
+         <th class="mypage_th mypage_visit_th">
+          購入商品
+         </th>
+         <th class="mypage_th mypage_visit_th">
+          スタイリスト
+         </th>
+          <th class="mypage_th mypage_visit_th">
+           ステータス
+         </th>
+        </tr>
+        <span class="paginate_class"> <% @reservations = @user.reservations.page(params[:page]).per(10) %></span>
+        <% @reservations.each do |reservation|%>
+          <tr>
+            <td class="mypage_td mypage_visit_date_td">
+              <%= reservation.date.strftime("%Y/%m/%d(#{@wd[reservation.date.wday]})")%>
+            </td>
+            <td class="mypage_td mypage_visit_td">
+              <%= reservation.menu_start_time.strftime("%H:%M") %>
+            </td>
+            <td class="mypage_td mypage_visit_td">
+              <%= reservation.menu.menu_name%>
+            </td>
+            <td class="mypage_td mypage_visit_td">
+                ￥<%= reservation.set_price %>税込
+            </td>
+            <td class="mypage_td mypage_visit_td">
+            </td>
+            <td class="mypage_td mypage_visit_td">
+              <%= reservation.stylist.set_name%>
+            </td>
+            <td class="mypage_td mypage_visit_td">
+            </td>
+          </tr>
+        <% end %>
+      </table>
+       <span class="paginate_class"> <%= paginate @reservations %></span>
+    </div>
+  </div>
+</div>

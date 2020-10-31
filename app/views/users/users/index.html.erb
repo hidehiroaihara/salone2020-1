@@ -4,7 +4,10 @@
       <div class="top_page_background_image_area">
         <p class="top_page_image">
           <% if Salon.count == 0 %>
-            <span class="background_image"></span>
+            <span class="background_image">
+               (サンプル画像)
+              <%= image_tag 'top-image.jpeg' %>
+            </span>
           <% else %>
             <%= image_tag @salon.salon_top_image, class: "stylist-img" if @salon.salon_top_image.attached? %> 
           <% end %>

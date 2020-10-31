@@ -9,3 +9,9 @@
   list-style: circle;
   color: rgb(182, 48, 0);
 }
+.login-flash-message{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgb(182, 48, 0);
+}

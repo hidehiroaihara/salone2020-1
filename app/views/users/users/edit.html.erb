@@ -1,0 +1,138 @@
+<%= render "shared/header_mypage" %>
+<div class="contents1">
+  <div class="section1">
+    <p class="new_user_maru">
+      🔴必要項目
+    </p>
+    <div class="user_name_area">
+      <p class="user_block_area"></p>
+      <h2 class="user_basic">基本情報</h2>
+    </div>
+    <%= form_with model:@user_address_detail, url: users_user_path(current_user.id), method: :patch, id: 'new_menu', local: true do |f| %>
+      <table class="user_entry_table" border="1" style="margin-left:10%;">
+        <tr>
+          <th class="input_name">氏名(漢字)<span class="circle">🔴</span></th>
+          <td class="bd">
+            <%= f.text_field :first_name , class:"user_new_field",placeholder:"例）山田", maxlength:"25" %>
+          </td>
+          <td class="bd">
+            <%= f.text_field :last_name , class:"user_new_field",placeholder:"例）太郎", maxlength:"25" %>
+          </td>
+        </tr>
+        <tr>
+          <th class="input_name">氏名(カナ)<span class="circle">🔴</span></th>
+          <td class="bd">
+            <%= f.text_field :first_name_cana, class:"user_new_field",placeholder:"例）ヤマダ", maxlength:"25" %>
+          </td>
+          <td class="bd">
+            <%= f.text_field :last_name_cana, class:"user_new_field", placeholder:"例）タロウ", maxlength:"25" %>
+          </td>
+        </tr>
+        <tr>
+          <th class="input_name">EMAIL<span class="circle">🔴</span></th>
+          <td colspan="2" class="bd">
+            <%= f.email_field :email, autofocus: true, autocomplete: "email", class:"user_email_field", placeholder:"例 ○○○○○○○@gmail.com" %>
+          </td>
+        </tr>
+        <tr>
+          <th class="input_name">電話番号<span class="circle">🔴</span></th>
+          <td colspan="2" class="bd"> 
+            <%= f.text_field :phone_number, class:"phone_field",placeholder:"例）09012345678", maxlength:"15" %>
+          </td>
+        </tr>
+        <tr class="birth_colum">
+          <th class="input_name">誕生日<span class="circle">🔴</span></th>
+            <td class="user_birth_table" colspan="2">
+              <%= raw sprintf(
+                f.date_select(
+                  :birthday,
+                  class:'user_select-birth',
+                  id:"birth-date",
+                  use_month_numbers: true,
+                  prompt:'--',
+                  start_year: (Time.now.year),
+                  end_year: 1930,
+                  date_separator: '%s'),
+                "<p> 年 </p>", "<p> 月 </p>") + "<p> 日 </p>" %>
+            </td>
+        </tr>
+        <tr>
+          <th class="input_name">担当スタイリスト</th>
+          <td class="bd" colspan="2">
+            <%= f.collection_select(:stylist_id, Stylist.all, :id, :set_name, {}, {class:"select-box", id:"stylists"}) %>
+          </td>
+        </tr>
+        <tr>
+          <th class="input_name">登録美容室</th>
+          <td class="bd" colspan="2">
+            <%= f.collection_select(:salon_id, Salon.all, :id, :salon_name, {}, {class:"select-box", id:"stylists"}) %>
+          </td>
+        </tr>
+      </table>
+      <div class="user_name_area">
+        <p class="user_block_area"></p>
+        <h2 class="user_basic">住所</h2>
+      </div>
+      <table class="user_entry_table address_height" border="1" style="margin-left:10%;">
+        <colgroup width="35%"></colgroup>
+        <colgroup width="65%"></colgroup>
+        <tr class="address_table">
+          <th class="input_name">住所</th>
+          <td class="address_input bd">
+            <span style="float:left;">〒</span>
+              <%= f.text_field :post_code, class:"post_field1", placeholder:"例）123-4567", onKeyUp:"AjaxZip3.zip2addr('user_address_detail[post_code]','','user_address_detail[prefecture_id]','user_address_detail[address_all]');" %>
+          </td>
+        </tr> 
+        <tr>
+          <th class="input_name">都道府県</th>
+          <td class="bd">
+            <%= f.collection_select(:prefecture_id, Prefecture.all, :id, :name, {include_blank: "--"}, {class:"select-box", id:"prefecture"}) %>
+          </td>
+        </tr>
+        <tr>
+          <th class="input_name">市町村、番地</th>
+          <td class="bd">
+            <%= f.text_field :address_all, class:"address_field", placeholder:"例）中央区豊海町１ー２−３" %>
+          </td>
+        </tr>
+      </table>
+      <div class="user_name_area">
+        <p class="user_block_area"></p>
+        <h2 class="user_basic">個人詳細</h2>
+      </div>
+      <table class="user_entry_table detail_height" border="1" style="margin-left:10%;">
+        <colgroup width="35%"></colgroup>
+        <colgroup width="65%"></colgroup>
+        <tr>
+          <th class="input_name">性別</th>
+          <td class="bd">
+            <%= f.collection_select(:gender_id, Gender.all, :id, :name,{}, {class:"select-box1", id:"gender"}) %>
+          </td>
+        </tr>
+        <tr>
+          <th class="input_name">血液型</th>
+          <td class="bd">
+            <%= f.collection_select(:blood_id, Blood.all, :id, :name,{}, {class:"select-box1", id:"blood_type"}) %>
+          </td>
+        </tr>
+        <tr>
+          <th class="input_name">職業</th>
+          <td class="bd">
+            <%= f.collection_select(:job_id, Job.all, :id, :name,{}, {class:"select-box1", id:"job"}) %>
+          </td>
+        </tr>
+        <tr>
+          <th class="input_name">メール配信<span class="circle">🔴</span></th>
+          <td class="bd">
+            <%= f.collection_select(:consent_id, Consent.all, :id, :name, {include_blank: "--"}, {class:"select-box1", id:"consent"}) %>
+          </td>
+        </tr>
+      </table>
+      <div class="user_submit_save">
+        <p class="user_registration_area">
+          <%= f.submit "更新", class:"user_registration" %>
+        </p>
+      </div> 
+    <% end %>
+  </div>
+</div>

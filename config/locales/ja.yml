@@ -1,4 +1,24 @@
 ja:
+  activerecord:
+    attributes:
+      user:
+        email: メール
+        birthday: 誕生日
+        last_name: 名前
+        first_name: 名字
+        last_name_cana: 名前（フリガナ）
+        first_name_cana: 名字（フリガナ）
+        phone_number: 電話番号
+      user_detail:
+        consent: メール配信
+      stylist: 
+        stylist_first_name: 名字
+        stylist_last_name: 名前
+        stylist_last_name_cana: 名字(フリガナ)
+        stylist_first_name_cana: 名前(フリガナ)
+        catchphrase: キャッチフレーズ
+        self_introduction: 自己紹介
+        rank_id: ランク
   date:
     formats:
       default: "%Y/%m/%d"

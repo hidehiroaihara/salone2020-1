@@ -95,7 +95,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
     @detail = UserDetail.new(detail_params)
     unless @detail.valid?(:registration)
       flash.now[:alert] = @detail.errors.full_messages
-      render :new_address and return
+      render :new_detail and return
     end
     @user.build_address(@address.attributes)
     @user.build_user_detail(@detail.attributes)
