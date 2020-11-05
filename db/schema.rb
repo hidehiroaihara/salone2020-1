@@ -73,7 +73,7 @@ ActiveRecord::Schema.define(version: 2020_10_15_072058) do
     t.date "date", null: false
     t.integer "menu_id", null: false
     t.integer "user_id", null: false
-    t.integer "status_id"
+    t.integer "status_id", default: 1
     t.integer "salon_id", null: false
     t.datetime "menu_start_time"
     t.datetime "menu_end_time"

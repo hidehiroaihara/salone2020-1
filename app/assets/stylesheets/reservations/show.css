@@ -2,3 +2,37 @@
   width: 100%;
   height: 100%;
 }
+.show_reservation_table{
+  width: 100%;
+  height: 200px;
+}
+.reservation_show_th{
+  background: #f8e2b7;
+  border: 1px solid black;
+}
+.reservation_show_td{
+  border: 1px solid black;
+}
+.status_btn{
+  border: 1px solid skyblue;
+  background-color: skyblue;
+  color: white;
+  box-shadow:
+    0 1.9px 2.5px rgba(211, 211, 211, 0.057),
+    0 5px 6.1px rgba(211, 211, 211, 0.076),
+    0 10.1px 11.4px rgba(211, 211, 211, 0.086),
+    0 19.2px 19.8px rgba(211, 211, 211, 0.092),
+    0 38.4px 34.8px rgba(211, 211, 211, 0.1),
+    0 101px 74px rgba(211, 211, 211, 0.13);
+  border-radius: 3px;
+  font-size: 14px;
+}
+.status_btn:hover, .mypage_cancel_btn:hover {
+  box-shadow: inset 1px 1px 10px 2px rgba(235, 235, 235, 0.5);
+}
+.mypage_detail{
+  color:rgba(250, 74, 74, 0.801);
+}
+.mypage_cancel_btn{
+  font-size: 14px;
+}

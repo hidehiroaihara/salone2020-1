@@ -1,0 +1,43 @@
+<%= render "shared/header_mypage" %>
+<div class="contents1">
+  <div class="section1">
+    <p class="create_text_caution">
+      【！】メニュー変更後時間変更を行ってください。
+    </p>
+    <div class="edit_user_reservation_area">
+      <%= form_with model: @reservation, url: update_menu_users_reservation_path(@reservation.id), method: :patch, local: true do |f| %>
+        <table class="edit_user_reservation_table">
+          <colgroup width="15%"></colgroup>
+          <colgroup width="85%"></colgroup>
+          <tr>
+            <th colspan="2" class="stylist_title">メニュー内容変更
+              <p class="block_area"></p>
+            </th>
+          </tr>
+          <tr>
+            <th class="edit_user_reservation_th">
+              メニュー選択
+            </th>
+            <td class="edit_user_reservation_td">
+              <%= f.collection_select(:menu_id, Menu.all, :id, :menu_name ,{class:"edit_reservation_menu_select", id:"edit_reservation_menu_select"})%>
+            </td>
+          </tr>
+        </table>
+        <table style="width:100%;height:20px;margin-top:30px;">
+          <tr>
+            <td class="register_td">
+              <ul class="stylist_register_btn">
+                <li>
+                  <%= f.submit "変更", class:"register_btn"%>
+                </li>
+              </ul>
+            </td>
+          </tr>
+         </table>
+      <% end %>
+      <%= link_to edit_users_reservation_path(@reservation.id) do%>
+        <p class="new_reservation_top">メニューを変更せず日時変更を行う</p>
+      <% end%>
+    </div>
+  </div>
+</div>

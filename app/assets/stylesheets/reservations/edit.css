@@ -1,0 +1,15 @@
+.admin_edit_reservation{
+  height: 100%;
+  width: 100%;
+}
+.admin_edit_reservation_table{
+  height: 10px;
+  width: 100%;
+}
+.admin_edit_reservation_th{
+  background: #f8e2b7;
+  border: 1px solid black;
+}
+.admin_edit_reservation_td{
+  border: 1px solid black;
+}

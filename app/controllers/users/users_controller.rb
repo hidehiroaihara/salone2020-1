@@ -3,7 +3,8 @@ class Users::UsersController < ApplicationController
 
   def index
     salon_all
-    @stylists = Stylist.limit(16).order("created_at DESC")
+    @stylists = Stylist.limit(14).order("created_at DESC")
+    status_update
   end
 
   def show
@@ -53,5 +54,21 @@ class Users::UsersController < ApplicationController
 
   def set_user
     @user = User.find(params[:id])
+  end
+  
+  def status(menu_end_time)
+    if (DateTime.now.strftime("%Y%m%d%H%M")).to_i < menu_end_time.strftime("%Y%m%d%H%M").to_i
+      return 1
+    elsif (DateTime.now.strftime("%Y%m%d%H%M")).to_i > menu_end_time.strftime("%Y%m%d%H%M").to_i
+      return 3
+    end
+  end
+  
+  def status_update
+    reservations = Reservation.all
+    reservations.each do |reservation|
+      reservation.status_id = status(reservation.menu_end_time)
+      reservation.save
+    end
   end
 end

@@ -68,113 +68,133 @@
                   <% case @reservation_time %>
                     <% when 1800 then%>
                       <td colspan="1" class="table_stylist">
-                        <p class="table_stylist1"></p>
-                        <p class="table_stylist_2hour"> <span class="table_stylist_reservation_font"><%= @reservation.user.set_user_name_cana %>様</span><br>
-                          <% @reservation.menu.style_category_lists.each do |category| %>
-                            <span class="category_font_size"><%= category.name %></span>
-                          <% end %>
-                        </p>
-                        <p class="table_stylist3"></p>
-                        <% reservation_check = false%>
+                        <%= link_to admins_reservation_path(@reservation.id) do %>
+                          <p class="table_stylist1"></p>
+                          <p class="table_stylist_2hour"> <span class="table_stylist_reservation_font"><%= @reservation.user.set_user_name_cana %>様</span><br>
+                            <% @reservation.menu.style_category_lists.each do |category| %>
+                              <span class="category_font_size"><%= category.name %></span>
+                            <% end %>
+                          </p>
+                          <p class="table_stylist3"></p>
+                          <% reservation_check = false%>
+                        <% end %>
                       </td>
                     <% when 3600 then%>
                       <td colspan="2" class="table_stylist">
-                        <p class="table_stylist1"></p>
-                        <p class="table_stylist_2hour"> <span class="table_stylist_reservation_font"><%= @reservation.user.set_user_name_cana %>様</span><br>
-                          <% @reservation.menu.style_category_lists.each do |category| %>
-                            <span class="category_font_size"><%= category.name %></span>
-                          <% end %>
-                        </p>
-                        <p class="table_stylist3"></p>
-                        <% reservation_check = false%>
+                        <%= link_to admins_reservation_path(@reservation.id) do %>
+                          <p class="table_stylist1"></p>
+                          <p class="table_stylist_2hour"> <span class="table_stylist_reservation_font"><%= @reservation.user.set_user_name_cana %>様</span><br>
+                            <% @reservation.menu.style_category_lists.each do |category| %>
+                              <span class="category_font_size"><%= category.name %></span>
+                            <% end %>
+                          </p>
+                          <p class="table_stylist3"></p>
+                          <% reservation_check = false%>
+                        <% end %>
                       </td>
                     <% when 5400 then%>
                       <td colspan="3" class="table_stylist">
-                        <p class="table_stylist1"></p>
-                        <p class="table_stylist_2hour"> <span class="table_stylist_reservation_font"><%= @reservation.user.set_user_name_cana %>様</span><br>
-                          <% @reservation.menu.style_category_lists.each do |category| %>
-                            <span class="category_font_size"><%= category.name %></span>
-                          <% end %>
-                        </p>
-                        <p class="table_stylist3"></p>
-                        <% reservation_check = false%>
+                        <%= link_to admins_reservation_path(@reservation.id) do %>
+                          <p class="table_stylist1"></p>
+                          <p class="table_stylist_2hour"> <span class="table_stylist_reservation_font"><%= @reservation.user.set_user_name_cana %>様</span><br>
+                            <% @reservation.menu.style_category_lists.each do |category| %>
+                              <span class="category_font_size"><%= category.name %></span>
+                            <% end %>
+                          </p>
+                          <p class="table_stylist3"></p>
+                          <% reservation_check = false%>
+                        <% end %>
                       </td>
                     <% when 7200 then%>
                       <td colspan="4" class="table_stylist">
-                        <p class="table_stylist1"></p>
-                        <p class="table_stylist_2hour"> <span class="table_stylist_reservation_font"><%= @reservation.user.set_user_name_cana %>様</span><br>
-                          <% @reservation.menu.style_category_lists.each do |category| %>
-                            <span class="category_font_size"><%= category.name %></span>
-                          <% end %>
-                        </p>
-                        <p class="table_stylist3"></p>
-                        <% reservation_check = false%>
+                        <%= link_to admins_reservation_path(@reservation.id) do %>
+                          <p class="table_stylist1"></p>
+                          <p class="table_stylist_2hour"> <span class="table_stylist_reservation_font"><%= @reservation.user.set_user_name_cana %>様</span><br>
+                            <% @reservation.menu.style_category_lists.each do |category| %>
+                              <span class="category_font_size"><%= category.name %></span>
+                            <% end %>
+                          </p>
+                          <p class="table_stylist3"></p>
+                          <% reservation_check = false%>
+                        <% end %>
                       </td>
                     <% when 9000 then%>
                       <td colspan="5" class="table_stylist">
-                        <p class="table_stylist1"></p>
-                        <p class="table_stylist_2hour"> <span class="table_stylist_reservation_font"><%= @reservation.user.set_user_name_cana %>様</span><br>
-                          <% @reservation.menu.style_category_lists.each do |category| %>
-                            <span class="category_font_size"><%= category.name %></span>
-                          <% end %>
-                        </p>
-                        <p class="table_stylist3"></p>
-                        <% reservation_check = false%>
+                          <%= link_to admins_reservation_path(@reservation.id) do %>
+                          <p class="table_stylist1"></p>
+                          <p class="table_stylist_2hour"> <span class="table_stylist_reservation_font"><%= @reservation.user.set_user_name_cana %>様</span><br>
+                            <% @reservation.menu.style_category_lists.each do |category| %>
+                              <span class="category_font_size"><%= category.name %></span>
+                            <% end %>
+                          </p>
+                          <p class="table_stylist3"></p>
+                          <% reservation_check = false%>
+                        <% end %>
                       </td>
                     <% when 10800 then %>
                       <td colspan="6" class="table_stylist">
-                        <p class="table_stylist1"></p>
-                        <p class="table_stylist_2hour"> <span class="table_stylist_reservation_font"><%= @reservation.user.set_user_name_cana %>様</span><br>
-                          <% @reservation.menu.style_category_lists.each do |category| %>
-                            <span class="category_font_size"><%= category.name %></span>
-                          <% end %>
-                        </p>
-                        <p class="table_stylist3"></p>
-                        <% reservation_check = false%>
+                         <%= link_to admins_reservation_path(@reservation.id) do %>
+                          <p class="table_stylist1"></p>
+                          <p class="table_stylist_2hour"> <span class="table_stylist_reservation_font"><%= @reservation.user.set_user_name_cana %>様</span><br>
+                            <% @reservation.menu.style_category_lists.each do |category| %>
+                              <span class="category_font_size"><%= category.name %></span>
+                            <% end %>
+                          </p>
+                          <p class="table_stylist3"></p>
+                          <% reservation_check = false%>
+                        <% end %>
                       </td>
                     <% when 12600 then%>
                       <td colspan="7" class="table_stylist">
-                        <p class="table_stylist1"></p>
-                        <p class="table_stylist_2hour"> <span class="table_stylist_reservation_font"><%= @reservation.user.set_user_name_cana %>様</span><br>
-                          <% @reservation.menu.style_category_lists.each do |category| %>
-                            <span class="category_font_size"><%= category.name %></span>
-                          <% end %>
-                        </p>
-                        <p class="table_stylist3"></p>
-                        <% reservation_check = false%>
+                        <%= link_to admins_reservation_path(@reservation.id) do %>
+                          <p class="table_stylist1"></p>
+                          <p class="table_stylist_2hour"> <span class="table_stylist_reservation_font"><%= @reservation.user.set_user_name_cana %>様</span><br>
+                            <% @reservation.menu.style_category_lists.each do |category| %>
+                              <span class="category_font_size"><%= category.name %></span>
+                            <% end %>
+                          </p>
+                          <p class="table_stylist3"></p>
+                          <% reservation_check = false%>
+                        <% end %>
                       </td>
                     <% when 14400 then%>
                       <td colspan="8" class="table_stylist">
-                        <p class="table_stylist1"></p>
-                        <p class="table_stylist_2hour"> <span class="table_stylist_reservation_font"><%= @reservation.user.set_user_name_cana %>様</span><br>
-                          <% @reservation.menu.style_category_lists.each do |category| %>
-                            <span class="category_font_size"><%= category.name %></span>
-                          <% end %>
-                        </p>
-                        <p class="table_stylist3"></p>
-                        <% reservation_check = false%>
+                        <%= link_to admins_reservation_path(@reservation.id) do %>
+                          <p class="table_stylist1"></p>
+                          <p class="table_stylist_2hour"> <span class="table_stylist_reservation_font"><%= @reservation.user.set_user_name_cana %>様</span><br>
+                            <% @reservation.menu.style_category_lists.each do |category| %>
+                              <span class="category_font_size"><%= category.name %></span>
+                            <% end %>
+                          </p>
+                          <p class="table_stylist3"></p>
+                          <% reservation_check = false%>
+                        <% end %>
                       </td>
                     <% when 16200 then%>
                       <td colspan="9" class="table_stylist">
-                        <p class="table_stylist1"></p>
-                        <p class="table_stylist_2hour"> <span class="table_stylist_reservation_font"><%= @reservation.user.set_user_name_cana %>様</span><br>
-                          <% @reservation.menu.style_category_lists.each do |category| %>
-                            <span class="category_font_size"><%= category.name %></span>
-                          <% end %>
-                        </p>
-                        <p class="table_stylist3"></p>
-                        <% reservation_check = false%>
+                        <%= link_to admins_reservation_path(@reservation.id) do %>
+                          <p class="table_stylist1"></p>
+                          <p class="table_stylist_2hour"> <span class="table_stylist_reservation_font"><%= @reservation.user.set_user_name_cana %>様</span><br>
+                            <% @reservation.menu.style_category_lists.each do |category| %>
+                              <span class="category_font_size"><%= category.name %></span>
+                            <% end %>
+                          </p>
+                          <p class="table_stylist3"></p>
+                          <% reservation_check = false%>
+                        <% end %>
                       </td>
                     <% when 18000 then%>
                       <td colspan="10" class="table_stylist">
-                        <p class="table_stylist1"></p>
-                        <p class="table_stylist_2hour"> <span class="table_stylist_reservation_font"><%= @reservation.user.set_user_name_cana %>様</span><br>
-                          <% @reservation.menu.style_category_lists.each do |category| %>
-                            <span class="category_font_size"><%= category.name %></span>
-                          <% end %>
-                        </p>
-                        <p class="table_stylist3"></p>
-                        <% reservation_check = false%>
+                        <%= link_to admins_reservation_path(@reservation.id) do %>
+                          <p class="table_stylist1"></p>
+                          <p class="table_stylist_2hour"> <span class="table_stylist_reservation_font"><%= @reservation.user.set_user_name_cana %>様</span><br>
+                            <% @reservation.menu.style_category_lists.each do |category| %>
+                              <span class="category_font_size"><%= category.name %></span>
+                            <% end %>
+                          </p>
+                          <p class="table_stylist3"></p>
+                          <% reservation_check = false%>
+                        <% end %>
                       </td>
                   <% end %>
                 <% else %>

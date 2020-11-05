@@ -113,6 +113,7 @@ table{
 .table_stylist_reservation_font{
   /* font-family: '851マカポップ'; */
   letter-spacing: 3px;
+  font-size: 12px;
 }
 .category_font_size{
   font-size:10px;

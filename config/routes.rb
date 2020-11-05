@@ -60,9 +60,15 @@ Rails.application.routes.draw do
 # user_google_oauth2_omniauth_authorize GET|POST /users/auth/google_oauth2(.:format)                           users/omniauth_callbacks#passthru
 #  user_google_oauth2_omniauth_callback GET|POST /users/auth/google_oauth2/callback(.:format)                       users/omniauth_callbacks#google_oauth2
   namespace :users do
+    resources :stylists
     resources :reservations do
       collection do 
         get :confirm
+      end
+      member do
+        get :edit_menu
+        get :edit_confirm
+        patch :update_menu
       end
     end
     resources :users

@@ -40,6 +40,7 @@ class Admins::UsersController < ApplicationController
 
   def index
     age_update
+    status_update
     @search_params = user_search_params
     @users = User.search(@search_params).includes([:stylist,:user_detail]).page(params[:page]).per(20)
     # binding.pry
@@ -63,7 +64,6 @@ class Admins::UsersController < ApplicationController
 
   def edit
     @user_address = UserAddress.new(first_name: @user.first_name, last_name: @user.last_name, first_name_cana: @user.first_name_cana, last_name_cana: @user.last_name_cana, phone_number: @user.phone_number, email: @user.email, customer_number: @user.customer_number, post_code: @user.address.post_code, prefecture_id: @user.address.prefecture_id, address_all: @user.address.address_all, gender_id: @user.user_detail.gender_id, blood_id: @user.user_detail.blood_id, job_id: @user.user_detail.job_id, customer_text: @user.user_information.customer_text, member_id: @user.user_information.member_id, information_text: @user.user_information.information_text, consent_id: @user.user_detail.consent_id, stylist_id: @user.stylist.id, birthday: @user.birthday, information_date: @user.user_information.information_date)
-     
   end
 
   def update
@@ -140,4 +140,19 @@ class Admins::UsersController < ApplicationController
     @user = User.find(params[:id])
   end
 
+  def status(menu_end_time)
+    if (DateTime.now.strftime("%Y%m%d%H%M")).to_i > menu_end_time.strftime("%Y%m%d%H%M").to_i
+      return 1
+    elsif (DateTime.now.strftime("%Y%m%d%H%M")).to_i < menu_end_time.strftime("%Y%m%d%H%M").to_i
+      return 3
+    end
+  end
+  
+  def status_update
+    reservations = Reservation.all
+    reservations.each do |reservation|
+      reservation.status_id = status(reservation.menu_end_time)
+      reservation.save
+    end
+  end
 end

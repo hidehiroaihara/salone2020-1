@@ -85,7 +85,97 @@
       <div class="edit_menu_area mypage_edit">
         <%= link_to "登録情報変更", edit_users_user_path(current_user.id), class:"edit_menu_btn"%>
       </div>
-      <table class="mypage_table1" style="margin-top:30px;">
+      <p class="mypage_detail" style="margin-top:30px;">
+        ※予約変更(又はキャンセル)の場合はメニュー、時間(キャンセル)をクリックしてください
+      </p>
+      <table class="mypage_table1">
+        <colgroup width="10%"></colgroup>
+        <colgroup width="5%"></colgroup>
+        <colgroup width="30%"></colgroup>
+        <colgroup width="15%"></colgroup>
+        <colgroup width="20%"></colgroup>
+        <colgroup width="7%"></colgroup>
+        <colgroup width="13%"></colgroup>
+        <tr>
+          <th colspan="7" class="stylist_title">予約情報
+            <p class="block_area"></p>
+          </th>
+        </tr>
+        <tr>
+         <th class="mypage_th mypage_visit_th">
+          来店日
+         </th>
+         <th class="mypage_th mypage_visit_th">
+          時間
+         </th>
+         <th class="mypage_th mypage_visit_th">
+          施術メニュー
+         </th>
+         <th class="mypage_th mypage_visit_th">
+          お支払い料金 
+         </th>
+         <th class="mypage_th mypage_visit_th">
+          購入商品
+         </th>
+         <th class="mypage_th mypage_visit_th" style="font-size:11px;">
+          スタイリスト
+         </th>
+          <th class="mypage_th mypage_visit_th">
+           ステータス
+         </th>
+        </tr>
+        <span class="paginate_class"> <% @reservations = @user.reservations.page(params[:page]).per(10) %></span>
+        <% @reservations.each do |reservation|%>
+          <% if reservation.status_id == 1 %>
+            <tr>
+              <td class="mypage_td mypage_visit_date_td">
+                <%= reservation.date.strftime("%Y/%m/%d(#{@wd[reservation.date.wday]})")%>
+              </td>
+              <td class="mypage_td mypage_visit_td">
+                <%= reservation.menu_start_time.strftime("%H:%M") %>
+              </td>
+              <td class="mypage_td mypage_visit_td">
+                <%= reservation.menu.menu_name%>
+              </td>
+              <td class="mypage_td mypage_visit_td">
+                  ￥<%= reservation.set_price %>税込
+              </td>
+              <td class="mypage_td mypage_visit_td">
+              </td>
+              <td class="mypage_td mypage_visit_td" style="font-size:12px;">
+                <%= reservation.stylist.set_name%>
+              </td>
+              <td class="mypage_td mypage_visit_td">
+                <ul class="mypage_link">
+                  <li class="mypage_link_btn">
+                    <%= reservation.status.name %>
+                    <ul class="mypage_link_btn_area">
+                      <li class="mypage_link_btn1">
+                        <%= link_to edit_menu_users_reservation_path(reservation.id) do %>
+                          <span class="status_btn">メニュー</span>
+                        <% end %>
+                      </li>
+                      <li class="mypage_link_btn1">
+                        <%= link_to edit_users_reservation_path(reservation.id) do %>
+                          <span class="status_btn">時間</span>
+                        <% end %>
+                      </li>
+                    </ul>
+                  </li>
+                  <li class="mypage_link_btn">
+                     <%= link_to "キャンセル", users_reservation_path(reservation.id), method: :delete, id:"style_delete", class: "stylist_delete mypage_cancel_btn", data: { confirm: "本当に削除しますか？"} %>
+                  </li>
+                </ul>
+              </td>
+            </tr>
+          <% end %>
+        <% end %>
+      </table>
+      <span class="paginate_class"> <%= paginate @reservations %></span>
+      <p class="mypage_detail" style="margin-top:60px;">
+       
+      </p>
+      <table class="mypage_table1" style="margin-bottom:30px;">
         <colgroup width="10%"></colgroup>
         <colgroup width="5%"></colgroup>
         <colgroup width="30%"></colgroup>
@@ -123,30 +213,34 @@
         </tr>
         <span class="paginate_class"> <% @reservations = @user.reservations.page(params[:page]).per(10) %></span>
         <% @reservations.each do |reservation|%>
-          <tr>
-            <td class="mypage_td mypage_visit_date_td">
-              <%= reservation.date.strftime("%Y/%m/%d(#{@wd[reservation.date.wday]})")%>
-            </td>
-            <td class="mypage_td mypage_visit_td">
-              <%= reservation.menu_start_time.strftime("%H:%M") %>
-            </td>
-            <td class="mypage_td mypage_visit_td">
-              <%= reservation.menu.menu_name%>
-            </td>
-            <td class="mypage_td mypage_visit_td">
-                ￥<%= reservation.set_price %>税込
-            </td>
-            <td class="mypage_td mypage_visit_td">
-            </td>
-            <td class="mypage_td mypage_visit_td">
-              <%= reservation.stylist.set_name%>
-            </td>
-            <td class="mypage_td mypage_visit_td">
-            </td>
-          </tr>
+          <% if reservation.status_id == 3 %>
+            <tr>
+              <td class="mypage_td mypage_visit_date_td">
+                <%= reservation.date.strftime("%Y/%m/%d(#{@wd[reservation.date.wday]})")%>
+              </td>
+              <td class="mypage_td mypage_visit_td">
+                <%= reservation.menu_start_time.strftime("%H:%M") %>
+              </td>
+              <td class="mypage_td mypage_visit_td">
+                <%= reservation.menu.menu_name%>
+              </td>
+              <td class="mypage_td mypage_visit_td">
+                  ￥<%= reservation.set_price %>税込
+              </td>
+              <td class="mypage_td mypage_visit_td">
+              </td>
+              <td class="mypage_td mypage_visit_td">
+                <%= reservation.stylist.set_name%>
+              </td>
+              <td class="mypage_td mypage_visit_td">
+                <%= reservation.status.name %>
+              </td>
+            </tr>
+            
+          <% end %>
         <% end %>
       </table>
-       <span class="paginate_class"> <%= paginate @reservations %></span>
+      <span class="paginate_class"> <%= paginate @reservations %></span>
     </div>
   </div>
 </div>

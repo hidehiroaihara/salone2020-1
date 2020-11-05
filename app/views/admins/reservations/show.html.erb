@@ -1,8 +1,72 @@
 <%= render "shared/header" %>
 <div class="contents">
   <div class="section">
+     <div class="customer_title">
+      <h1 class="user_entry_title1">予約詳細</h1>
+    </div>
     <div class="show_reservation_area">
-      <table>
+      <div class="name_area">
+        <p class="block_area"></p>
+        <h2 class="basic">予約情報</h2>
+      </div>
+      <table class="show_reservation_table">
+        <colgroup width="25%"></colgroup>
+        <colgroup width="25%"></colgroup>
+        <colgroup width="25%"></colgroup>
+        <colgroup width="25%"></colgroup>
+        <tr>
+          <th class="reservation_show_th">来店日時
+          </th>
+          <td class="reservation_show_td">
+            <%= @reservation.menu_start_time.strftime("%Y/%m/%d(#{@wd[@reservation.menu_start_time.wday]})%H:%M")%>
+          </td>
+          <th class="reservation_show_th">予約氏名
+          </th>
+          <td class="reservation_show_td">
+            <%= @reservation.user.set_user_name_cana %>
+          </td>
+        </tr>
+        <tr>
+          <th class="reservation_show_th">施術終了時間
+          </th>
+          <td class="reservation_show_td">
+            <%= @reservation.menu_end_time.strftime("%Y/%m/%d(#{@wd[@reservation.menu_start_time.wday]})%H:%M") %>
+          </td>
+          <th class="reservation_show_th">時間オプション
+          </th>
+          <td class="reservation_show_td">
+            <% if @reservation.menu_id == @reservation.user.user_option.menu_id %>
+             -<%= @reservation.user.user_option.menu_time.name%>
+            <% else %>
+              特になし
+            <% end %>
+          </td>
+        </tr>
+        <tr>
+          <th class="reservation_show_th">料金(指名料込み)
+          </th>
+          <td class="reservation_show_td">
+            ￥<%= @reservation.set_price %>税込
+          </td>
+          <th class="reservation_show_th">スタイリスト
+          </th>
+          <td class="reservation_show_td">
+            <%= @reservation.stylist.set_name %>
+          </td>
+        </tr>
+        <tr>
+          <th class="reservation_show_th">予約メニュー
+          </th>
+          <td colspan="3" class="reservation_show_td">
+            <%= @reservation.menu.menu_name %>
+          </td>
+        </tr>
+      </table>
+      <div class="change_btn">
+        <p class="change_area_delete" style="margin-left:40%;">
+          <%= link_to "キャンセル", admins_reservation_path(@reservation.id), method: :delete, class:"show_delete", data: { confirm: "本当に削除しますか？"} %>
+        </p>
+      </div> 
     </div>
   </div>
 </div>

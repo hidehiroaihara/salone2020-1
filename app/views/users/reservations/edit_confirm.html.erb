@@ -1,0 +1,146 @@
+<div class="contents_new" style="background-color: rgb(237, 228, 217);">
+    <%= link_to root_path do%>
+      <p class="new_reservation_top">トップページに戻る</p>
+    <% end%>
+    <p class="create_text_area">
+      ご予約内容の確認をしてください
+    </p>
+    <p class="create_text_caution">
+      【！】まだ予約変更は完了しておりません。  [変更する] ボタンを押してください。
+    </p>
+      <table class="confirm_table1" border="1" style="margin-top:20px;">
+        <colgroup width="20%"></colgroup>
+        <colgroup width="50%"></colgroup>
+        <colgroup width="15%"></colgroup>
+        <colgroup width="15%"></colgroup>
+        <tr>
+          <th class="confirm_th">
+            <span class="confirm_th_name">来店日時</span>
+          </th>
+          <td colspan="3" class="confirm_td">
+            <span class="confirm_td_name"><%=  @visit_date %></span>  <span class="confirm_td_name"><%= @visit_time.to_time.strftime("%H:%M") %></span>
+          </td>
+        </tr>
+        <tr>
+          <th class="confirm_th">
+            <span class="confirm_th_name">施術時間合計 （目安）</span>
+          </th>
+          <td colspan="3" class="confirm_td">
+            <span class="confirm_td_name"><%= Time.at(@reservation.menu.menu_time.sum).utc.strftime("%H時間%M分") %></span>
+          </td>
+        </tr>
+      </table>
+      <table class="confirm_table2" border="1" style="margin-top:10px;">
+        <colgroup width="20%"></colgroup>
+        <colgroup width="50%"></colgroup>
+        <colgroup width="15%"></colgroup>
+        <colgroup width="15%"></colgroup>
+        <tr>
+          <th class="confirm_th1">
+            <span class="confirm_th_name">予約メニュー</span>
+          </th>
+          <td colspan="2" class="confirm_td1">
+            <div class="confirm_menu_area">
+              <ul class="confirm_category">
+                <% @reservation.menu.style_category_lists.each do |category| %>
+                  <li class="confirm_category_li">
+                    <%= category.name %>
+                  </li>
+                <% end %>
+              </ul>
+              <div class="confirm_rank_area">
+                <p class="confirm_rank">
+                  <%= @reservation.menu.customer_type.name %>
+                </p> 
+              </div>
+              <div class="confirm_menu_area">
+                <p class="confirm_menu">
+                  <span class="confirm_menu_display"><%= @reservation.menu.menu_name %></span> 
+                </p>
+              </div>
+              <div class="confrim_text_area">
+                <p class="confrim_text">
+                  <span class="confirm_menu_display"><%= @reservation.menu.menu_text %></span> 
+                </p>
+              </div>
+              </td>
+              <td class="confirm_td1">
+                ￥<%= @reservation.menu.price %> 
+              </td>
+            </div>
+        </tr>
+        <tr>
+          <th class="confirm_th">
+             <span class="confirm_th_name">スタイリスト</span>
+          </th>
+          <td colspan="3" class="confirm_stylist">
+             <span class="confirm_td_name"><%=@reservation.user.stylist.set_name_cana  %></span>
+          </td>
+        </tr>
+        <tr>
+          <th class="confirm_th">
+            <span class="confirm_th_name">合計金額</span>
+          </th>
+          <td colspan="3" class="confirm_td">
+             <span class="confirm_td_name">￥<%= @set_price = (@reservation.menu.price.to_i + @reservation.user.stylist.stylist_detail.nomination_price.to_i) %></span>
+          </td>
+        </tr>
+        <tr>
+          <th class="confirm_th">
+            <span class="confirm_th_name">お支払い予定金額</span>
+          </th>
+          <td colspan="3" class="confirm_td">
+             <span class="confirm_td_name">￥<%= @set_price %></span>
+          </td>
+        </tr>
+        </tr>
+      </table>
+      <table class="confirm_table3" border="1" style="margin-top:10px;">
+        <colgroup width="20%"></colgroup>
+        <colgroup width="50%"></colgroup>
+        <colgroup width="15%"></colgroup>
+        <colgroup width="15%"></colgroup>
+        <tr>
+          <th class="confirm_th">
+            <span class="confirm_th_name">サロンからメッセージ</span>
+          </th>
+          <td colspan="3" class="confirm_td">
+             <span class="confirm_td_name"><%= @reservation.user.user_detail.consent.name %></span>
+          </td>
+        </tr>
+        <tr>
+          <th class="confirm_th">
+            <span class="confirm_th_name" style="font-size:14px;">ご来店に際しての注意事項</span>
+          </th>
+          <td colspan="3" class="confirm_td2">
+          </td>
+        </tr>
+        <tr>
+          <th class="confirm_th">
+          <span class="confirm_th_name">ご予約者氏名</span>
+          </th>
+          <td class="confirm_td">
+          <%= @reservation.user.set_user_name %> 
+          </td>
+          <th class="confirm_th">
+            緊急時ご連絡先
+          </th>
+          <td class="confirm_td">
+            <%= @reservation.user.phone_number %>
+          </td>
+        </tr>
+      </table>
+      <table style="width:100%;height:20px;margin-top:30px;">
+        <tr>
+          <td class="register_td">
+            <ul class="stylist_register_btn">
+              <li>
+                <%= link_to users_reservation_path(@reservation.id, reservation: {stylist_id: @reservation.user.stylist.id, time: @visit_time, menu_start_time: @visit_date.to_date.midnight.since(@visit_time.to_time.seconds_since_midnight).to_datetime, date: @visit_date.to_date, menu_id: @reservation.menu.id, user_id: @reservation.user.id, salon_id: @salon_id, set_price: @set_price, menu_end_time: @visit_date.to_date.midnight.since(@menu_end_time.to_time.seconds_since_midnight).to_datetime,}), method: :patch do %>
+                 <p class="register_btn">変更する</p>
+                <% end %>
+              </li>
+            </ul>
+          </td>
+        </tr>
+      </table>
+</div> 

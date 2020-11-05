@@ -1,0 +1,42 @@
+<%= render "shared/header" %>
+<div class="contents">
+  <div class="section">
+    <div class="admin_edit_reservation">
+      <div class="customer_title">
+        <h1 class="user_entry_title1">予約変更</h1>
+      </div>
+      <div class="name_area">
+        <p class="block_area"></p>
+        <h2 class="basic">予約情報</h2>
+      </div>
+      <table class="admin_edit_reservation_table" style="margin-bottom:30px;">
+        <colgroup width="25%"></colgroup>
+        <colgroup width="25%"></colgroup>
+        <colgroup width="25%"></colgroup>
+        <colgroup width="25%"></colgroup>
+        <tr>
+          <th class="admin_edit_reservation_th">
+            お客様氏名
+          </th>
+          <td class="admin_edit_reservation_td">
+            <%= @reservation.user.set_user_name_cana%>
+          </td>
+          <th class="admin_edit_reservation_th">
+            予約時間
+          </th>
+          <td class="admin_edit_reservation_td">
+            <%= @reservation.menu_start_time.strftime("%Y/%m/%d(#{@wd[@reservation.menu_start_time.wday]})%H:%M")%>〜<%= @reservation.menu_end_time.strftime("%H:%M")%>
+          </td>
+        </tr>
+        <tr>
+          <th class="reservation_show_th">予約メニュー
+          </th>
+          <td colspan="3" class="reservation_show_td">
+            <%= @reservation.menu.menu_name %>
+          </td>
+        </tr>
+      </table>
+      <table>
+    </div>
+  </div>
+</div>

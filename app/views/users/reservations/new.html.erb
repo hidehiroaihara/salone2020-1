@@ -127,7 +127,7 @@
                 <% check = true %>
               <% end %>
             <% end %>
-             <% if check || @day >=  @day.midnight.since(@salon_start.seconds_since_midnight) + (i * 30.minutes) || (@salon_start + (i * 30.minutes) + @menu.menu_time.sum).strftime("%H%M").to_i > @salon_end.strftime("%H%M").to_i %>
+             <% if check || @day >=  @day.midnight.since(@salon_start.seconds_since_midnight) + (i * 30.minutes) && @ago == 0 || (@salon_start + (i * 30.minutes) + @menu.menu_time.sum).strftime("%H%M").to_i > @salon_end.strftime("%H%M").to_i %>
                  × 
               <% check = false%>
             <% else %>
