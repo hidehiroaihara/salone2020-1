@@ -1,6 +1,6 @@
 class Users::UsersController < ApplicationController
   before_action :set_user, only: [:edit, :update, :show, :destroy] 
-
+  before_action :admin_id
   def index
     salon_all
     @stylists = Stylist.limit(14).order("created_at DESC")
@@ -38,7 +38,7 @@ class Users::UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user_address_detail).permit(:first_name, :last_name, :first_name_cana, :last_name_cana, :phone_number, :email, :post_code, :prefecture_id, :address_all, :gender_id, :blood_id, :job_id, :consent_id, :stylist_id, :salon_id).merge(birthday: set_birthday)
+    params.require(:user_address_detail).permit(:first_name, :last_name, :first_name_cana, :last_name_cana, :phone_number, :email, :post_code, :prefecture_id, :address_all, :gender_id, :blood_id, :job_id, :consent_id, :stylist_id, :salon_id, :admin_id).merge(birthday: set_birthday)
   end
 
   def salon_all
@@ -69,6 +69,13 @@ class Users::UsersController < ApplicationController
     reservations.each do |reservation|
       reservation.status_id = status(reservation.menu_end_time)
       reservation.save
+    end
+  end
+
+  def admin_id
+    admins = Admin.all
+    admins.each do |admin|
+      @admin = admin
     end
   end
 end

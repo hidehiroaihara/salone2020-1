@@ -1,6 +1,7 @@
 class Admins::SalonsController < ApplicationController
   before_action :authenticate_admin!
   before_action :set_salon, only: [:edit, :show, :update, :destroy]
+  before_action :admin_id
   def index 
     @salons = Salon.all
   end
@@ -28,10 +29,18 @@ class Admins::SalonsController < ApplicationController
   private
 
   def salon_params
-    params.require(:salon).permit(:start_time, :end_time, :salon_name, :post_code, :prefecture_id, :address_all, :salon_slogan, :salon_info, :salon_top_image, :salon_bottom_image)
+    params.require(:salon).permit(:start_time, :end_time, :salon_name, :salon_name_cana, :post_code, :prefecture_id, :address_all, :salon_slogan, :salon_info, :salon_top_image, :salon_bottom_image).merge(admin_id: current_admin.id)
   end
 
   def set_salon
     @salon = Salon.find(params[:id])
   end
+
+  def admin_id
+    admins = Admin.all
+    admins.each do |admin|
+      @admin = admin
+    end
+  end
+
 end

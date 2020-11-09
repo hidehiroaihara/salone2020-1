@@ -33,41 +33,43 @@
           <th class="stylist_table_top">非掲載<br>削除</th>
         </tr>
         <% @stylists.each.with_index(1) do |stylist, i| %>
-          <tr style="height:30px;">
-            <td rowspan="2" class="stylist_info">
-              <%= link_to edit_admins_stylist_path(stylist.id) do %>
-                <span style="color:black;">No.<%= i %></span>
-              <% end %>
-            </td>
-            <td rowspan="2" class="stylist_info">
-              <% %>
-            </td>
-            <td rowspan="2" class="stylist_info image-pad" style="height:70px">
-                <%= image_tag stylist.image.variant(resize_to_limit: [100, 100]) ,id:"image", class: 'stylist-image' if stylist.image.attached? %>
-            </td>
-            <td rowspan="1" class="stylist_info">
-              <%= link_to edit_admins_stylist_path(stylist.id) do %>
-                <span style="color:black;"><%= stylist.stylist_first_name.to_s + stylist.stylist_last_name %></span>
-              <% end %>
-            </td>
-            <td rowspan="1" class="stylist_info stylist_rank">
-              <%= stylist.rank.name %>・<br><%= stylist.stylist_detail.rank_text %>
-            </td>
-            <td rowspan="1" class="stylist_info">
-              <%= stylist.stylist_detail.stylist_history.name %>
-            </td>
-            <td rowspan="2" class="stylist_info">
-              <%= link_to "詳細", admins_stylist_path(stylist.id), class:"stylist_show" %>
-            </td>
-            <td rowspan="2" >
-              <%= link_to "削除", admins_stylist_path(stylist.id), method: :delete, id:"style_delete", class: "stylist_delete", data: { confirm: "本当に削除しますか？"} %>
-            </td>
-          </tr>
-          <tr>
-          <td rowspan="1" colspan="3" class="stylist_info">
-              <%= stylist.catchphrase %>
-            </td>
-          </tr>
+          <% if stylist.admin_id == current_admin.id %>
+            <tr style="height:30px;">
+              <td rowspan="2" class="stylist_info">
+                <%= link_to edit_admins_stylist_path(stylist.id) do %>
+                  <span style="color:black;">No.<%= i %></span>
+                <% end %>
+              </td>
+              <td rowspan="2" class="stylist_info">
+                <% %>
+              </td>
+              <td rowspan="2" class="stylist_info image-pad" style="height:70px">
+                  <%= image_tag stylist.image.variant(resize_to_limit: [100, 100]) ,id:"image", class: 'stylist-image' if stylist.image.attached? %>
+              </td>
+              <td rowspan="1" class="stylist_info">
+                <%= link_to edit_admins_stylist_path(stylist.id) do %>
+                  <span style="color:black;"><%= stylist.stylist_first_name.to_s + stylist.stylist_last_name %></span>
+                <% end %>
+              </td>
+              <td rowspan="1" class="stylist_info stylist_rank">
+                <%= stylist.rank.name %>・<br><%= stylist.stylist_detail.rank_text %>
+              </td>
+              <td rowspan="1" class="stylist_info">
+                <%= stylist.stylist_detail.stylist_history.name %>
+              </td>
+              <td rowspan="2" class="stylist_info">
+                <%= link_to "詳細", admins_stylist_path(stylist.id), class:"stylist_show" %>
+              </td>
+              <td rowspan="2" >
+                <%= link_to "削除", admins_stylist_path(stylist.id), method: :delete, id:"style_delete", class: "stylist_delete", data: { confirm: "本当に削除しますか？"} %>
+              </td>
+            </tr>
+            <tr>
+            <td rowspan="1" colspan="3" class="stylist_info">
+                <%= stylist.catchphrase %>
+              </td>
+            </tr>
+          <% end %>
         <% end %>
       </tbody>
     </table>

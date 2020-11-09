@@ -9,14 +9,13 @@ class User < ApplicationRecord
   belongs_to_active_hash :member
   belongs_to_active_hash :age
   has_many :reservations
-  has_one :address
-  has_one :user_information
-  has_one :user_detail
-  has_one :user_option
-  has_many :menus, through: :user_menus
+  has_one :address, dependent: :destroy
+  has_one :user_information, dependent: :destroy
+  has_one :user_detail, dependent: :destroy
+  has_one :user_option, dependent: :destroy
   belongs_to :stylist, optional: true
   belongs_to :salon
-
+  belongs_to :admin,  optional: true
   def set_user_name
     self.first_name + self.last_name
   end
@@ -59,5 +58,5 @@ class User < ApplicationRecord
     registration.validates :email, uniqueness: true, format: { with: /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i }
     registration.validates :password, presence: true, format: { with: /\A(?=.*?[a-z])(?=.*?[\d])[a-z\d]+\z/i, message: 'には英字と数字の両方を含めて設定してください'}
   end
-  
+
 end

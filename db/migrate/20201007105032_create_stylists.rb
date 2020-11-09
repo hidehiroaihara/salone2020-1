@@ -9,7 +9,8 @@ class CreateStylists < ActiveRecord::Migration[6.0]
       t.integer :gender_id,               null: false, default: 0
       t.string :catchphrase,              null: false
       t.string :self_introduction,        null: false
-      t.timestamps
+      t.integer :admin_id,                foreign_key: true
+      t.timestamps 
     end
   end
 end

@@ -34,37 +34,38 @@
           <th rowspan="1" colspan="5" class="stylist_table_top">メニュー説明</th>
         </tr>
         <% @menus.each do |menu| %>
-          <tr style="height:30px;">
-            <td rowspan="2" class="stylist_info">
-                <span style="color:black;"><%= menu.menu_name %></span>
-            </td>
-            <td rowspan="1" class="stylist_info">
-              <%= menu.price %>
-            </td>
-            <td rowspan="1" class="stylist_info image-pad" >
-              <% menu.style_category_lists.each do |category| %>
-                <ul class="index_category_name_area">
-                  <li class="index_category_name">
-                    <%= category.name %>
-                  </li>
-                </ul>
-              <% end %>
-            </td>
-            <td rowspan="1" class="stylist_info">
-              <%= menu.customer_type.name %>
-            </td>
-            <td rowspan="1" class="stylist_info">
-              <%= link_to "詳細", admins_menu_path(menu.id), class:"stylist_show" %>
-            </td>
-            <td rowspan="1" >
-              <%= link_to "削除", admins_menu_path(menu.id), method: :delete, id:"style_delete", class: "stylist_delete", data: { confirm: "本当に削除しますか？"} %>
-            </td>
-          </tr>
-          <tr>
-            <td rowspan="1" colspan="5" class="stylist_info">
-              <%= menu.menu_text %>
-            </td>
-          </tr>
+          <% if menu.admin_id == current_admin.id%>
+            <tr style="height:30px;">
+              <td rowspan="2" class="stylist_info">
+                  <span style="color:black;"><%= menu.menu_name %></span>
+              </td>
+              <td rowspan="1" class="stylist_info">
+                <%= menu.price %>
+              </td>
+              <td rowspan="1" class="stylist_info image-pad" >
+                <% menu.style_category_lists.each do |category| %>
+                  <ul class="index_category_name_area">
+                    <li class="index_category_name">
+                      <%= category.name %>
+                    </li>
+                  </ul>
+                <% end %>
+              </td>
+              <td rowspan="1" class="stylist_info">
+                <%= menu.customer_type.name %>
+              </td>
+              <td rowspan="1" class="stylist_info">
+                <%= link_to "詳細", admins_menu_path(menu.id), class:"stylist_show" %>
+              </td>
+              <td rowspan="1" >
+                <%= link_to "削除", admins_menu_path(menu.id), method: :delete, id:"style_delete", class: "stylist_delete", data: { confirm: "本当に削除しますか？"} %>
+              </td>
+            </tr>
+            <tr>
+              <td rowspan="1" colspan="5" class="stylist_info">
+                <%= menu.menu_text %>
+              </td>
+            </tr>
         <% end %>
       </tbody>
     </table>

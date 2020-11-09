@@ -17,6 +17,7 @@ class DeviseCreateUsers < ActiveRecord::Migration[6.0]
       t.integer :age_id
       t.boolean :admin,             default: false
       t.integer :salon_id,          null: false, foreign_key: true
+      t.integer :admin_id,          foreign_key: true
       ## Recoverable
       t.string   :reset_password_token
       t.datetime :reset_password_sent_at

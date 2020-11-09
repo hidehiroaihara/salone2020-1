@@ -2,7 +2,116 @@
 <div class="contents1">
   <div class="section1">
     <div class="user_stylist_show_area">
-      
+      <table class="user_stylist_show_table" align="left">
+        <td class="user_stylist_show_image_td"> 
+          <% if @stylist.image.attached? %>
+            <%= image_tag @stylist.image, id:"user_stylist_show_image" %>
+          <% end %>
+        </td>
+      </table>
+      <table class="user_stylist_show_table1">
+        <colgroup width="25%"></colgroup>
+        <colgroup width="25%"></colgroup>
+        <colgroup width="25%"></colgroup>
+        <colgroup width="25%"></colgroup>
+        <tr>
+          <th class="user_stylist_show_th">
+            名前(フリガナ)
+          </th>
+          <td colspan="3" class="user_stylist_show_td">
+            <%= @stylist.set_name %>(<%= @stylist.set_name_cana %>)
+          </td>
+        </tr>
+        <tr>
+          <th class="user_stylist_show_th">
+            スタイリスト歴
+          </th>
+          <td class="user_stylist_show_td">
+             <%= @stylist.stylist_detail.stylist_history.name %>
+          </td>
+          <th class="user_stylist_show_th">
+            性別
+          </th>
+          <td class="user_stylist_show_td">
+            <%= @stylist.gender.name%>
+          </td>
+        </tr>
+        <tr>
+          <th class="user_stylist_show_th">
+            ランク
+          </th>
+          <td class="user_stylist_show_td">
+            <%= @stylist.rank.name %>
+          </td>
+          <th class="user_stylist_show_th">
+            ランク(経歴)
+          </th>
+          <td class="user_stylist_show_td">
+              <%= @stylist.stylist_detail.rank_text %>
+          </td>
+        </tr>
+        <tr>
+          <th class="user_stylist_show_th">
+            指名(可否)
+          </th>
+          <td class="user_stylist_show_td">
+            <% if @stylist.stylist_detail.nomination_id == 0 %>
+            <% else %>
+              <%= @stylist.stylist_detail.nomination.name %>
+            <% end %>
+          </td>
+          <th class="user_stylist_show_th">
+            指名料
+          </th>
+          <td class="user_stylist_show_td">
+            <% if @stylist.stylist_detail.nomination_price.to_i == 0 %>
+            <% else %>
+              ￥<%= @stylist.stylist_detail.nomination_price %>
+            <% end %>
+          </td>
+        </tr>
+        <tr>
+          <th class="user_stylist_show_th">
+            得意なスタイル
+          </th>
+          <td class="user_stylist_show_td">
+            <% if @stylist.stylist_detail.style_type.nil? %>
+            <% else %>
+              <%= @stylist.stylist_detail.style_type.name %>
+            <% end %>
+          </td>
+        </tr>
+        <tr>
+          <th class="user_stylist_show_th">
+            得意なテクニック
+          </th>
+          <td colspan="3" class="user_stylist_show_td">
+            <%= @stylist.stylist_detail.style_technique %>
+          </td>
+        </tr>
+        <tr>
+          <th class="user_stylist_show_th">
+            趣味
+          </th>
+          <td colspan="3" class="user_stylist_show_td">
+            <%= @stylist.stylist_detail.hobby %>
+          </td>
+        </tr>
+      </table>
+      <table class="stylist_new_table3" style="margin-top:40px;">
+        <tr>
+          <th class="stylist_title">ヘアースタイル一覧
+            <p class="block_area"></p>
+          </th>
+        </tr>
+      </table>
+      <p class="img_all_area stylist_show_portraits" style="margin-top:20px;">
+        <% if @stylist.portraits.attached? %>
+          <% @stylist.portraits.each do |portrait| %>
+            <%= image_tag portrait %>
+          <% end %>
+        <% end %>
+      </p>
     </div>
   </div>
 </div>

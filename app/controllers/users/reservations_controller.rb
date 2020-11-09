@@ -4,24 +4,17 @@ class Users::ReservationsController < ApplicationController
   before_action :set_user_reservation, only: [:edit, :update, :show, :destory, :edit_menu, :update_menu, :edit_confirm]
   before_action :set_wd
   before_action :set_salon
+  before_action :admin_id
   require "date"
   def index
-    # binding.pry
     @ago = params.fetch(:ago,0).to_i
     @time = Date.today - @ago   
     @menus = Menu.all 
     params[:format]
     @user = User.find_by(id: current_user.id)
-    # begin
-    #   selected_menu_ids = selected_menus_params
-    #   filtered_list_ids = Menu.filter(selected_menus_ids)
-    #   @lists = StyleCategoryList.where(id :filtered_lists_ids)
-    # rescue
-    #   redirect_to root_path
   end
 
   def new
-    # binding.pry
     @ago = params.fetch(:ago,0).to_i
     reservation_days
     salon_time
@@ -32,7 +25,6 @@ class Users::ReservationsController < ApplicationController
   end
 
   def confirm
-    # binding.pry
     salon_time
     @user = User.find_by(id: current_user.id)
     @menu = Menu.find_by(id: params[:format])
@@ -43,7 +35,6 @@ class Users::ReservationsController < ApplicationController
   end
   
   def create
-    # binding.pry
     @reservation = Reservation.new(reservation_params)
     if @reservation.save
       return redirect_to root_path
@@ -98,15 +89,12 @@ class Users::ReservationsController < ApplicationController
   private
   
   def reservation_params
-    params.require(:reservation).permit(:date, :menu_end_time, :menu_id, :menu_start_time, :salon_id, :set_price, :stylist_id, :time, :user_id)
+    params.require(:reservation).permit(:date, :menu_end_time, :menu_id, :menu_start_time, :salon_id, :set_price, :stylist_id, :time, :user_id, :admin_id)
   end
 
   def reservation_menu_params
     params.require(:reservation).permit(:menu_id)
   end
-  
-  # def selected_menus_params
-  #   params.require(:menu_ids)
 
   def salon_time
     @salons = Salon.all
@@ -175,4 +163,12 @@ class Users::ReservationsController < ApplicationController
   def set_salon
     salon_time
   end
+  
+  def admin_id
+    admins = Admin.all
+    admins.each do |admin|
+      @admin = admin
+    end
+  end
+
 end

@@ -1,7 +1,7 @@
 class StylistStylistDetail
 
   include ActiveModel::Model
-  attr_accessor :stylist_first_name, :stylist_last_name, :stylist_first_name_cana, :stylist_last_name_cana, :rank_id, :gender_id, :catchphrase, :self_introduction, :rank_text, :stylist_history_id, :nomination_id, :nomination_price, :style_type_id, :style_technique, :hobby, :stylist_id, :image, :portraits
+  attr_accessor :stylist_first_name, :stylist_last_name, :stylist_first_name_cana, :stylist_last_name_cana, :rank_id, :gender_id, :catchphrase, :self_introduction, :rank_text, :stylist_history_id, :nomination_id, :nomination_price, :style_type_id, :style_technique, :hobby, :stylist_id, :image, :portraits, :admin_id
 
   with_options presence: true do
     validates :stylist_first_name
@@ -12,7 +12,6 @@ class StylistStylistDetail
     validates :self_introduction
     validates :rank_id
   end
-  # validates :stylist_number, uniqueness: true
   validates :gender_id, numericality: { other_than: 0, message: "can't be blank" }
 
   validate :check_rank
@@ -36,14 +35,14 @@ class StylistStylistDetail
 
 
   def save
-    stylist = Stylist.create(stylist_first_name: stylist_first_name, stylist_last_name: stylist_last_name, stylist_first_name_cana: stylist_first_name_cana, stylist_last_name_cana: stylist_last_name_cana, rank_id: rank_id, gender_id: gender_id, catchphrase: catchphrase, self_introduction: self_introduction, image: image, portraits: portraits)
+    stylist = Stylist.create(stylist_first_name: stylist_first_name, stylist_last_name: stylist_last_name, stylist_first_name_cana: stylist_first_name_cana, stylist_last_name_cana: stylist_last_name_cana, rank_id: rank_id, gender_id: gender_id, catchphrase: catchphrase, self_introduction: self_introduction, image: image, portraits: portraits, admin_id: admin_id)
     StylistDetail.create(rank_text: rank_text, stylist_history_id: stylist_history_id, nomination_id: nomination_id, nomination_price: nomination_price, style_type_id: style_type_id, style_technique: style_technique, hobby: hobby, stylist_id: stylist.id)
   end
   
   def save_update(stylist_id)
     stylist = Stylist.find(stylist_id)
     stylistdetail = stylist.stylist_detail
-    stylist.update(stylist_first_name: stylist_first_name, stylist_last_name: stylist_last_name, stylist_first_name_cana: stylist_first_name_cana, stylist_last_name_cana: stylist_last_name_cana, rank_id: rank_id, gender_id: gender_id, catchphrase: catchphrase, self_introduction: self_introduction, image: image, portraits: portraits)
+    stylist.update(stylist_first_name: stylist_first_name, stylist_last_name: stylist_last_name, stylist_first_name_cana: stylist_first_name_cana, stylist_last_name_cana: stylist_last_name_cana, rank_id: rank_id, gender_id: gender_id, catchphrase: catchphrase, self_introduction: self_introduction, image: image, portraits: portraits, admin_id: admin_id)
     stylistdetail.update(rank_text: rank_text, stylist_history_id: stylist_history_id, nomination_id: nomination_id, nomination_price: nomination_price, style_type_id: style_type_id, style_technique: style_technique, hobby: hobby)
   end
     
@@ -57,6 +56,7 @@ end
 
 class Admins::StylistsController < ApplicationController
   before_action :set_stylist, only: [:edit, :update, :destroy, :show, :update_image] 
+  before_action :admin_id
   def index
     @stylists = Stylist.all
   end
@@ -76,14 +76,12 @@ class Admins::StylistsController < ApplicationController
   end
 
   def edit 
-    # binding.pry
     @stylist_detail = StylistStylistDetail.new(stylist_first_name: @stylist.stylist_first_name, stylist_last_name: @stylist.stylist_last_name, stylist_first_name_cana: @stylist.stylist_first_name_cana, stylist_last_name_cana: @stylist.stylist_last_name_cana, rank_id: @stylist.rank_id, gender_id: @stylist.gender_id, catchphrase: @stylist.catchphrase, self_introduction: @stylist.self_introduction, rank_text: @stylist.stylist_detail.rank_text, stylist_history_id: @stylist.stylist_detail.stylist_history_id, nomination_id: @stylist.stylist_detail.nomination_id, nomination_price: @stylist.stylist_detail.nomination_price, style_technique: @stylist.stylist_detail.style_technique, hobby: @stylist.stylist_detail.hobby, style_type_id: @stylist.stylist_detail.style_type_id, image: @stylist.image,portraits: @stylist.portraits )
 
   end
 
   def update
     @stylist_detail = StylistStylistDetail.new(stylist_params)
-    # binding.pry
     if @stylist_detail.save_update(params[:id])
       redirect_to admins_stylists_path, notice: '更新完了しました'
     else
@@ -102,10 +100,18 @@ class Admins::StylistsController < ApplicationController
   private
 
   def stylist_params
-    params.require(:stylist_stylist_detail).permit(:stylist_first_name, :stylist_last_name, :stylist_first_name_cana, :stylist_last_name_cana, :rank_id, :gender_id, :catchphrase, :self_introduction, :stylist_number, :rank_text, :stylist_history_id, :nomination_id, :nomination_price, :style_technique, :hobby, :style_type_id,:image , portraits: [])
+    params.require(:stylist_stylist_detail).permit(:stylist_first_name, :stylist_last_name, :stylist_first_name_cana, :stylist_last_name_cana, :rank_id, :gender_id, :catchphrase, :self_introduction, :stylist_number, :rank_text, :stylist_history_id, :nomination_id, :nomination_price, :style_technique, :hobby, :style_type_id,:image , portraits: []).merge(admin_id: current_admin.id)
   end
 
   def set_stylist
     @stylist = Stylist.find(params[:id])
   end
+
+  def admin_id
+    admins = Admin.all
+    admins.each do |admin|
+      @admin = admin
+    end
+  end
+  
 end

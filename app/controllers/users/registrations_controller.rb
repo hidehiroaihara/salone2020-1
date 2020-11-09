@@ -66,6 +66,8 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   def create
     @user = User.new(sign_up_params)
+    admin_id = @user.salon.admin_id
+    @user.admin_id = admin_id.to_i
     unless @user.valid?(:registration)
       flash.now[:alert] = @user.errors.full_messages
       render :new and return

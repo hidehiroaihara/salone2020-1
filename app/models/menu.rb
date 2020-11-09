@@ -7,6 +7,7 @@ class Menu < ApplicationRecord
   accepts_nested_attributes_for :style_category_twos
   has_many :reservations
   has_many :user_options
+  belongs_to :admin
 
   with_options presence: true do
     validates :menu_name

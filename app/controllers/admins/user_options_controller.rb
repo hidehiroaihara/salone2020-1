@@ -2,7 +2,6 @@ class Admins::UserOptionsController < ApplicationController
   before_action :authenticate_admin!
   before_action :set_user
   before_action :set_user_option, only: [:edit, :update, :destroy]
-
   def index 
     @user_options = UserOption.all
     # binding.pry

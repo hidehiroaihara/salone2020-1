@@ -1,12 +1,12 @@
 class UserAddress
 
   include ActiveModel::Model
-  attr_accessor :first_name, :last_name, :first_name_cana, :last_name_cana, :email, :birthday, :phone_number, :gender_id, :stylist_id, :blood_id, :job_id, :customer_text, :member_id, :customer_number, :post_code, :prefecture_id, :address_all, :user_id, :information_date, :information_text, :consent_id, :salon_id
+  attr_accessor :first_name, :last_name, :first_name_cana, :last_name_cana, :email, :birthday, :phone_number, :gender_id, :stylist_id, :blood_id, :job_id, :customer_text, :member_id, :customer_number, :post_code, :prefecture_id, :address_all, :user_id, :information_date, :information_text, :consent_id, :salon_id, :admin_id
   
   
 
   def save
-    user = User.create(first_name: first_name, last_name: last_name, first_name_cana: first_name_cana, last_name_cana: last_name_cana, email: email, birthday: birthday, phone_number: phone_number, stylist_id: stylist_id, customer_text: customer_text, customer_number: customer_number, member_id: member_id, salon_id: salon_id)
+    user = User.create(first_name: first_name, last_name: last_name, first_name_cana: first_name_cana, last_name_cana: last_name_cana, email: email, birthday: birthday, phone_number: phone_number, stylist_id: stylist_id, customer_text: customer_text, customer_number: customer_number, member_id: member_id, salon_id: salon_id, admin_id: admin_id)
     Address.create(post_code: post_code, prefecture_id: prefecture_id, address_all: address_all, user_id: user.id)
     Information.create(information_date: information_date, information_text: information_text, user_id: user.id)
     UserDetail.create(job_id: job_id, blood_id: blood_id, gender_id: gender_id, consent: consent, user_id: user.id)
@@ -17,7 +17,7 @@ class UserAddress
     useraddress = user.address
     userinformation = user.user_information
     userdetail = user.user_detail
-    user.update(first_name: first_name, last_name: last_name, first_name_cana: first_name_cana, last_name_cana: last_name_cana, email: email, birthday: birthday, phone_number: phone_number,  stylist_id: stylist_id,  customer_number: customer_number, salon_id: salon_id)
+    user.update(first_name: first_name, last_name: last_name, first_name_cana: first_name_cana, last_name_cana: last_name_cana, email: email, birthday: birthday, phone_number: phone_number,  stylist_id: stylist_id,  customer_number: customer_number, salon_id: salon_id, admin_id: admin_id)
     useraddress.update(post_code: post_code, prefecture_id: prefecture_id, address_all: address_all)
     userinformation.update(information_date: information_date, information_text: information_text, customer_text: customer_text, member_id: member_id)
     userdetail.update(consent_id: consent_id, gender_id: gender_id,  blood_id: blood_id, job_id: job_id)
@@ -63,7 +63,7 @@ class Admins::UsersController < ApplicationController
   end
 
   def edit
-    @user_address = UserAddress.new(first_name: @user.first_name, last_name: @user.last_name, first_name_cana: @user.first_name_cana, last_name_cana: @user.last_name_cana, phone_number: @user.phone_number, email: @user.email, customer_number: @user.customer_number, post_code: @user.address.post_code, prefecture_id: @user.address.prefecture_id, address_all: @user.address.address_all, gender_id: @user.user_detail.gender_id, blood_id: @user.user_detail.blood_id, job_id: @user.user_detail.job_id, customer_text: @user.user_information.customer_text, member_id: @user.user_information.member_id, information_text: @user.user_information.information_text, consent_id: @user.user_detail.consent_id, stylist_id: @user.stylist.id, birthday: @user.birthday, information_date: @user.user_information.information_date)
+    @user_address = UserAddress.new(first_name: @user.first_name, last_name: @user.last_name, first_name_cana: @user.first_name_cana, last_name_cana: @user.last_name_cana, phone_number: @user.phone_number, email: @user.email, customer_number: @user.customer_number, post_code: @user.address.post_code, prefecture_id: @user.address.prefecture_id, address_all: @user.address.address_all, gender_id: @user.user_detail.gender_id, blood_id: @user.user_detail.blood_id, job_id: @user.user_detail.job_id, customer_text: @user.user_information.customer_text, member_id: @user.user_information.member_id, information_text: @user.user_information.information_text, consent_id: @user.user_detail.consent_id, stylist_id: @user.stylist.id, birthday: @user.birthday, information_date: @user.user_information.information_date, admin_id: @user.admin_id)
   end
 
   def update
@@ -86,7 +86,7 @@ class Admins::UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user_address).permit(:first_name, :last_name, :first_name_cana, :last_name_cana, :phone_number, :email, :customer_number, :post_code, :prefecture_id, :address_all, :gender_id, :blood_id, :job_id, :customer_text, :member_id, :information_text, :visit_time, :consent_id, :stylist_id, :salon_id).merge(birthday: set_birthday, information_date: set_information_date)
+    params.require(:user_address).permit(:first_name, :last_name, :first_name_cana, :last_name_cana, :phone_number, :email, :customer_number, :post_code, :prefecture_id, :address_all, :gender_id, :blood_id, :job_id, :customer_text, :member_id, :information_text, :visit_time, :consent_id, :stylist_id, :salon_id).merge(birthday: set_birthday, information_date: set_information_date, admin_id: current_admin.id)
   end
 
   def user_search_params

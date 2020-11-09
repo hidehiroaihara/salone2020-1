@@ -2,3 +2,25 @@
   height: 100%;
   width: 100%;
 }
+.user_stylist_show_table{
+  width: 30%;
+  height: 10px;
+}
+.user_stylist_index_table1{
+  width: 70%;
+  height: 50px;
+}
+#user_stylist_show_image{
+  width: 70%;
+  height: 200px;
+}
+.user_stylist_show_th{
+  background: #f8e2b7;
+  border: 1px solid black;
+}
+.user_stylist_show_td{
+  border: 1px solid black;
+}
+.stylist_show_portraits{
+  flex-wrap: wrap;
+}

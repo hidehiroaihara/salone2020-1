@@ -15,7 +15,7 @@
     <% else %>
       <div class="salon_view_right">
         <h1 class="salon_name_view"> <%= @salon.salon_name %>
-          <p class="salon_name_cana"></p>
+          <p class="salon_name_cana"><%= @salon.salon_name_cana %></p>
           <p class="salon_view_address">〒<%= @salon.post_code%><%= @salon.prefecture.name%><%= @salon.address_all%></p>
         </h1>
       </div>
@@ -62,10 +62,10 @@
           <%= link_to "サロン情報", "#", class:"salon_information_btn" %>
         </li>
         <li class="salon_information_area">
-          <%= link_to "メニュー", "#", class:"salon_information_btn" %>
+          <%= link_to "メニュー", users_reservations_path, class:"salon_information_btn" %>
         </li>
         <li class="salon_information_area">
-          <%= link_to "スタイリスト", "#", class:"salon_information_btn" %>
+          <%= link_to "スタイリスト", users_stylists_path, class:"salon_information_btn" %>
         </li>
         <li class="salon_information_area">
           <%= link_to "スタイル", "#", class:"salon_information_btn" %>

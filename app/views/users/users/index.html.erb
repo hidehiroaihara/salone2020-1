@@ -26,7 +26,7 @@
         <% else %>
           <ul class="salon_detail_area">
            <li class="salon_detail_text">
-            <%= @salon.salon_name %>
+            <%= @salon.salon_name %>(<%= @salon.salon_name_cana%>)
            </li>
            <li class="salon_name1">
             <%= @salon.salon_slogan%>
@@ -102,7 +102,7 @@
             <% @stylists.each do |stylist| %>
               <%= link_to users_stylist_path(stylist.id) do %>
               <li class="style_phot">
-                  <% if stylist.portraits.attached? %>
+                  <% if stylist.image.attached? %>
                     <%= image_tag stylist.image %>
                   <% end %>
               </li>
@@ -111,7 +111,7 @@
           <% end %>
         </ul>
         <div class="item_list_area">
-          <%= link_to "#" do %>
+          <%= link_to users_stylists_path do %>
             <p class="item_list_btn1">Stylists</p>
           <% end %>
         </div>

@@ -29,6 +29,7 @@
 }
 .mypage_link_btn_area{
   display: flex;
+  justify-content: center;
 }
 .mypage_link_btn1{
   margin-left:10px;

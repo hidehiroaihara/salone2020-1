@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_15_072058) do
+ActiveRecord::Schema.define(version: 2020_11_09_020731) do
 
   create_table "active_storage_attachments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
@@ -48,12 +48,24 @@ ActiveRecord::Schema.define(version: 2020_10_15_072058) do
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.string "name"
+    t.string "salon_name"
     t.boolean "admin"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["email"], name: "index_admins_on_email", unique: true
     t.index ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
+  end
+
+  create_table "items", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "item_name"
+    t.integer "itme_price"
+    t.text "description"
+    t.integer "item_category"
+    t.text "self_description"
+    t.integer "pickup_id"
+    t.integer "admin_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "menus", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -62,13 +74,20 @@ ActiveRecord::Schema.define(version: 2020_10_15_072058) do
     t.integer "customer_type_id"
     t.text "menu_text", null: false
     t.integer "menu_time_id"
+    t.integer "admin_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "regular_holidays", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "reservations", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.integer "stylist_id", null: false
-    t.integer "seat_id"
+    t.integer "seat", default: 1
     t.time "time", null: false
     t.date "date", null: false
     t.integer "menu_id", null: false
@@ -78,6 +97,35 @@ ActiveRecord::Schema.define(version: 2020_10_15_072058) do
     t.datetime "menu_start_time"
     t.datetime "menu_end_time"
     t.integer "set_price", null: false
+    t.integer "admin_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "salon_details", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.integer "seat_id"
+    t.integer "salon_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "salon_regular_holidays", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.integer "regular_holiday_id"
+    t.integer "salon_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "salon_shifts", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.integer "shift_salon_id"
+    t.integer "salon_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "salon_spcial_holidays", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.integer "salon_id"
+    t.integer "spcial_holiday_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -85,21 +133,32 @@ ActiveRecord::Schema.define(version: 2020_10_15_072058) do
   create_table "salons", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.time "start_time", null: false
     t.time "end_time", null: false
-    t.date "holiday"
     t.string "salon_name", null: false
+    t.string "salon_name_cana", null: false
     t.string "post_code", null: false
     t.integer "prefecture_id", null: false
     t.string "address_all", null: false
     t.string "salon_slogan", null: false
     t.string "salon_info", null: false
+    t.integer "admin_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "sns_credentials", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.string "provider"
-    t.string "uid"
-    t.integer "user"
+  create_table "shift_salons", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.date "holiday", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "shifts", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.date "holiday", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "spcial_holidays", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.date "holiday", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -130,6 +189,13 @@ ActiveRecord::Schema.define(version: 2020_10_15_072058) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "stylist_shifts", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.integer "stylist_id"
+    t.integer "shift_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "stylists", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "stylist_first_name", null: false
     t.string "stylist_last_name", null: false
@@ -139,6 +205,7 @@ ActiveRecord::Schema.define(version: 2020_10_15_072058) do
     t.integer "gender_id", default: 0, null: false
     t.string "catchphrase", null: false
     t.string "self_introduction", null: false
+    t.integer "admin_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -186,6 +253,7 @@ ActiveRecord::Schema.define(version: 2020_10_15_072058) do
     t.integer "age_id"
     t.boolean "admin", default: false
     t.integer "salon_id", null: false
+    t.integer "admin_id"
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"

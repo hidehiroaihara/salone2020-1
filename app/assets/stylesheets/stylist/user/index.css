@@ -1,0 +1,22 @@
+.user_stylist_index_area{
+  height: 100%;
+  width: 100%;
+}
+.user_stylist_show_table1{
+  width: 70%;
+  height: 250px;
+}
+.user_stylist_index_table{
+  width: 70%;
+  height: 10px;
+}
+#user_stylist_index_image{
+  width: 70%;
+  height: 250px;
+}
+.user_stylist_index_image{
+  width: 70%;
+  height: 250px;
+  border: 1px solid black;
+  margin-left: 50px;
+}

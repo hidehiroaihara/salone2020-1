@@ -7,25 +7,29 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 Admin.create!(
-  name: 'salone',
+  salon_name: 'salone',
   email: 'salone@salone.com',
   password: 'salone2020',
   admin: true
 )
 StyleCategoryList.create([ {name: 'カット'},
                            { name: 'カラー' },
-                         { name: 'パーマ'},
-                         { name: '縮毛矯正' },
-                         { name: 'エクステ' },
-                         { name: 'トリートメント' },
-                         { name: 'ヘアセット' },
-                         { name: 'ヘッドスパ' },
-                         { name: '着付け' },
-                         { name: 'その他' }]
+                           { name: 'パーマ'},
+                           { name: '縮毛矯正' },
+                           { name: 'エクステ' },
+                           { name: 'トリートメント' },
+                           { name: 'ヘアセット' },
+                           { name: 'ヘッドスパ' },
+                           { name: '着付け' },
+                           { name: 'その他' }
+                         ]
                         )
-# Stylist.create(
-#   stylist_first_name: "フ",
-#   stylist_last_name_cana: "リー",
-#   stylist_first_name: "フ",
-#   stylist_last_name_cana: "リー"　　　　　　　　　　　
-# )
+RegularHoliday.create([{name: '日曜日'},
+                       {name: '月曜日'},
+                       {name: '火曜日'},
+                       {name: '水曜日'},
+                       {name: '木曜日'},
+                       {name: '金曜日'},
+                       {name: '土曜日'}
+                      ]
+                     )

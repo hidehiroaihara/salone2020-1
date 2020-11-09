@@ -6,4 +6,5 @@ class Reservation < ApplicationRecord
   belongs_to :user
   belongs_to :salon
   belongs_to :menu
+  belongs_to :admin, optional: true
 end

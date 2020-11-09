@@ -1,6 +1,7 @@
 class Admins::MenusController < ApplicationController
   before_action :authenticate_admin!
   before_action :set_menu, only: [:show, :edit, :destroy, :update]
+  before_action :admin_id
   def index
     @menus = Menu.all
   end
@@ -37,10 +38,17 @@ class Admins::MenusController < ApplicationController
   private
 
   def menu_params
-    params.require(:menu).permit(:menu_name, :price, :customer_type_id, :menu_text, :menu_time_id, {style_category_list_ids: []})
+    params.require(:menu).permit(:menu_name, :price, :customer_type_id, :menu_text, :menu_time_id, {style_category_list_ids: []}).merge(admin_id: current_admin.id)
   end
 
   def set_menu
     @menu = Menu.find(params[:id])
+  end
+
+  def admin_id
+    admins = Admin.all
+    admins.each do |admin|
+      @admin = admin
+    end
   end
 end

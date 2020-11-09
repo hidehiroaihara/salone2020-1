@@ -2,6 +2,7 @@ class Admins::ReservationsController < ApplicationController
   before_action :authenticate_admin!
   before_action :set_reservation, only: [:show, :update, :edit, :destroy]
   before_action :set_wd
+  before_action :admin_id
   def index
     @reservations = Reservation.includes(:user)
     @stylist = Stylist.all
@@ -25,9 +26,12 @@ class Admins::ReservationsController < ApplicationController
   def salon_time
     @salons = Salon.all
     @salons.each do |salon|
-      @salon_start = salon.start_time
-      @salon_end = salon.end_time
-      @salon_id = salon.id
+      if salon.admin_id == current_admin.id
+        @salon_start = salon.start_time
+        @salon_end = salon.end_time
+        @salon_id = salon.id
+        @salon = salon
+      end
     end
   end
 
@@ -38,5 +42,11 @@ class Admins::ReservationsController < ApplicationController
   def set_wd
     @wd = ["日", "月", "火", "水", "木", "金", "土"]
   end
-
+  
+  def admin_id
+    admins = Admin.all
+    admins.each do |admin|
+      @admin = admin
+    end
+  end
 end

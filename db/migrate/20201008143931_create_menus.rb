@@ -6,6 +6,7 @@ class CreateMenus < ActiveRecord::Migration[6.0]
       t.integer :customer_type_id
       t.text :menu_text,          null: false
       t.integer :menu_time_id
+      t.integer :admin_id,        foreign_key: true
       t.timestamps
     end
   end

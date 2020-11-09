@@ -1,4 +1,10 @@
 class Users::StylistsController < ApplicationController
+  before_action :admin_id
+  def index
+    @stylists = Stylist.all
+    salon_all
+  end
+
   def show
     salon_all
     @stylist = Stylist.find(params[:id])
@@ -12,4 +18,12 @@ class Users::StylistsController < ApplicationController
       @salon = salon
     end
   end
+
+  def admin_id
+    admins = Admin.all
+    admins.each do |admin|
+      @admin = admin
+    end
+  end
+  
 end
