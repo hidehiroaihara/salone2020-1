@@ -35,7 +35,7 @@
           <% elsif admin_signed_in? %>
             <% if current_admin.salon.blank? %>
               <li class="salon_new_btn_li">
-                <%= link_to "管理者画面", new_admins_salon_path, class:"salon_new_btn1"%>
+                <%= link_to "サロン登録", new_admins_salon_path, class:"salon_new_btn1"%>
               </li>
             <% else %>
               <li class="salon_new_btn_li">
