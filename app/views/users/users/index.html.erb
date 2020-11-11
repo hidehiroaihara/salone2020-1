@@ -6,7 +6,7 @@
           <% unless user_signed_in? %>
             <span class="background_image">
                (サンプル画像)
-              <%= image_tag 'top-image.jpeg' %>
+              <%= image_tag 'top-image.png' %>
             </span>
           <% else %>
             <%= image_tag current_user.salon.salon_top_image, class: "stylist-img" if @salon.salon_top_image.attached? %> 
