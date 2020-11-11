@@ -1,5 +1,9 @@
 <div class="contents">
   <div class="section">
+    <%= link_to root_path do %>
+      <p class="salon_new_top_page">トップページに戻る</p>
+    <% end %>
+    <p class="salon_new_page">サロン情報の登録お願いします。</p>
      <%= form_with model: @salon, url: admins_salons_path, id: 'new_salon', local: true do |f| %>
 
       <%= render 'shared/error_messages', model: f.object %>

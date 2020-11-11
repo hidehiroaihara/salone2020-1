@@ -68,3 +68,11 @@
   border-radius: 3px;
   width: 100px;
 }
+.salon_new_top_page{
+  text-align: center;
+  color: rgb(78, 78, 247);
+}
+.salon_new_page{
+  color:rgb(247, 90, 90);
+  font-size:18px;
+}
