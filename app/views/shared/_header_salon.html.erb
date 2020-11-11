@@ -28,7 +28,7 @@
       <div class="btn-column">
         <ul class="column-all">
             <li><%= link_to "サロン情報", admins_salons_path, class:"stylist_list1" %></li>
-            <% unless current_page?(controller: "admins/salons", action: "new") %>
+            <% if current_page?(controller: "admins/salons", action: "new") %>
             <% else%>
               <li><%= link_to "詳細情報", admins_salon_salon_details_path(current_admin.salon.id), class:"stylist_list1" %></li>
             <% end %>
