@@ -1,0 +1,30 @@
+<%= render "shared/header_salon" %>
+<div class="contents">
+  <div class="section">
+    <div class="new_regular_area">
+      <div class="customer_title">
+          <p class="block_area"></p>
+          <h1 style="background-color:#9b9b9b;color:white;"class="title1 stylist_space">定休日登録</h1>
+      </div>
+      <%= form_with model:[@salon, @salon_detail], url: create_regular_admins_salon_salon_details_path(@salon.id), local: true do |f|%>
+        <table class="new_regular_table">
+          <colgroup width="30%"></colgroup>
+          <colgroup width="70%"></colgroup>
+          <tr>
+            <th class="new_regular_th">
+              定休日(曜日を選択してください)<br>複数選択可
+            </th>
+            <td class="new_regular_td">
+              <%= f.collection_check_boxes(:regular_holiday_ids, RegularHoliday.all, :id, :name,{include_hidden: false},{class:"regular_check_box"}  ) %>
+            </td>
+          </tr>
+        </table>
+        <div class="submit_save">
+           <p class="registration_area">
+             <%= f.submit "登録する", class:"registration" %>
+           </p>
+        </div> 
+      <% end %>
+    </div>
+  </div>
+</div>

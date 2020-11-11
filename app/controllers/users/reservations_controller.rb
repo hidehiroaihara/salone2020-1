@@ -3,7 +3,7 @@ class Users::ReservationsController < ApplicationController
   before_action :move_to_index
   before_action :set_user_reservation, only: [:edit, :update, :show, :destory, :edit_menu, :update_menu, :edit_confirm]
   before_action :set_wd
-  before_action :set_salon
+  # before_action :set_salon
   before_action :admin_id
   require "date"
   def index
@@ -16,8 +16,8 @@ class Users::ReservationsController < ApplicationController
 
   def new
     @ago = params.fetch(:ago,0).to_i
-    reservation_days
-    salon_time
+    # reservation_days
+    # salon_time
     @menu = Menu.find_by(id: params[:format])
     @day = DateTime.now - @ago
     @reservations = Reservation.all
@@ -25,7 +25,7 @@ class Users::ReservationsController < ApplicationController
   end
 
   def confirm
-    salon_time
+    # salon_time
     @user = User.find_by(id: current_user.id)
     @menu = Menu.find_by(id: params[:format])
     @visit_time = params[:time]
@@ -96,25 +96,30 @@ class Users::ReservationsController < ApplicationController
     params.require(:reservation).permit(:menu_id)
   end
 
-  def salon_time
-    @salons = Salon.all
-    @salons.each do |salon|
-      @salon_start = salon.start_time
-      @salon_end = salon.end_time
-      @salon_id = salon.id
-      @salon = salon
-    end
-  end
+  # def salon_time
+  #   @salons = Salon.all
+  #   @salons.each do |salon|
+  #     if current_user.admin_id == salon.admin_id
+  #       @salon_start = salon.start_time
+  #       @salon_end = salon.end_time
+  #       @salon_id = salon.id
+  #       @salon = salon
+  #     end
+  #     salon.salon_detail.regular_holidays.each do |holiday|
+  #       @holiday = holiday
+  #     end
+  #   end
+  # end
 
-  def reservation_days
-    @reservation_days = Reservation.all
-    @reservation_days.each do |day| 
-      @reservation_time = day.time
-      @reservation_date = day.date
-      @reservation_menu_start = day.menu_start_time
-      @reservation_menu_end = day.menu_end_time
-    end
-  end
+  # def reservation_days
+  #   @reservation_days = Reservation.all
+  #   @reservation_days.each do |day| 
+  #     @reservation_time = day.time
+  #     @reservation_date = day.date
+  #     @reservation_menu_start = day.menu_start_time
+  #     @reservation_menu_end = day.menu_end_time
+  #   end
+  # end
 
   def menu_end_time
     option_check = false

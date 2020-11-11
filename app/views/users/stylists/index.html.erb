@@ -6,66 +6,71 @@
     </p>
     <div class="user_stylist_index_area">
       <% @stylists.each do |stylist|%>
-        <table class="user_stylist_show_table" align="left">
-          <td class="user_stylist_show_image_td"> 
-            <%= link_to users_stylist_path(stylist.id) do %>
-              <% if stylist.image.attached? %>
-                <%= image_tag stylist.image, id:"user_stylist_index_image" %>
-              <% else%>
-                <p class="user_stylist_index_image" style="color:black;">
-                    画像なし
-                </p>
+       <% if stylist.admin_id == current_user.admin_id %>
+          <table class="user_stylist_show_table" align="left">
+            <td class="user_stylist_show_image_td"> 
+              <%= link_to users_stylist_path(stylist.id) do %>
+                <% if stylist.image.attached? %>
+                  <%= image_tag stylist.image, id:"user_stylist_index_image" %>
+                <% else%>
+                  <p class="user_stylist_index_image" style="color:black;">
+                      画像なし
+                  </p>
+                <% end %>
+              <% end %>
+            </td>
+          </table>
+          <table class="user_stylist_index_table1">
+            <colgroup width="25%"></colgroup>
+            <colgroup width="25%"></colgroup>
+            <colgroup width="25%"></colgroup>
+            <colgroup width="25%"></colgroup>
+            <tr>
+              <th class="user_stylist_show_th">
+                名前(フリガナ)
+              </th>
+              <td colspan="3" class="user_stylist_show_td">
+                <%= stylist.set_name %>(<%= stylist.set_name_cana %>)
+              </td>
+            </tr>
+            <tr>
+              <th class="user_stylist_show_th">
+                スタイリスト歴
+              </th>
+              <td colspan="3" class="user_stylist_show_td">
+                <%= stylist.stylist_detail.stylist_history.name %>
+              </td>
+            </tr>
+            <tr>
+              <th class="user_stylist_show_th">
+                ランク
+              </th>
+              <td class="user_stylist_show_td">
+                <%= stylist.rank.name %>
+              </td>
+              <th class="user_stylist_show_th">
+                ランク(経歴)
+              </th>
+              <td class="user_stylist_show_td">
+                  <%= stylist.stylist_detail.rank_text %>
+              </td>
+            </tr>
+          </table>
+          <table class="user_stylist_index_table" style="margin-top:20px;">
+            <tr>
+              <th class="stylist_title">ヘアースタイル一覧
+                <p class="block_area"></p>
+              </th>
+            </tr>
+          </table>
+          <p class="img_all_area stylist_show_portraits" style="margin-top:20px;margin-bottom:20px;">
+            <% if stylist.portraits.attached? %>
+              <% stylist.portraits.each do |portrait| %>
+                <%= image_tag portrait %>
               <% end %>
             <% end %>
-          </td>
-        </table>
-        <table class="user_stylist_index_table1">
-          <colgroup width="25%"></colgroup>
-          <colgroup width="25%"></colgroup>
-          <colgroup width="25%"></colgroup>
-          <colgroup width="25%"></colgroup>
-          <tr>
-            <th class="user_stylist_show_th">
-              名前(フリガナ)
-            </th>
-            <td colspan="3" class="user_stylist_show_td">
-              <%= stylist.set_name %>(<%= stylist.set_name_cana %>)
-            </td>
-          </tr>
-          <tr>
-            <th class="user_stylist_show_th">
-              スタイリスト歴
-            </th>
-          </tr>
-          <tr>
-            <th class="user_stylist_show_th">
-              ランク
-            </th>
-            <td class="user_stylist_show_td">
-              <%= stylist.rank.name %>
-            </td>
-            <th class="user_stylist_show_th">
-              ランク(経歴)
-            </th>
-            <td class="user_stylist_show_td">
-                <%= stylist.stylist_detail.rank_text %>
-            </td>
-          </tr>
-        </table>
-        <table class="user_stylist_index_table" style="margin-top:20px;">
-          <tr>
-            <th class="stylist_title">ヘアースタイル一覧
-              <p class="block_area"></p>
-            </th>
-          </tr>
-        </table>
-        <p class="img_all_area stylist_show_portraits" style="margin-top:20px;margin-bottom:20px;">
-          <% if stylist.portraits.attached? %>
-            <% stylist.portraits.each do |portrait| %>
-              <%= image_tag portrait %>
-            <% end %>
-          <% end %>
-        </p>
+          </p>
+        <% end %>
       <% end %>
     </div>
   </div>

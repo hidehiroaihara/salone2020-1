@@ -1,0 +1,26 @@
+.new_regular_area{
+  height: 100%;
+  width: 100%;
+}
+.new_regular_table{
+  height: 10px;
+  width: 100%;
+}
+.new_regular_th{
+  border: 1px solid black;
+  background-color: rgb(236, 211, 177);
+}
+.new_regular_td{
+  border: 1px solid black;
+}
+.regular_check_box{
+  margin-left:10px;
+}
+.new_spcial_area{
+  height: 100%;
+  width: 100%;
+}
+.new_spcial_table{
+  height: 10px;
+  width: 100%;
+}

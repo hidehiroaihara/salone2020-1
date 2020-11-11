@@ -81,6 +81,7 @@ ActiveRecord::Schema.define(version: 2020_11_09_020731) do
 
   create_table "regular_holidays", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name"
+    t.integer "num"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -103,7 +104,6 @@ ActiveRecord::Schema.define(version: 2020_11_09_020731) do
   end
 
   create_table "salon_details", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.integer "seat_id"
     t.integer "salon_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -111,20 +111,20 @@ ActiveRecord::Schema.define(version: 2020_11_09_020731) do
 
   create_table "salon_regular_holidays", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.integer "regular_holiday_id"
-    t.integer "salon_id"
+    t.integer "salon_detail_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "salon_shifts", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.integer "shift_salon_id"
-    t.integer "salon_id"
+    t.integer "salon_detail_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "salon_spcial_holidays", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.integer "salon_id"
+    t.integer "salon_detail_id"
     t.integer "spcial_holiday_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -153,6 +153,7 @@ ActiveRecord::Schema.define(version: 2020_11_09_020731) do
 
   create_table "shifts", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.date "holiday", null: false
+    t.integer "salon_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

@@ -1,0 +1,178 @@
+<%= render "shared/header_salon" %>
+<div class="contents">
+  <div class="section">
+    <div class="holiday_all">
+      <div class="regular_holiday_area">
+        <%= link_to  new_regular_admins_salon_salon_details_path(current_admin.salon.id) do %>
+          <table class="regular_holiday_table">
+            <tr>
+              <th class="regular_holiday_th">
+                定休日設定
+              </th>
+            </tr>
+            <tr>
+              <td class="regular_holiday_td">
+                曜日で毎週休みが決まってる<br>
+                定休日の設定はこちらからしてください
+              </td>
+            </tr>
+          </table>
+        <% end %>
+      </div>
+      <div class="spcial_holiday_area">
+        <%= link_to new_spcial_admins_salon_salon_details_path(current_admin.salon.id, date:@date.next_month) do %>
+          <table class="regular_holiday_table">
+            <tr>
+              <th class="regular_holiday_th">
+                <%= @date.next_month.strftime("%Y年%m月") %>休日設定
+              </th>
+            </tr>
+            <tr>
+              <td class="regular_holiday_td">
+                前月までに設定お願い致します。<br>
+                特定の日付で選択してください
+              </td>
+            </tr>
+          </table>
+        <% end %>
+      </div>
+      <div class="spcial_holiday_area">
+        <%= link_to  new_admins_salon_shift_path(current_admin.salon.id) do %>
+          <table class="regular_holiday_table">
+            <tr>
+              <th class="regular_holiday_th">
+                <%= @date.next_month.strftime("%Y年%m月") %>休日設定(スタッフ)
+              </th>
+            </tr>
+            <tr>
+              <td class="regular_holiday_td">
+                前月までに設定お願い致します。<br>
+                特定の日付で選択してください
+              </td>
+            </tr>
+          </table>
+        <% end %>
+      </div>
+    </div>
+    <div class="customer_title">
+        <p class="block_area"></p>
+        <h1 style="background-color:#9b9b9b;color:white;"class="title1 stylist_space">店休日(先々予定)</h1>
+     </div>
+     <div class="holiday_all">
+       <div class="spcial_holiday_area">
+        <%= link_to new_spcial_admins_salon_salon_details_path(current_admin.salon.id, date:@date.months_since(2)) do %>
+          <table class="regular_holiday_table">
+            <tr>
+              <th class="regular_holiday_th">
+                <%= @date.months_since(2).strftime("%Y年%m月") %>休日設定
+              </th>
+            </tr>
+            <tr>
+              <td class="regular_holiday_td">
+                特定の日付で選択してください
+              </td>
+            </tr>
+          </table>
+        <% end %>
+      </div>
+      <div class="spcial_holiday_area">
+        <%= link_to new_spcial_admins_salon_salon_details_path(current_admin.salon.id, date:@date.months_since(3)) do %>
+          <table class="regular_holiday_table">
+            <tr>
+              <th class="regular_holiday_th">
+                <%= @date.months_since(3).strftime("%Y年%m月") %>休日設定
+              </th>
+            </tr>
+            <tr>
+              <td class="regular_holiday_td">
+                特定の日付で選択してください
+              </td>
+            </tr>
+          </table>
+        <% end %>
+      </div>
+       <div class="spcial_holiday_area">
+        <%= link_to new_spcial_admins_salon_salon_details_path(current_admin.salon.id, date: @date.months_since(4)) do %>
+          <table class="regular_holiday_table">
+            <tr>
+              <th class="regular_holiday_th">
+                <%= @date.months_since(4).strftime("%Y年%m月") %>休日設定
+              </th>
+            </tr>
+            <tr>
+              <td class="regular_holiday_td">
+                特定の日付で選択してください
+              </td>
+            </tr>
+          </table>
+        <% end %>
+      </div>
+    </div>
+    <div class="customer_title">
+        <p class="block_area"></p>
+        <h1 style="background-color:#9b9b9b;color:white;"class="title1 stylist_space">スタッフ休日(先々予定)</h1>
+    </div>
+    <div class="holiday_all">
+      <div class="spcial_holiday_area">
+          <%= link_to  new_admins_salon_shift_path(current_admin.salon.id) do %>
+            <table class="regular_holiday_table">
+              <tr>
+                <th class="regular_holiday_th">
+                  <%= @date.months_since(2).strftime("%Y年%m月") %>休日設定(スタッフ)
+                </th>
+              </tr>
+              <tr>
+                <td class="regular_holiday_td">
+                  特定の日付で選択してください
+                </td>
+              </tr>
+            </table>
+          <% end %>
+      </div>
+      <div class="spcial_holiday_area">
+        <%= link_to  new_admins_salon_shift_path(current_admin.salon.id) do %>
+          <table class="regular_holiday_table">
+            <tr>
+              <th class="regular_holiday_th">
+                <%= @date.months_since(3).strftime("%Y年%m月") %>休日設定(スタッフ)
+              </th>
+            </tr>
+            <tr>
+              <td class="regular_holiday_td">
+                特定の日付で選択してください
+              </td>
+            </tr>
+          </table>
+        <% end %>
+      </div>
+      <div class="spcial_holiday_area">
+        <%= link_to  new_admins_salon_shift_path(current_admin.salon.id) do %>
+          <table class="regular_holiday_table">
+            <tr>
+              <th class="regular_holiday_th">
+                <%= @date.months_since(2).strftime("%Y年%m月") %>休日設定(スタッフ)
+              </th>
+            </tr>
+            <tr>
+              <td class="regular_holiday_td">
+                特定の日付で選択してください
+              </td>
+            </tr>
+          </table>
+        <% end %>
+      </div>
+    </div>
+    <div class="holiday_display">
+      <div class="customer_title">
+        <p class="block_area"></p>
+        <h1 style="background-color:#9b9b9b;color:white;"class="title1 stylist_space">登録している休日一覧</h1>
+      </div>
+      <table class="holiday_regular_table">
+        <tr>
+          
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>
+<%= render "shared/footer"%>

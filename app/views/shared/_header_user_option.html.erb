@@ -7,7 +7,11 @@
       <div class="btn_area" id="bot-all">
         <ul class="shop_name_wrap">
           <li class="shop_area">ヘアサロン</li>
-          <li class="shop_name">sample(La Vie en Reflet(ラ・ヴィ・アン・ルフレット))</li>
+          <% if current_admin.salon.salon_name.empty? %>
+            <li class="shop_name">サンプル(La Vie en Reflet(ラ・ヴィ・アン・ルフレット))</li>
+          <% else %>
+            <li class="shop_name"><%= current_admin.salon.salon_name %>(<%= current_admin.salon.salon_name_cana %>)</li>
+          <% end %>
         </ul>
         <ul class="btn-all">
           <li><%= link_to "予約管理", admins_reservations_path, class:"management"%></li>

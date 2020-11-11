@@ -1,0 +1,46 @@
+.holiday_all{
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: space-around;
+}
+.regular_holiday_area, .spcial_holiday_area{
+  width: 30%;
+  height: 100%;
+}
+.regular_holiday_table{
+  width: 100%;
+  height: 150px;
+  background-color:#c8e2fc;
+  border: 1px solid white;
+  box-shadow:
+    0 1.9px 2.5px rgba(211, 211, 211, 0.057),
+    0 5px 6.1px rgba(211, 211, 211, 0.076),
+    0 10.1px 11.4px rgba(211, 211, 211, 0.086),
+    0 19.2px 19.8px rgba(211, 211, 211, 0.092),
+    0 38.4px 34.8px rgba(211, 211, 211, 0.1),
+    0 101px 74px rgba(211, 211, 211, 0.13);
+  border-radius: 10px;
+  text-align: center;
+  
+}
+.regular_holiday_table:hover{
+  border-bottom: 5px solid rgba(255, 255, 255, 0.3);
+  box-shadow: inset 1px 1px 10px 2px rgba(235, 235, 235, 0.5);
+}
+.regular_holiday_th{
+  color: navy;
+  text-align: center;
+}
+.regular_holiday_td{
+  color: navy;
+  text-align: center;
+}
+.holiday_display{
+  width: 100%;
+  height: 100%;
+}
+.holiday_regular_table{
+  width: 100%;
+  height: 10px;
+}

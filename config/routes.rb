@@ -19,6 +19,10 @@ Rails.application.routes.draw do
     get 'admins/sign_in' => 'admins/sessions#new', as: 'new_admin_session'
     post 'admins/sign_in' => 'admins/sessions#create', as: 'admin_session'
     delete 'admins/sign_out' => 'admins/sessions#destroy', as: 'destroy_admin_session'
+    # get 'admins/regular_holiday' => 'admins/salon_details#new_regular'
+    # post 'admins/regular_holiday' => 'admins/salon_details#create_regular'
+    # get 'admins/spcial_holiday' => 'admins/salon_details#new_spcial'
+    # post 'admins/spcial_holiday' => 'admins/salon_details#create_spcial'
     # get 'admins/sign_up' => 'admins/registrations#new', as: 'new_admin_registration'
     # post 'admins' => 'admins/registrations#create', as: 'admin_registration'
     # get 'admins/cancel' => 'admins/registrations#cancel', as: 'cancel_admin_registration'
@@ -49,16 +53,8 @@ Rails.application.routes.draw do
     get 'user_details', to: 'users/registrations#new_detail'
     post 'user_details', to: 'users/registrations#create_detail'
     get "times", to: 'users/reservations#new_time'
-    # get|post 'users_facebook_omniauth_authorize', to: 'users/omniauth_callbacks#passthru'
   end
-  # devise_for :users, controllers: {
-  #   omniauth_callbacks: 'users/omniauth_callbacks',
-  #   registrations: 'users/registrations'
-  # }
-#   user_facebook_omniauth_authorize GET|POST /users/auth/facebook(.:format)                              users/omniauth_callbacks#passthru
-#    user_facebook_omniauth_callback GET|POST /users/auth/facebook/callback(.:format)                         users/omniauth_callbacks#facebook
-# user_google_oauth2_omniauth_authorize GET|POST /users/auth/google_oauth2(.:format)                           users/omniauth_callbacks#passthru
-#  user_google_oauth2_omniauth_callback GET|POST /users/auth/google_oauth2/callback(.:format)                       users/omniauth_callbacks#google_oauth2
+  
   namespace :users do
     resources :stylists
     resources :reservations do
@@ -79,10 +75,19 @@ Rails.application.routes.draw do
       resources :user_options
     end 
     resources :reservations
-    resources :stylists
+    resources :stylists 
     resources :menus
-    resources :salons
-    resources :user_options
+    resources :salons do
+      resources :salon_details do
+        collection do
+          get :new_regular
+          post :create_regular
+          get :new_spcial
+          post :create_spcial
+        end
+      end
+      resources :shift
+    end
   end
   root to: "users/users#index"
 end

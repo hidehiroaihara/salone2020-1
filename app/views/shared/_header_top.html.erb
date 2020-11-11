@@ -5,7 +5,7 @@
         <%= link_to image_tag("salone-logo.png", class:"salon-icon-view"), "/" %>
       </div>
     </div>
-    <% if Salon.count == 0 %>
+    <% unless user_signed_in? %>
       <div class="salon_view_right">
         <h1 class="salon_name_view">サンプル(La Vie en Reflet(ラ・ヴィ・アン・ルフレット))
           <p class="salon_name_cana">サンプルフリカナ(ラ・ヴィ・アン・ルフレット)</p>
@@ -14,15 +14,15 @@
       </div>
     <% else %>
       <div class="salon_view_right">
-        <h1 class="salon_name_view"> <%= @salon.salon_name %>
-          <p class="salon_name_cana"><%= @salon.salon_name_cana %></p>
-          <p class="salon_view_address">〒<%= @salon.post_code%><%= @salon.prefecture.name%><%= @salon.address_all%></p>
-        </h1>
+          <h1 class="salon_name_view"> <%= current_user.salon.salon_name %>
+            <p class="salon_name_cana"><%= current_user.salon.salon_name_cana %></p>
+            <p class="salon_view_address">〒<%= current_user.salon.post_code%><%= current_user.salon.prefecture.name%><%= current_user.salon.address_all%></p>
+          </h1>
       </div>
     <% end %>
     <div class="salon_log_all">
       <div class="book_area">
-        <%= link_to "予約する", users_reservations_path, class:"book_btn"%>
+          <%= link_to "予約する", users_reservations_path, class:"book_btn"%>
       </div>
         <ul class="salon_log_btn_area">
           <% if user_signed_in? %>
@@ -33,7 +33,7 @@
               <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class:"salon_log_btn" %>
             </li>
           <% elsif admin_signed_in? %>
-            <% if Salon.count == 0 %>
+            <% if current_admin.salon.salon_name.empty? %>
               <li class="salon_new_btn_li">
                 <%= link_to "管理者画面", new_admins_salon_path, class:"salon_new_btn1"%>
               </li>

@@ -1,6 +1,6 @@
 class StylistHistory < ActiveHash::Base
   self.data = [
-    {id: 0, name: '選択なし'},
+    {id: 0, name: '0年'},
     { id: 1, name: '1年' }, { id: 2, name: '2年' }, { id: 3, name: '3年' }, { id: 4, name: '4年' },
     { id: 5, name: '5年' }, { id: 6, name: '6年' }, { id: 7, name: '7年' }, { id: 8, name: '8年' },
     { id: 9, name: '9年' }, { id: 10, name: '10年' }, { id: 11, name: '11年' }, { id: 12, name: '12年' },

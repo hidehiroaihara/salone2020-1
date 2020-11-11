@@ -155,4 +155,12 @@ class Admins::UsersController < ApplicationController
       reservation.save
     end
   end
+
+  # def admin_id
+  #   admins = Admin.all
+  #   admins.each do |admin|
+  #     @admin = admin
+  #   end
+  # end
+
 end

@@ -48,10 +48,13 @@ class Admins::UserOptionsController < ApplicationController
 
   def set_user
     @user = User.find(params[:user_id])
+    @salon = @user.salon
     # @user = User.find_by(id: params[:format])
   end
 
   def set_user_option
     @user_option = UserOption.find(params[:id])
   end
+
+
 end

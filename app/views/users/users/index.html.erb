@@ -3,18 +3,18 @@
   <div class="section1">
       <div class="top_page_background_image_area">
         <p class="top_page_image">
-          <% if Salon.count == 0 %>
+          <% unless user_signed_in? %>
             <span class="background_image">
                (サンプル画像)
               <%= image_tag 'top-image.jpeg' %>
             </span>
           <% else %>
-            <%= image_tag @salon.salon_top_image, class: "stylist-img" if @salon.salon_top_image.attached? %> 
+            <%= image_tag current_user.salon.salon_top_image, class: "stylist-img" if @salon.salon_top_image.attached? %> 
           <% end %>
         </p>
       </div>
       <div class="salon_name_area">
-        <% if Salon.count == 0 %>
+        <% unless user_signed_in? %>
           <ul class="salon_detail_area">
            <li class="salon_detail_text">
             サンプル(La Vie en Reflet(ラ・ヴィ・アン・ルフレット))
@@ -26,21 +26,21 @@
         <% else %>
           <ul class="salon_detail_area">
            <li class="salon_detail_text">
-            <%= @salon.salon_name %>(<%= @salon.salon_name_cana%>)
+            <%= current_user.salon.salon_name %>(<%= current_user.salon.salon_name_cana%>)
            </li>
            <li class="salon_name1">
-            <%= @salon.salon_slogan%>
+            <%= current_user.salon.salon_slogan%>
            </li>
           </ul>
         <% end %>
         <ul class="salon_detail_area2">
-          <% if Salon.count == 0 %>
+          <% unless user_signed_in? %>
             <li class="salon_detail_description1">
               サンプル(髪だけでなく全身に癒しを与えます)
             </li>
           <% else %>
             <li class="salon_detail_description1">
-              <%= @salon.salon_info %>
+              <%= current_user.salon.salon_info %>
             </li>
           <% end %>
         </ul>
@@ -63,31 +63,40 @@
       <div class="style_phot_area">
         <p class="style_phot_name">StylePhot</p>
         <ul class="style_display_area">
-        <% if Stylist.count == 0 %>
+        <% unless user_signed_in? %>
            <li class="style_phot">
            </li>
         <% else %>
           <% @stylists.each do |stylist| %>
-             <% if stylist.portraits.attached? %>
-               <% stylist.portraits.each do |portrait| %> 
+            <% if stylist.admin_id == current_user.admin_id%>
+              <% if stylist.portraits.attached? %>
+                <% stylist.portraits.each do |portrait| %> 
                   <li class="style_phot">
                     <%= image_tag portrait %>
                   </li>
-               <% end %>
-             <% end %>
-           <% end%>
+                <% end %>
+              <% end %>
+            <% end %>
+          <% end%>
         <% end %>
         </ul>
         <div class="item_list_area">
-          <%= link_to "#" do %>
-            <p class="item_list_btn1">MORE PHOTS</p>
+          <% unless user_signed_in? %>
+            <ul class="unless_item_list">
+              <li style="text-align:center;"> ログインしてからクリックできます</li>
+              <li class="item_list_btn1">MORE PHOTS</li>
+            </ul>
+          <% else %>
+            <%= link_to "#" do %>
+              <p class="item_list_btn1">MORE PHOTS</p>
+            <% end %>
           <% end %>
         </div>
       </div>
       <div class="style_phot_area">
         <p class="style_phot_name">Stylist</p>
         <ul class="style_display_area">
-          <% if Stylist.count == 0 %>
+          <% unless user_signed_in? %>
             <li class="style_phot">
             </li>
             <li class="style_phot">
@@ -100,19 +109,28 @@
             </li>
           <% else %>
             <% @stylists.each do |stylist| %>
-              <%= link_to users_stylist_path(stylist.id) do %>
-              <li class="style_phot">
-                  <% if stylist.image.attached? %>
-                    <%= image_tag stylist.image %>
-                  <% end %>
-              </li>
-               <% end %>
+              <% if stylist.admin_id == current_user.admin_id %>
+                <%= link_to users_stylist_path(stylist.id) do %>
+                  <li class="style_phot">
+                      <% if stylist.image.attached? %>
+                        <%= image_tag stylist.image %>
+                      <% end %>
+                  </li>
+                <% end %>
+              <% end %>
             <% end %>
           <% end %>
         </ul>
         <div class="item_list_area">
-          <%= link_to users_stylists_path do %>
-            <p class="item_list_btn1">Stylists</p>
+          <% unless user_signed_in? %>
+            <ul class="unless_item_list">
+              <li style="text-align:center;"> ログインしてからクリックできます</li>
+              <li class="item_list_btn1">Stylists</li>
+            </ul>
+          <% else%>
+            <%= link_to users_stylists_path do %>
+              <p class="item_list_btn1">Stylists</p>
+            <% end %>
           <% end %>
         </div>
       </div>

@@ -1,0 +1,19 @@
+<%= render "shared/header_salon" %>
+<div class="contents">
+  <div class="section">
+    <div class="new_spcial_area">
+      <div class="customer_title">
+          <p class="block_area"></p>
+          <h1 style="background-color:#9b9b9b;color:white;"class="title1 stylist_space">12月休日登録</h1>
+      </div>
+      <%= form_with model: [@salon, @salon_detail], url: create_spcial_admins_salon_salon_details_path(@salon.id), local: true do |f| %>
+        <table class="new_spcial_table">
+          <colgroup width="30%"></colgroup>
+          <colgroup width="70%"></colgroup>
+          
+          <tr>
+        </table>
+      <% end %>
+    </div>
+  </div>
+</div>

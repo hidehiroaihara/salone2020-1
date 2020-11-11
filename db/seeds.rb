@@ -24,12 +24,12 @@ StyleCategoryList.create([ {name: 'カット'},
                            { name: 'その他' }
                          ]
                         )
-RegularHoliday.create([{name: '日曜日'},
-                       {name: '月曜日'},
-                       {name: '火曜日'},
-                       {name: '水曜日'},
-                       {name: '木曜日'},
-                       {name: '金曜日'},
-                       {name: '土曜日'}
+RegularHoliday.create([{name: '日曜日', num: '0'},
+                       {name: '月曜日', num: '1'},
+                       {name: '火曜日', num: '2'},
+                       {name: '水曜日', num: '3'},
+                       {name: '木曜日', num: '4'},
+                       {name: '金曜日', num: '5'},
+                       {name: '土曜日', num: '6'}
                       ]
                      )

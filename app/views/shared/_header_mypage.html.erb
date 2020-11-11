@@ -5,7 +5,7 @@
         <%= link_to image_tag("salone-logo.png", class:"salon-icon-view"), "/" %>
       </div>
     </div>
-    <% if Salon.count == 0 %>
+    <% unless user_signed_in? %>
       <div class="salon_view_right">
         <h1 class="salon_name_view">サンプル(La Vie en Reflet(ラ・ヴィ・アン・ルフレット))
           <p class="salon_name_cana">サンプルフリカナ(ラ・ヴィ・アン・ルフレット)</p>
@@ -14,10 +14,10 @@
       </div>
     <% else %>
       <div class="salon_view_right">
-        <h1 class="salon_name_view"> <%= @salon.salon_name %>
-          <p class="salon_name_cana"></p>
-          <p class="salon_view_address">〒<%= @salon.post_code%><%= @salon.prefecture.name%><%= @salon.address_all%></p>
-        </h1>
+          <h1 class="salon_name_view"> <%= current_user.salon.salon_name %>
+            <p class="salon_name_cana"><%= current_user.salon.salon_name_cana %></p>
+            <p class="salon_view_address">〒<%= current_user.salon.post_code%><%= current_user.salon.prefecture.name%><%= current_user.salon.address_all%></p>
+          </h1>
       </div>
     <% end %>
     <div class="salon_log_all">
