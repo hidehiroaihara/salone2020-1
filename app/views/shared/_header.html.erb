@@ -8,7 +8,7 @@
         <div class="btn_area" id="bot-all">
           <ul class="shop_name_wrap">
             <li class="shop_area">ヘアサロン</li>
-            <% if current_admin.salon.salon_name.blank? %>
+            <% if current_admin.salon.blank? %>
             <li class="shop_name">サンプル(La Vie en Reflet(ラ・ヴィ・アン・ルフレット))</li>
           <% else %>
             <li class="shop_name"><%= current_admin.salon.salon_name %>(<%= current_admin.salon.salon_name_cana %>)</li>
