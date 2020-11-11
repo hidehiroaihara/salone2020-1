@@ -57,6 +57,7 @@
     </div>
   </div>
   <div class="salon_view_bottom">
+    <% if user_signed_in? %>
       <ul class="salon_view_bottom_ul">
         <li class="salon_information_area">
           <%= link_to "サロン情報", "#", class:"salon_information_btn" %>
@@ -77,5 +78,6 @@
           <%= link_to "ブログ", "#", class:"salon_information_btn" %>
         </li>
       </ul>
+    <% end %>
   </div>
 </header>
