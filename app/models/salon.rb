@@ -7,6 +7,7 @@ class Salon < ApplicationRecord
   belongs_to :admin,  optional: true
   has_one_attached :salon_top_image, dependent: :destroy
   has_one_attached :salon_bottom_image, dependent: :destroy
+  has_many :spcial_holidays, dependent: :destroy
   with_options presence: true do
     validates :start_time
     validates :end_time

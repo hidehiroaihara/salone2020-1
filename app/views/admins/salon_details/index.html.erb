@@ -20,7 +20,7 @@
         <% end %>
       </div>
       <div class="spcial_holiday_area">
-        <%= link_to new_spcial_admins_salon_salon_details_path(current_admin.salon.id, date:@date.next_month) do %>
+        <%= link_to new_admins_spcial_holiday_path(date:@date.next_month) do %>
           <table class="regular_holiday_table">
             <tr>
               <th class="regular_holiday_th">
@@ -29,8 +29,7 @@
             </tr>
             <tr>
               <td class="regular_holiday_td">
-                前月までに設定お願い致します。<br>
-                特定の日付で選択してください
+                特定の日付で入力してください
               </td>
             </tr>
           </table>

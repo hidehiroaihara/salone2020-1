@@ -24,3 +24,13 @@
   height: 10px;
   width: 100%;
 }
+.salon_new_spcial_th{
+  border: 1px solid black;
+  background-color: rgb(236, 211, 177);
+}
+.salon_new_spcial_td{
+  border: 1px solid black;
+}
+.new_spcial_field{
+  width: 60px;
+}

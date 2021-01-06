@@ -123,13 +123,6 @@ ActiveRecord::Schema.define(version: 2020_11_09_020731) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "salon_spcial_holidays", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.integer "salon_detail_id"
-    t.integer "spcial_holiday_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
   create_table "salons", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.time "start_time", null: false
     t.time "end_time", null: false
@@ -160,6 +153,7 @@ ActiveRecord::Schema.define(version: 2020_11_09_020731) do
 
   create_table "spcial_holidays", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.date "holiday", null: false
+    t.integer "salon_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

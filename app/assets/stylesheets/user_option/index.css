@@ -6,9 +6,14 @@
   width: 100%;
   background-color:rgb(102, 99, 99);
   color: white;
+  height: 10px;
 }
 .time_index_table{
   height: 250px;
+  width: 100%;
+}
+.time_index_table2{
+  height: 10px;
   width: 100%;
 }
 .user_option_title1{

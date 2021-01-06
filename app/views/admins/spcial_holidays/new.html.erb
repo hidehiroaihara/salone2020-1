@@ -4,10 +4,10 @@
     <div class="new_spcial_area">
       <div class="customer_title">
           <p class="block_area"></p>
-          <h1 style="background-color:#9b9b9b;color:white;"class="title1 stylist_space">12月休日登録</h1>
+          <h1 style="background-color:#9b9b9b;color:white;"class="title1 stylist_space"><%= @date_to.strftime("%m月")%>休日登録</h1>
       </div>
       <%= @date_to%>
-      <%= form_with model: [@salon, @salon_detail], url: create_spcial_admins_salon_salon_details_path(@salon.id), local: true do |f| %>
+      <%= form_with model: @spcial_holiday, url: admins_spcial_holidays_path(@date_to), local: true do |f| %>
         <table class="new_spcial_table">
           <colgroup width="30%"></colgroup>
           <colgroup width="70%"></colgroup>
@@ -18,18 +18,18 @@
                 店休日選択<%= i%>
               </th>
               <td class="salon_new_spcial_td">
-                <%= @date_to.strftime("%Y年%m月") %> <%= f.text_field :spcial_holiday_ids , class:"new_spcial_field",placeholder:"例）25", maxlength: "2" %>(半角数字で入力してください)
+                <%= @date_to.strftime("%Y年%m月") %> <%= f.text_field :holliday, class:"new_spcial_field", placeholder:"例）25", maxlength: "2" %>(半角数字で入力してください)
               </td>
             </tr>
           <% end %>
         </table>
         <table style="width:100%;height:20px;margin-top:30px;margin-bottom:30px;">
-          <tr>
-            <td class="register_td">
-              <%= f.submit "登録", class:"register_btn"%>
-            </td>
-          </tr>
-        </table>
+        <tr>
+          <td class="register_td">
+            <%= f.submit "登録", class:"register_btn"%>
+          </td>
+        </tr>
+      </table>
       <% end %>
     </div>
   </div>

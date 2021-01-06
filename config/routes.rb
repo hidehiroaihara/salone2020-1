@@ -86,8 +86,9 @@ Rails.application.routes.draw do
           post :create_spcial
         end
       end
-      resources :shift
+      resources :shifts
     end
+      resources :spcial_holidays
   end
   root to: "users/users#index"
 end

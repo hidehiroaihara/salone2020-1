@@ -2,7 +2,7 @@
 <div class="contents">
   <div class="section">
     <div class="user_option_area">
-      <table class="time_index_table" style="float:left;margin-bottom:30px;">
+      <table class="time_index_table2" style="float:left;margin-bottom:30px;">
         <tr>
           <th class="user_option_title">お客様情報
             <p class="block_area"></p>
@@ -27,7 +27,7 @@
           </td>
         </tr>
       </table>
-      <table class="time_index_table" style="margin-bottom:30px;">
+      <table class="time_index_table2" style="margin-bottom:30px;">
         <tr>
           <th class="user_option_title">メニュー時間設定
             <p class="block_area"></p>
@@ -64,11 +64,11 @@
           <% end%>
         <% end %>
       </table>
-       <div class="stylist_display">
+      <div class="stylist_display">
         <p class="option_time">
           <%= link_to "個人時間登録", new_admins_user_user_option_path(@user.id), class:"time_add" %>
         </p>
-    </div>
+      </div>
     </div>
   </div>
 </div>
